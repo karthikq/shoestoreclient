@@ -1,0 +1,37 @@
+/** @format */
+
+.btn-loading-div {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  border: 0.25rem solid rgba(255, 255, 255, 0.2);
+  border-top-color: rgb(255, 255, 255);
+  animation: spin 1s infinite linear;
+}
+.loading-span {
+  user-select: none;
+
+  color: #eeeeee;
+  border: 2px solid;
+  transition: 0.5s ease-in-out;
+
+  font-size: 20px;
+
+  cursor: pointer;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border: 0;
+  gap: 0 0.8rem;
+  font-size: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

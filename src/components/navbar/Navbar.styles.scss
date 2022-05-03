@@ -1,0 +1,197 @@
+/** @format */
+
+.nav-container {
+  width: 100%;
+  height: 100%;
+}
+.nav-contents {
+  width: 18rem;
+  background: linear-gradient(90deg, rgb(8, 8, 8), rgb(15, 15, 15));
+  height: 100%;
+  padding: 1rem 0;
+  overflow-y: auto;
+
+  position: fixed;
+  left: -20rem;
+  top: 0;
+  z-index: 200;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.nav-contents-active {
+  left: 0;
+}
+.nav-icon {
+  width: 25px;
+
+  position: fixed;
+  left: 1rem;
+  top: 2rem;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  .navspan {
+    display: block;
+    background-color: white;
+    border-radius: 10px;
+    width: 35px;
+    height: 4px;
+    margin: 3px 0;
+    transition: 0.4s cubic-bezier(0.68, -0.6, 0.232, 1.6);
+  }
+  .navspan:nth-of-type(1) {
+    width: 60%;
+  }
+  .navspan:nth-of-type(2) {
+    width: 100%;
+  }
+  .navspan:nth-of-type(3) {
+    width: 75%;
+  }
+}
+.nav-icon-active {
+  top: 1rem;
+  left: 250px;
+  .navspan {
+    background-color: white !important;
+  }
+  .navspan:nth-child(1) {
+    transform-origin: bottom;
+    transform: rotatez(45deg) translate(4px, 2px);
+  }
+  .navspan:nth-child(2) {
+    transform-origin: top;
+
+    transform: rotatez(-45deg);
+  }
+  .navspan:nth-child(3) {
+    transform-origin: bottom;
+    width: 50%;
+    transform: translate(11px, -8px) rotatez(45deg);
+  }
+}
+.nav-items {
+  color: white;
+
+  min-height: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  gap: 1.5rem 0;
+
+  padding: 0rem 0;
+  ul {
+    padding-left: 0rem;
+    margin-left: 1.2rem;
+    font-family: "Poppins", sans-serif;
+    li {
+      list-style-type: none;
+      font-size: 1.5rem;
+      letter-spacing: 0.2px;
+      font-weight: 500;
+      margin: 0.2rem 0;
+
+      color: rgb(255, 255, 255);
+      padding: 0.6rem 1.5rem;
+      padding-left: 0.8rem;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0 0.5rem;
+      .badge-item_flex {
+        display: flex;
+        gap: 0 0.5rem;
+        align-items: center;
+      }
+      &::before {
+        position: absolute;
+        width: 0.8rem;
+
+        height: 100%;
+        background-color: #ff2e63;
+        left: 0%;
+        transform: translateX(-50%);
+        bottom: 0;
+        z-index: -1;
+        content: "";
+        clip-path: polygon(0 100%, 20% 100%, 20% 100%, 0% 100%);
+        transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+      }
+      &:hover::before {
+        clip-path: polygon(0 0, 20% 0, 20% 100%, 0% 100%);
+      }
+      &:hover {
+        color: rgb(255, 255, 255);
+      }
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+
+    &:hover li:not(:hover) {
+      opacity: 0.25;
+    }
+  }
+}
+.nav-profile {
+  width: 90%;
+  height: 50px;
+  margin-left: 0.4rem;
+  margin-bottom: 0.5rem;
+  // position: absolute;
+  // left: 0.5rem;
+  // top: 1rem;
+  margin-top: 2rem;
+  position: relative;
+  top: 2rem;
+  border: 2px solid rgba(253, 253, 253, 0);
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0);
+  padding: 0.4rem;
+  border-radius: 0px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0 0.8rem;
+  font-family: "Poppins", sans-serif;
+  a {
+    text-decoration: none;
+  }
+  img {
+    margin-left: 0.8rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: aliceblue;
+  }
+  span {
+    font-size: 1.22rem;
+    opacity: 1;
+    letter-spacing: 0.4px;
+    font-weight: 500;
+    text-transform: capitalize;
+    color: #c7c7c7;
+    &:hover {
+      color: #fa1c1c;
+      text-decoration: underline;
+    }
+  }
+}
+@media screen and (max-width: 560px) {
+  .nav-contents {
+    width: 16rem;
+  }
+  .nav-items {
+    margin-top: 1.8rem;
+    gap: 0.7em 0;
+  }
+  .nav-icon-active {
+    left: 210px;
+  }
+}

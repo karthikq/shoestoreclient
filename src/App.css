@@ -1,0 +1,12 @@
+/** @format */
+
+.toast-error_btn {
+  margin-left: 0.3rem;
+  background-color: rgb(218, 35, 35);
+  color: rgb(255, 255, 255);
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  padding: 0.2rem 0.5rem;
+}

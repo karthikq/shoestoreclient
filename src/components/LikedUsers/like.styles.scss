@@ -1,0 +1,63 @@
+/** @format */
+
+.css-19kzrtu {
+  padding: 1rem 0.4rem !important;
+}
+.selproduct-likes_user {
+  display: flex;
+
+  gap: 0 1rem;
+  margin: 0 0 0.7em;
+  font-family: "Poppins", sans-serif;
+  //   border: 3px solid rgba(211, 211, 211, 0.144);
+  border-radius: 7px;
+  padding: 0.4rem 0.8rem;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+
+  //   &:hover {
+  //     border: 3px solid rgba(248, 55, 55, 0.151);
+  // box-shadow: rgba(0, 0, 0, 0.151) 0px 25px 50px -12px;
+  //   }
+
+  img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .selproduct-user_details {
+    display: flex;
+    flex-direction: column;
+  }
+  .selproduct-likes_user-span {
+    margin-top: 0.1rem;
+    min-width: 10rem;
+    height: 100%;
+    color: rgb(29, 29, 29);
+    font-weight: 400;
+    letter-spacing: 0px;
+    font-size: 0.94rem;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+
+    &:hover {
+      color: rgb(114, 114, 114);
+      text-decoration: underline;
+    }
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+  .rating-user_span {
+    display: flex;
+    align-items: center;
+    gap: 0 0.2rem;
+  }
+  .selproduct-likes_user-date {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.15rem;
+  }
+}

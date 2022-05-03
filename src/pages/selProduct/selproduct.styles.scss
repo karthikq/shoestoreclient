@@ -1,0 +1,312 @@
+/** @format */
+:root {
+  --redcolor: "ff2e63";
+}
+.confettie {
+  z-index: 180 !important;
+}
+.selproduct-container {
+  width: 100%;
+  top: 0rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(31, 24, 24, 0.918);
+  padding-bottom: 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  z-index: 150;
+  .selproduct-close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    .selproduct-close_icon {
+      cursor: pointer;
+      font-size: 1.4rem;
+      color: white;
+      padding: 0.4rem;
+      border: 2px solid rgba(238, 238, 238, 0.253);
+      border-radius: 50%;
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      &:hover {
+        border: 2px solid lightgray;
+        color: #ff2e63;
+      }
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+  }
+}
+canvas {
+  transition: all 0.5s ease;
+}
+.selproduct-contents {
+  width: 85%;
+  min-height: 70vh;
+  padding: 2.5rem 1rem;
+  margin: 3rem 0;
+  margin-top: 3.5rem;
+  margin-bottom: 2.5rem;
+
+  background-color: #fefefefe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0 4rem;
+  position: relative;
+
+  box-shadow: rgba(0, 0, 0, 0.068) 0px 0px 50px -12px;
+  // border-radius: 15px;
+  position: relative;
+  .selproduct-options {
+    position: absolute;
+    right: 2rem;
+    top: 1.5rem;
+    .mui-dot_icon {
+      cursor: pointer !important;
+      padding: 0.15rem;
+      border-radius: 50%;
+      border: 2px solid rgba(37, 37, 37, 0);
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      &:hover {
+        border: 2px solid rgba(117, 117, 117, 0.541);
+      }
+      &:active {
+        transform: scale(0.8);
+        border: 2px solid rgba(117, 117, 117, 0.541);
+      }
+    }
+  }
+}
+.selproduct-img {
+  padding-left: 0rem;
+  padding-right: 1rem;
+  width: 44%;
+  height: 100%;
+  position: relative;
+
+  .selproduct-main_img {
+    width: 100%;
+
+    height: 350px;
+    object-fit: cover;
+  }
+  .thumbs-slider_img {
+    height: 100px;
+    object-fit: cover;
+  }
+}
+.selproduct-details_content {
+  bottom: 0 !important;
+  // top: 1rem;
+}
+.selproduct-details {
+  width: 40%;
+  position: relative;
+  // bottom: 2rem;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  font-family: "Poppins", sans-serif;
+  .selproduct-h2 {
+    margin-top: 0;
+
+    font-size: 1.8rem;
+    letter-spacing: 0.3px;
+    font-weight: 500;
+    margin-bottom: 0rem;
+  }
+  .p_desp {
+    margin: 0rem 0;
+    display: block;
+    width: 90%;
+    margin-left: 0.2rem;
+    line-height: 1.6;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.781);
+  }
+}
+
+.selproduct-created_user {
+  width: 100%;
+  margin-bottom: 1rem;
+  .selproduct-created_user-details {
+    display: flex;
+    align-items: center;
+    gap: 0 0.6rem;
+    img {
+      width: 45px;
+      height: 45px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .selproduct-created_p {
+      font-weight: 400;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.selproduct-actions {
+  margin-top: 1rem;
+
+  display: flex;
+  align-self: flex-end;
+  gap: 0 0.7rem;
+
+  .selproduct-fav_icon,
+  .selproduct-cart_icon,
+  .selproduct-like_icon {
+    font-size: 1.31rem;
+    color: #202020;
+    padding: 0.25rem;
+
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+
+    border-radius: 50%;
+    border: 2px solid rgba(211, 211, 211, 0);
+    &:active {
+      transform: scale(0.9);
+    }
+    &:hover {
+      border: 2px solid lightgrey;
+    }
+  }
+  .selproduct-fav_icon-active {
+    color: rgb(230, 0, 0);
+  }
+  .selproduct-cart_icon {
+    padding-right: 0.4rem;
+  }
+}
+.selproduct-like_div {
+  display: flex;
+  align-items: center;
+  gap: 0 0.2rem;
+  .sel-product_like-span {
+    font-weight: 600;
+    opacity: 0.3;
+  }
+}
+.selproduct-usage {
+  font-family: "Poppins", sans-serif;
+
+  color: rgb(182, 182, 182);
+  width: 100%;
+  margin-top: 0.7rem;
+
+  .selproduct-usage_icon {
+    font-size: 1.1rem;
+  }
+  // h3 {
+  //   font-weight: 500;
+  //   letter-spacing: 0.4px;
+  //   font-size: 1.2rem;
+  //   margin-bottom: 0.8rem;
+  //   display: flex;
+  //   align-items: center;
+  //   gap: 0 0.5rem;
+  // }
+  .selproduct-likes {
+    width: auto;
+    height: 120px;
+    overflow-y: auto;
+    background-color: rgb(253, 253, 253);
+    font-family: "Poppins", sans-serif;
+    // padding: 1rem;
+    // padding-top: 0.5rem;
+    // padding-left: 0;
+    // padding-bottom: 0.8rem;
+    // padding-right: 4rem;
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #888;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  }
+}
+.css-h0q0iv-MuiButtonBase-root-MuiTab-root {
+  min-height: 50px !important;
+}
+
+.sel-product_rating {
+  margin-top: 1em;
+  margin-bottom: 1.4rem;
+  font-family: "Montserrat", sans-serif;
+  .sel-product-rating_items {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.7rem;
+  }
+  .p_rating {
+    margin-left: 0.5rem;
+    margin-bottom: 0em;
+    font-weight: 500;
+    opacity: 0.4;
+  }
+  p {
+    font-size: 0.8rem;
+    font-weight: 400;
+    cursor: pointer;
+    width: 6rem;
+    margin: 0.4rem 0 0.8rem;
+    opacity: 0.9;
+    margin-left: 0.4rem;
+
+    &:hover {
+      color: #ff2e63;
+    }
+  }
+}
+.sel-product-tags {
+  width: 100%;
+  margin-top: 0.85rem;
+  margin-left: 0.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0 0.5rem;
+  .selproduct_tag-span {
+    color: rgb(163, 161, 161);
+    font-size: 0.85rem;
+  }
+}
+
+// .sel-product-views_container {
+//   margin: 0.9rem 0 0;
+//   display: flex;
+//   align-items: center;
+//   opacity: 0.4;
+//   gap: 0 0.2rem;
+//   span {
+//     font-weight: 500;
+//     font-size: 0.95rem;
+//     margin-bottom: 0.1rem;
+//   }
+// }
+// .sel-product_views {
+//   padding: 0.4rem;
+//   font-size: 1.35rem;
+// }
+.selporudct-views_count {
+  font-weight: 400 !important;
+  font-size: 0.9rem;
+  margin: 0;
+  color: rgb(95, 95, 95);
+}
