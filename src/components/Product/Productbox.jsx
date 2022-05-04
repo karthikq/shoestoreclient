@@ -7,7 +7,7 @@ import { BsBag } from "react-icons/bs";
 import StarRatings from "react-star-ratings";
 import { connect, useSelector } from "react-redux";
 import { singleProduct, updateViewCount } from "../actions";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AiFillHeart, AiOutlineDelete } from "react-icons/ai";
 import { addtocart, userAddtofav } from "../actions/User";
 import Userfav from "../userActions/Userfav";
@@ -20,6 +20,7 @@ import { removeProduct } from "../actions";
 
 const Productbox = ({ item, userData, updateViewCount }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   const [deleteState, setDeleteState] = React.useState(false);
   // const products = useSelector((state) => state.Products);
@@ -67,10 +68,12 @@ const Productbox = ({ item, userData, updateViewCount }) => {
         {item.userId !== userData._id ? (
           <UserCart item={item} userData={userData} />
         ) : (
-          <AiOutlineDelete
-            onClick={() => setDeleteState(true)}
-            className="product_delete-btn"
-          />
+          location.pathname === "/get/user/" + userData._id && (
+            <AiOutlineDelete
+              onClick={() => setDeleteState(true)}
+              className="product_delete-btn"
+            />
+          )
         )}
         <div className="star-rating">
           {/* <StarRatings
