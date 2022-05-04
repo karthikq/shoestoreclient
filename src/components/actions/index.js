@@ -188,29 +188,34 @@ export const createProduct =
 export const removeProduct =
   (prodId, navigate) => async (disptach, getState) => {
     try {
-      console.log(prodId);
+      const product = getState().Products[0].p_id;
+
       const toastToken = toast.loading("Deleting product please wait");
 
       const { data } = await backendApi.patch("/product/remove/" + prodId);
-      const user = getState().User.userDetails._id;
-      if (data.status === 201) {
-        disptach({
-          type: REMOVE_PRODUCT,
-          payload: data.product,
-        });
-        disptach({
-          type: UPDATE_USER,
-          payload: data.userData,
-        });
-      }
+
+      console.log(data);
+
+      await disptach({
+        type: REMOVE_PRODUCT,
+        payload: data.product,
+      });
+      await disptach({
+        type: UPDATE_USER,
+        payload: data.userData,
+      });
+
       toast.success("Product deleted", {
         id: toastToken,
       });
-      navigate("/get/user/" + user);
+      console.log(window.location.pathname.split("/")[1]);
+      if (window.location.pathname.split("/")[1] === "single") {
+        navigate(-1);
+      }
     } catch (error) {
-      console.log(error.response);
+      console.log(error);
       toast.dismiss();
-      const status = error.response.status;
+      const status = error.response?.status;
       if (status === 404) {
         toast.error("Product not found");
         navigate("/");

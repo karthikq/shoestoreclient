@@ -70,7 +70,7 @@ const UserCart = ({ userData }) => {
         ) : (
           <div className="cart-item_empty">
             <Gippy />
-            <h3>No Items found</h3>s
+            <h3>No Items found</h3>
             <Link to="/categ/options">
               <span>Add now</span>
             </Link>

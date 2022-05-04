@@ -20,6 +20,7 @@ import Cart from "../../components/UserComp/Cart";
 import { motion } from "framer-motion";
 import { fetchIndUser } from "../../components/actions/User";
 import { fetchProducts } from "../../components/actions";
+import Gippy from "../../components/Gipphy/Gippy";
 
 const User = ({ userData, userProducts, auth, foundUser }) => {
   const location = useLocation();
@@ -108,10 +109,23 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
             </ul>
           </div>
           <motion.div className="user-details_items">
-            {parseState === "products" &&
-              userProducts.map(
-                (item) => item && <Productbox item={item} key={item._id} />
-              )}
+            {parseState === "products" ? (
+              userProducts.length > 0 ? (
+                userProducts.map(
+                  (item) => item && <Productbox item={item} key={item._id} />
+                )
+              ) : (
+                <div className="cart-item_empty">
+                  <Gippy />
+                  <h3>No Items found</h3>
+                  <Link to="/create/product">
+                    <span>Upload now</span>
+                  </Link>
+                </div>
+              )
+            ) : (
+              ""
+            )}
             {foundUser._id === userData._id &&
               parseState === "fav" &&
               userData?.favProducts?.map(

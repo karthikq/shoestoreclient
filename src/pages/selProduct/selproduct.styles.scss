@@ -118,14 +118,22 @@ canvas {
     font-weight: 500;
     margin-bottom: 0rem;
   }
+  .p_desp-div {
+    margin: 0.7rem 0;
+  }
   .p_desp {
-    margin: 0rem 0;
     display: block;
     width: 90%;
     margin-left: 0.2rem;
     line-height: 1.6;
     font-size: 1rem;
     color: rgba(0, 0, 0, 0.781);
+    margin: 0rem 0 0;
+    .p_desp_more {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
   }
 }
 
@@ -187,7 +195,7 @@ canvas {
   align-items: center;
   gap: 0 0.2rem;
   .sel-product_like-span {
-    font-weight: 600;
+    font-weight: 500;
     opacity: 0.3;
   }
 }

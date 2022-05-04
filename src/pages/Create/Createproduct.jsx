@@ -15,9 +15,11 @@ import ImageSlider from "../../components/ImageSlider";
 
 import UploadImg from "../../components/uploads/UploadImg";
 import { createProduct, getcsrfToken } from "../../components/actions";
+import BackdropLoader from "../../components/loader/Backdrop";
 const animatedComponents = makeAnimated();
 const Createproduct = ({ createProduct, getcsrfToken }) => {
   const navigate = useNavigate();
+  const [backdropState, setBackdropState] = useState(false);
 
   const [uploadedImg, setUploadedImg] = useState("");
   const [uploadedImgState, setUploadedImgState] = useState(false);
@@ -42,11 +44,15 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
     if (file.length > 3) {
       return toast.error("You can select only Three images");
     } else {
+      setBackdropState(true);
       for (let index = 0; index < file.length; index++) {
         const url = URL.createObjectURL(file[index]);
         setUploadedImg((preValue) => [...preValue, url]);
       }
       setUploads((preValue) => [...file]);
+      setTimeout(() => {
+        setBackdropState(false);
+      }, 200);
     }
   };
 
@@ -67,6 +73,7 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
     if (userData.p_price <= 0) {
       return toast.error("Price cannot be less than zero");
     }
+    toast.loading("Uploading image's");
     setUploadedImgState(true);
 
     // sliderdiv.style.left = `${0}%`;
@@ -87,6 +94,7 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
 
   useEffect(() => {
     if (uploadedImgState) {
+      toast.dismiss();
       if (urlarray.length > 0 && urlarray.length === uploads.length) {
         // setUserData({ ...userData, p_img: urlarray });
 
@@ -105,7 +113,6 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
   // }
 
   const options = [
-    { value: "all", label: "All", color: "#00B8D9" },
     { value: "casual", label: "Casual", color: "#00B8D9" },
     { value: "running", label: "Running", color: "#0052CC" },
     { value: "sports", label: "Sports", color: "#5243AA" },
@@ -124,6 +131,7 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
 
   return (
     <motion.div className="create-p_container">
+      <BackdropLoader open={backdropState} setOpen={setBackdropState} />
       <div className="create-p_contents">
         <h3>
           {uploadedImgState ? "Uploading please wait" : "Upload your product"}
@@ -244,11 +252,20 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
               />
               <label className="other-label">
                 Product despscription (optional)
+                <span
+                  className={
+                    userData.p_desp.length === 200
+                      ? "desp_length desp_length-active"
+                      : "desp_length"
+                  }>
+                  {userData.p_desp.length}/200
+                </span>
               </label>
               <textarea
                 name="p_desp"
                 cols="30"
                 rows="5"
+                maxLength={200}
                 onChange={(e) =>
                   setUserData({ ...userData, p_desp: e.target.value })
                 }></textarea>

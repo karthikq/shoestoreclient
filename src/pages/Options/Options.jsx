@@ -6,14 +6,12 @@ import "./options.styles.scss";
 import { motion } from "framer-motion";
 import { connect } from "react-redux";
 
-import Backdrop from "@mui/material/Backdrop";
-import CircularProgress from "@mui/material/CircularProgress";
-
 import { BiCategoryAlt, BiRightArrowAlt } from "react-icons/bi";
 
 import OptionItem from "./OptionItem";
 import { useNavigate } from "react-router-dom";
 import { fetchselProduct } from "../../components/actions";
+import BackdropLoader from "../../components/loader/Backdrop";
 
 const Options = ({ fetchselProduct, navigationState }) => {
   const [selOptions, setSelOptions] = useState([]);
@@ -62,10 +60,6 @@ const Options = ({ fetchselProduct, navigationState }) => {
     }
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
     <motion.div
       // initial={{}}
@@ -73,12 +67,7 @@ const Options = ({ fetchselProduct, navigationState }) => {
       // exit={{}}
       // transition={{ duration: 0.5, ease: "linear" }}
       className="options-container">
-      <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={open}
-        onClick={handleClose}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
+      <BackdropLoader open={open} setOpen={setOpen} />
       <div className="options-contents">
         <motion.h2
           initial={{ opacity: 0 }}

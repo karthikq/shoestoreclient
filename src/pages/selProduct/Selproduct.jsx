@@ -51,6 +51,8 @@ const Selproduct = ({
 }) => {
   const [addUserRating, setAddUserRating] = useState(false);
   const [confettiState, setconfettiState] = useState(false);
+  const [readMore, setreadMore] = useState(false);
+
   const location = useLocation();
 
   // const [selProduct, setSelproduct] = useState();
@@ -68,15 +70,13 @@ const Selproduct = ({
     if (selproduct.userId) {
       dispatch(fetchIndUser(selproduct.userId));
     }
-  }, [selproduct]);
+  }, []);
 
-  const { state, setState } = useContext(ProductContextobj);
-  console.log(state);
   //
   const changeproductRating = async (newrating, name) => {
     await dispatch(addRating(selproduct.p_id, parseInt(newrating)));
     setAddUserRating(false);
-    console.log(typeof newrating);
+
     if (newrating === 5) {
       setconfettiState(true);
     }
@@ -86,7 +86,7 @@ const Selproduct = ({
     }, [4000]);
   };
 
-  const totalLikes = _.sum(selproduct.likes?.map((item) => item.count));
+  const totalLikes = _.sum(selproduct?.likes?.map((item) => item.count));
 
   //   <StarRatings
   //   rating={
@@ -146,7 +146,29 @@ const Selproduct = ({
                 </div> */}
               </div>
               <h2 className="selproduct-h2">{selproduct.p_name}</h2>{" "}
-              <span className="p_desp">{selproduct.p_desp}</span>
+              {selproduct.p_desp && (
+                <div className="p_desp-div">
+                  {!readMore ? (
+                    <span className="p_desp">
+                      {selproduct.p_desp.substring(0, 100) + "..."}
+                      <span
+                        className="p_desp_more"
+                        onClick={() => setreadMore(true)}>
+                        show more
+                      </span>
+                    </span>
+                  ) : (
+                    <span className="p_desp">
+                      {selproduct.p_desp}
+                      <span
+                        className="p_desp_more"
+                        onClick={() => setreadMore(false)}>
+                        show less
+                      </span>
+                    </span>
+                  )}
+                </div>
+              )}
               <div className="sel-product_rating">
                 <div className="sel-product-rating_items">
                   {selproduct && (

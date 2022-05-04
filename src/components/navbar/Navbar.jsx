@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { BiHome, BiLogIn } from "react-icons/bi";
 import { VscAccount } from "react-icons/vsc";
 import {
+  AiOutlineCloudUpload,
   AiOutlineHeart,
   AiOutlineLogout,
   AiOutlineSetting,
@@ -111,7 +112,7 @@ const Navbar = ({ auth, LogoutUser, user }) => {
             )}
             {auth && (
               <li onClick={() => handleNavigation("/create/product")}>
-                <AiOutlineSetting className="navbar-icon" /> Create
+                <AiOutlineCloudUpload className="navbar-icon" /> Upload
               </li>
             )}
             {auth ? (
