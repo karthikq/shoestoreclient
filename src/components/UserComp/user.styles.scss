@@ -407,45 +407,7 @@
     color: white;
   }
 }
-.cart-item_empty {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  h3 {
-    color: white;
 
-    font-size: 1.8rem;
-    margin-top: 0;
-    font-weight: 600;
-
-    margin-bottom: 0.8rem;
-  }
-  a {
-    text-decoration: none;
-    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-    &:active {
-      transform: scale(0.9);
-    }
-  }
-  span {
-    padding: 0.3rem 0.9rem;
-    width: 8rem;
-    background-color: rgb(255, 23, 23);
-    color: white;
-    border-radius: 5px;
-    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-    border: 2px solid rgba(255, 23, 23, 0);
-    font-size: 0.95rem;
-    &:active {
-      transform: scale(0.9);
-    }
-    &:hover {
-      background: transparent;
-      border: 2px solid rgb(255, 23, 23);
-    }
-  }
-}
 .cart-item-remove {
   position: absolute;
   right: 1.2rem;

@@ -21,6 +21,7 @@ import { motion } from "framer-motion";
 import { fetchIndUser } from "../../components/actions/User";
 import { fetchProducts } from "../../components/actions";
 import Gippy from "../../components/Gipphy/Gippy";
+import NoItems from "../../components/errors/NoItems";
 
 const User = ({ userData, userProducts, auth, foundUser }) => {
   const location = useLocation();
@@ -82,30 +83,34 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
                 name="Products"
               />
 
-              <UsernavList
-                icon={<MdFavorite />}
-                parseState={parseState}
-                path="fav"
-                name="Favouritie's"
-              />
-              <UsernavList
-                icon={<AiOutlineShoppingCart />}
-                parseState={parseState}
-                path="cart"
-                name="Cart"
-              />
-              <UsernavList
-                icon={<FiSettings />}
-                parseState={parseState}
-                path="settings"
-                name="Settings"
-              />
-              <UsernavList
-                icon={<BsCheckCircle />}
-                parseState={parseState}
-                path="orders"
-                name="Orders"
-              />
+              {foundUser._id === userData._id && (
+                <React.Fragment>
+                  <UsernavList
+                    icon={<MdFavorite />}
+                    parseState={parseState}
+                    path="fav"
+                    name="Favouritie's"
+                  />
+                  <UsernavList
+                    icon={<AiOutlineShoppingCart />}
+                    parseState={parseState}
+                    path="cart"
+                    name="Cart"
+                  />
+                  <UsernavList
+                    icon={<FiSettings />}
+                    parseState={parseState}
+                    path="settings"
+                    name="Settings"
+                  />
+                  <UsernavList
+                    icon={<BsCheckCircle />}
+                    parseState={parseState}
+                    path="orders"
+                    name="Orders"
+                  />{" "}
+                </React.Fragment>
+              )}
             </ul>
           </div>
           <motion.div className="user-details_items">
@@ -115,23 +120,23 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
                   (item) => item && <Productbox item={item} key={item._id} />
                 )
               ) : (
-                <div className="cart-item_empty">
-                  <Gippy />
-                  <h3>No Items found</h3>
-                  <Link to="/create/product">
-                    <span>Upload now</span>
-                  </Link>
-                </div>
+                <NoItems text="Upload now" path="/create/product" />
               )
             ) : (
               ""
             )}
-            {foundUser._id === userData._id &&
-              parseState === "fav" &&
-              userData?.favProducts?.map(
-                ({ product }) =>
-                  product && <Productbox item={product} key={product._id} />
-              )}
+            {foundUser._id === userData._id && parseState === "fav" ? (
+              userData?.length > 0 ? (
+                userData.favProducts?.map(
+                  ({ product }) =>
+                    product && <Productbox item={product} key={product._id} />
+                )
+              ) : (
+                <NoItems text="Add now" path="/categ/options" />
+              )
+            ) : (
+              ""
+            )}
             {foundUser._id === userData._id && parseState === "cart" && (
               <Cart userData={userData} />
             )}

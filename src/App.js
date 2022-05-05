@@ -65,7 +65,7 @@ function App({ fetchProducts, fetchUserDetails }) {
     }
   }, []);
   const value = useContext(ProductContextobj);
-  console.log(state);
+
   return (
     <div>
       <Navbar />

@@ -11,6 +11,7 @@ import WordConvertor from "../currency/toWords";
 import Gippy from "../Gipphy/Gippy";
 import Model from "../model/Model";
 import { motion } from "framer-motion";
+import NoItems from "../errors/NoItems";
 const UserCart = ({ userData }) => {
   const cartTotal = CartTotal(userData);
   const [btnState, setBtnState] = useState(false);
@@ -68,13 +69,7 @@ const UserCart = ({ userData }) => {
               product && <CartItems product={product} quantity={quantity} />
           )
         ) : (
-          <div className="cart-item_empty">
-            <Gippy />
-            <h3>No Items found</h3>
-            <Link to="/categ/options">
-              <span>Add now</span>
-            </Link>
-          </div>
+          <NoItems text="Add now" path="/categ/options" />
         )}
       </motion.div>
     </div>

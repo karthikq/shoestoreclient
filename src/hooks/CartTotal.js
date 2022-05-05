@@ -10,7 +10,8 @@ const CartTotal = (userData) => {
     let price = 0;
 
     userData?.cart?.items?.map(
-      ({ product, quantity }) => (price += product.price * quantity)
+      ({ product, quantity }) =>
+        (price += product?.price ? product?.price * quantity : 0)
     );
     setCartTotal(getCurrency(price));
   }, [userData]);

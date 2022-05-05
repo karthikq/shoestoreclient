@@ -26,6 +26,8 @@ const UploadImg = ({ file, setUploadedImgState, setUrlarray }) => {
     };
   }, [file]);
 
+  
+
   async function handleImageUpload() {
     const compressedFile = await imageCompression(file, options);
     try {
@@ -36,6 +38,7 @@ const UploadImg = ({ file, setUploadedImgState, setUrlarray }) => {
   }
   return (
     <div className="upload-container">
+ 
       <div className="upload-contents">
         <img src={URL.createObjectURL(file)} alt="err" />
         <div className="progress-bar">

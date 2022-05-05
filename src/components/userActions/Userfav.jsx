@@ -14,7 +14,7 @@ const Userfav = ({ userData, item, userAddtofav }) => {
   const navigate = useNavigate();
   return (
     <div className="product-fav">
-      {userData.favProducts?.find((prod) => prod.product._id === item._id) ? (
+      {userData.favProducts?.find((prod) => prod.product?._id === item?._id) ? (
         <FavoriteIcon
           className="product-fav_icon product-user_fav"
           onClick={() => userAddtofav(item._id, false, navigate)}
@@ -22,7 +22,7 @@ const Userfav = ({ userData, item, userAddtofav }) => {
       ) : (
         <FavoriteBorderIcon
           className="product-fav_icon"
-          onClick={() => userAddtofav(item._id, true, navigate)}
+          onClick={() => userAddtofav(item?._id, true, navigate)}
         />
       )}
     </div>

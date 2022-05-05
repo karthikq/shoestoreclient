@@ -10,10 +10,10 @@ import { BiCategoryAlt, BiRightArrowAlt } from "react-icons/bi";
 
 import OptionItem from "./OptionItem";
 import { useNavigate } from "react-router-dom";
-import { fetchselProduct } from "../../components/actions";
+import { fetchselProduct, fetchProducts } from "../../components/actions";
 import BackdropLoader from "../../components/loader/Backdrop";
 
-const Options = ({ fetchselProduct, navigationState }) => {
+const Options = ({ fetchselProduct, navigationState, fetchProducts }) => {
   const [selOptions, setSelOptions] = useState([]);
   const [btnState, setBtnState] = useState(false);
   const [open, setOpen] = React.useState(false);
@@ -30,10 +30,13 @@ const Options = ({ fetchselProduct, navigationState }) => {
     }
   };
   useEffect(() => {
+    fetchProducts();
     const data = sessionStorage.getItem("data");
-
-    if (!data) return;
-    if (data) setSelOptions(data.split(","));
+    if (!data) {
+      return;
+    } else {
+      setSelOptions(data.split(","));
+    }
   }, []);
 
   const onSubmit = async (e) => {
@@ -167,4 +170,4 @@ const Options = ({ fetchselProduct, navigationState }) => {
   );
 };
 
-export default connect(null, { fetchselProduct })(Options);
+export default connect(null, { fetchselProduct, fetchProducts })(Options);

@@ -14,7 +14,7 @@ const UserAvatar = ({ avatar, name, value, userId }) => {
       <div className="selproduct-user_details">
         <span
           className="selproduct-likes_user-span"
-          onClick={() => navigate("/get/user/" + userId)}>
+          onClick={() => navigate("/get/user/" + userId + "#products")}>
           {name}
         </span>{" "}
         <div className="selproduct-likes_user-date">
