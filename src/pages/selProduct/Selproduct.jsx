@@ -120,7 +120,11 @@ const Selproduct = ({
           <motion.div layout="position" className="selproduct-contents">
             {selproduct && userData && (
               <div className="selproduct-options">
-                <MenuDropdown loginUser={userData} postUser={selproduct} />
+                <MenuDropdown
+                  loginUser={userData}
+                  postUser={selproduct}
+                  product={selproduct}
+                />
               </div>
             )}
             <div className="selproduct-img">

@@ -3,6 +3,7 @@
 import { productsArray } from "../Products";
 import {
   CREATE_PRODUCT,
+  EDIT_PRODUCT,
   FETCH_PRODUCTS,
   GET_PRODUCT,
   LIKE_PRODUCT,
@@ -23,6 +24,11 @@ export const productsReducer = (state = intialState, action) => {
 
     case GET_PRODUCT:
       return action.payload;
+
+    case EDIT_PRODUCT:
+      return state.map((item) =>
+        item.p_id === action.payload.p_id ? action.payload : item
+      );
 
     case UPDATE_VIEW:
       return state.map((item) =>

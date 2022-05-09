@@ -5,6 +5,7 @@ import { backendApi } from "../api/api";
 import toast from "react-hot-toast";
 import {
   CREATE_PRODUCT,
+  EDIT_PRODUCT,
   FETCH_PRODUCTS,
   GET_PRODUCT,
   LIKE_PRODUCT,
@@ -51,7 +52,7 @@ export const fetchselProduct = () => async (dispatch, getState) => {
         return item.keywords.includes(i) ? item : "";
       });
     });
-    console.log(data);
+
     dispatch({
       type: GET_PRODUCT,
       payload: data,
@@ -185,6 +186,38 @@ export const createProduct =
     }
   };
 
+export const editProduct =
+  (productDetails, productData, urlarray, navigate) => async (dispatch) => {
+    productData.p_img = urlarray;
+    console.log("S1");
+    try {
+      const toastToken = toast.loading("Creating product");
+
+      const { data } = await backendApi.patch(
+        "/product/edit/",
+        productDetails.p_id,
+        productData
+      );
+      console.log(data);
+      // await dispatch({
+      //   type: EDIT_PRODUCT,
+      //   payload: data,
+      // });
+      // toast.success("Product created", {
+      //   id: toastToken,
+      // });
+      // navigate("/");
+    } catch (error) {
+      toast.dismiss();
+
+      const errors = error.response;
+      if (errors.status === 500) {
+        toast.error("Server error please refresh page and try again");
+      } else {
+        toast.error("Please login and continue");
+      }
+    }
+  };
 export const removeProduct =
   (prodId, navigate) => async (disptach, getState) => {
     try {

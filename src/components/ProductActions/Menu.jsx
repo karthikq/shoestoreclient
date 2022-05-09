@@ -61,7 +61,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-const MenuDropdown = ({ loginUser, postUser }) => {
+const MenuDropdown = ({ loginUser, postUser, product }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [modelState, setModelState] = React.useState(false);
 
@@ -75,6 +75,10 @@ const MenuDropdown = ({ loginUser, postUser }) => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleEdit = () => {
+    setAnchorEl(null);
+    navigate(`/edit/product/${product.p_id}`);
   };
   const cb = () => {
     dispatch(removeProduct(postUser._id, navigate));
@@ -110,18 +114,18 @@ const MenuDropdown = ({ loginUser, postUser }) => {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={handleEdit}>
           <EditIcon />
           Edit
         </MenuItem>
         {loginUser?._id === postUser?.userId && (
-          <MenuItem onClick={handleDelete} disableRipple>
+          <MenuItem onClick={handleDelete}>
             <DeleteIcon />
             Delete
           </MenuItem>
         )}
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick={handleClose}>
           <PersonIcon />
           User
         </MenuItem>

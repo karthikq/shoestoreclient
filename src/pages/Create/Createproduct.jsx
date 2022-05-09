@@ -3,22 +3,30 @@
 import React, { useEffect, useState } from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
 import toast from "react-hot-toast";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import "./createp.styles.scss";
 
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ImageSlider from "../../components/ImageSlider";
 
 import UploadImg from "../../components/uploads/UploadImg";
-import { createProduct, getcsrfToken } from "../../components/actions";
+import {
+  createProduct,
+  editProduct,
+  singleProduct,
+} from "../../components/actions";
 import BackdropLoader from "../../components/loader/Backdrop";
 const animatedComponents = makeAnimated();
-const Createproduct = ({ createProduct, getcsrfToken }) => {
+
+const Createproduct = ({ createProduct, editState, editProduct }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const productDetails = useSelector((state) => state.Products[0]);
+
   const [backdropState, setBackdropState] = useState(false);
 
   const [uploadedImg, setUploadedImg] = useState("");
@@ -35,6 +43,31 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
     p_price: "",
     p_category: "casual",
   });
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (!id) {
+      return;
+    }
+    fetchproduct();
+  }, [id, editState]);
+
+  const fetchproduct = async () => {
+    if (editState && id) {
+      await dispatch(singleProduct(id));
+    }
+    if (productDetails) {
+      setUserData({
+        p_name: productDetails.p_name,
+        p_img: productDetails.p_img,
+        p_desp: productDetails.p_desp,
+        p_price: productDetails.price,
+        p_category: productDetails.keywords,
+      });
+      setUploadedImg(productDetails.p_img);
+    }
+  };
+  console.log(userData);
 
   const handleUploadedImg = (e) => {
     setUploadedImg("");
@@ -74,7 +107,21 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
       return toast.error("Price cannot be less than zero");
     }
     toast.loading("Uploading image's");
-    setUploadedImgState(true);
+    if (editState) {
+      const result = productDetails.p_img.map(
+        (item) => uploadedImg.includes(item) && true
+      );
+
+      if (result[0] !== true) {
+        setUploadedImgState(true);
+      } else {
+        setUploadedImgState(false);
+        console.log(userData);
+        editProduct(productDetails, userData, uploadedImg, navigate);
+      }
+    } else {
+      setUploadedImgState(true);
+    }
 
     // sliderdiv.style.left = `${0}%`;
 
@@ -98,7 +145,11 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
       if (urlarray.length > 0 && urlarray.length === uploads.length) {
         // setUserData({ ...userData, p_img: urlarray });
 
-        createProduct(userData, urlarray, navigate);
+        if (editState && productDetails) {
+          editProduct(productDetails, userData, urlarray, navigate);
+        } else {
+          createProduct(userData, urlarray, navigate);
+        }
       }
     }
   }, [urlarray]);
@@ -240,6 +291,10 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
               <Select
                 className="select-input"
                 closeMenuOnSelect={false}
+                value={options.filter(
+                  (option) =>
+                    userData.p_category.includes(option.value) && option.value
+                )}
                 components={animatedComponents}
                 isMulti
                 options={options}
@@ -280,4 +335,4 @@ const Createproduct = ({ createProduct, getcsrfToken }) => {
   );
 };
 
-export default connect(null, { createProduct, getcsrfToken })(Createproduct);
+export default connect(null, { createProduct, editProduct })(Createproduct);

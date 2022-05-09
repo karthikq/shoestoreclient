@@ -22,10 +22,13 @@ import { fetchIndUser } from "../../components/actions/User";
 import { fetchProducts } from "../../components/actions";
 import Gippy from "../../components/Gipphy/Gippy";
 import NoItems from "../../components/errors/NoItems";
+import BackdropLoader from "../../components/loader/Backdrop";
 
 const User = ({ userData, userProducts, auth, foundUser }) => {
   const location = useLocation();
   const disptach = useDispatch();
+  const [loaderState, setLoaderState] = useState(true);
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -41,6 +44,12 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
     // }
     const parse = location.hash?.split("#")[1]?.toLowerCase();
     setParseState(parse);
+    setTimeout(() => {
+      setLoaderState(false);
+    }, 200);
+    return () => {
+      return setLoaderState(true);
+    };
   }, [location.hash]);
 
   return (
@@ -115,7 +124,9 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
           </div>
           <motion.div className="user-details_items">
             {parseState === "products" ? (
-              userProducts.length > 0 ? (
+              loaderState ? (
+                <BackdropLoader open={loaderState} />
+              ) : userProducts.length > 0 ? (
                 userProducts.map(
                   (item) => item && <Productbox item={item} key={item._id} />
                 )
@@ -126,7 +137,9 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
               ""
             )}
             {foundUser._id === userData._id && parseState === "fav" ? (
-              userData?.length > 0 ? (
+              loaderState ? (
+                <BackdropLoader open={loaderState} />
+              ) : userData?.favProducts?.length > 0 ? (
                 userData.favProducts?.map(
                   ({ product }) =>
                     product && <Productbox item={product} key={product._id} />
@@ -137,12 +150,20 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
             ) : (
               ""
             )}
-            {foundUser._id === userData._id && parseState === "cart" && (
-              <Cart userData={userData} />
-            )}
-            {foundUser._id === userData._id && parseState === "settings" && (
-              <UserSettings userData={userData} />
-            )}
+            {foundUser._id === userData._id &&
+              parseState === "cart" &&
+              (loaderState ? (
+                <BackdropLoader open={loaderState} />
+              ) : (
+                <Cart userData={userData} />
+              ))}
+            {foundUser._id === userData._id &&
+              parseState === "settings" &&
+              (loaderState ? (
+                <BackdropLoader open={loaderState} />
+              ) : (
+                <UserSettings userData={userData} />
+              ))}
           </motion.div>
         </div>
       </div>

@@ -22,7 +22,7 @@ function Imageupload(file, setUrl, setpro) {
         (snapshot.bytesTransferred / snapshot.totalBytes) *
         100
       ).toFixed(2);
-      console.log(progress);
+
       setpro(progress);
       // perValue.innerHTML = progress + "%";
     },
