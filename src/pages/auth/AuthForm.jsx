@@ -46,6 +46,7 @@ const AuthForm = ({
   //   }, [setState, state]);
 
   let url = backendUrl();
+  console.log(url);
   const handleErrors = (errors) => {
     if (errors.length > 0) {
       setAuthErrors(errors);
