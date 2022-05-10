@@ -10,7 +10,7 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
-
+import Gippy from "../Gipphy/Gippy";
 import UserAvatar from "../LikedUsers/UserAvatar";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchIndUser } from "../actions/User";
@@ -59,7 +59,7 @@ export const ProductTabs = ({ likes, ratings, views, creator }) => {
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs value={value} onChange={handleChange}>
+        <Tabs value={value} onChange={handleChange} variant="scrollable">
           <Tab
             iconPosition="start"
             clas
@@ -99,33 +99,41 @@ export const ProductTabs = ({ likes, ratings, views, creator }) => {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <div className="selproduct-likes">
-          {likes?.map(
-            ({ userId }) =>
-              userId && (
-                <UserAvatar
-                  avatar={userId.profileUrl}
-                  name={userId.username}
-                  key={userId._id}
-                  value=""
-                  userId={createdUser._id}
-                />
-              )
+          {likes?.length > 0 ? (
+            likes.map(
+              ({ userId }) =>
+                userId && (
+                  <UserAvatar
+                    avatar={userId.profileUrl}
+                    name={userId.username}
+                    key={userId._id}
+                    value=""
+                    userId={createdUser._id}
+                  />
+                )
+            )
+          ) : (
+            <Gippy itemClass="user-gif" />
           )}
         </div>
       </TabPanel>
       <TabPanel value={value} index={2}>
         <div className="selproduct-likes">
-          {ratings?.map(
-            ({ user, value }) =>
-              user && (
-                <UserAvatar
-                  avatar={user.profileUrl}
-                  name={user.username}
-                  key={user._id}
-                  value={value}
-                  userId={createdUser._id}
-                />
-              )
+          {ratings?.length > 0 ? (
+            ratings.map(
+              ({ user, value }) =>
+                user && (
+                  <UserAvatar
+                    avatar={user.profileUrl}
+                    name={user.username}
+                    key={user._id}
+                    value={value}
+                    userId={createdUser._id}
+                  />
+                )
+            )
+          ) : (
+            <Gippy itemClass="user-gif" />
           )}
         </div>
       </TabPanel>

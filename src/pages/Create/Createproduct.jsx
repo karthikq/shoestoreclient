@@ -47,7 +47,7 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
     p_img: [],
     p_desp: "",
     p_price: "",
-    p_category: "casual",
+    p_category: "",
   });
   const { id } = useParams();
 
@@ -64,22 +64,24 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
     }
   };
   useEffect(() => {
-    setBackdropState(true);
-    setTimeout(() => {
-      if (productDetails && userDetails._id === productDetails.userId) {
-        setBackdropState(false);
-        setUserData({
-          p_name: productDetails.p_name,
-          p_img: productDetails.p_img,
-          p_desp: productDetails.p_desp,
-          p_price: productDetails.price,
-          p_category: productDetails.keywords,
-        });
-        setUploadedImg(productDetails.p_img);
-        setPriceinWords(WordConvertor(productDetails.price));
-      }
-    }, 500);
-  }, [productDetails, userDetails]);
+    if (editState) {
+      setBackdropState(true);
+      setTimeout(() => {
+        if (productDetails && userDetails._id === productDetails.userId) {
+          setBackdropState(false);
+          setUserData({
+            p_name: productDetails.p_name,
+            p_img: productDetails.p_img,
+            p_desp: productDetails.p_desp,
+            p_price: productDetails.price,
+            p_category: productDetails.keywords,
+          });
+          setUploadedImg(productDetails.p_img);
+          setPriceinWords(WordConvertor(productDetails.price));
+        }
+      }, 500);
+    }
+  }, [productDetails, userDetails, editState]);
   const handleUploadedImg = (e) => {
     setUploadedImg("");
 
@@ -108,7 +110,7 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
     if (!uploadedImg) {
       return toast.error("Imagefile is required");
     }
-    if (!userData.p_category.length === 0) {
+    if (userData.p_category.length === 0) {
       toast.error("Please select a category");
       return setErrors({
         type: "category",

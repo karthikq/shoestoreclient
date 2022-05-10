@@ -35,6 +35,7 @@ const ImageSlider = ({ imagesArray, imgClass }) => {
             effect={"cards"}
             slidesPerView={imagesArray?.length}
             freeMode={true}
+            spaceBetween={0}
             watchSlidesProgress={true}
             modules={[FreeMode, Thumbs]}
             className="mySwiper">
