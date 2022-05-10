@@ -39,3 +39,10 @@
     }
   }
 }
+@media screen and (max-width: 550px) {
+  .cart-item_empty {
+    h3 {
+      font-size: 1.6rem;
+    }
+  }
+}

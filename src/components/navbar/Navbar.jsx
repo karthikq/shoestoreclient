@@ -70,7 +70,7 @@ const Navbar = ({ auth, LogoutUser, user }) => {
         }>
         {auth && (
           <div className="nav-profile">
-            <img src={user.profileUrl} alt="error" />
+            <img src={user?.profileUrl} alt="error" />
             <Link to={"/get/user/" + user._id}>
               <span>{user.firstname}</span>
             </Link>

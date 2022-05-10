@@ -5,6 +5,7 @@ import Loader from "../loader/Loader";
 import Imageupload from "../../hooks/Imageupload";
 import imageCompression from "browser-image-compression";
 import toast from "react-hot-toast";
+import "./upload.styles.scss";
 
 const UploadImg = ({ file, setUploadedImgState, setUrlarray }) => {
   const [pro, setpro] = useState(0);
@@ -26,8 +27,6 @@ const UploadImg = ({ file, setUploadedImgState, setUrlarray }) => {
     };
   }, [file]);
 
-  
-
   async function handleImageUpload() {
     const compressedFile = await imageCompression(file, options);
     try {
@@ -38,7 +37,6 @@ const UploadImg = ({ file, setUploadedImgState, setUrlarray }) => {
   }
   return (
     <div className="upload-container">
- 
       <div className="upload-contents">
         <img src={URL.createObjectURL(file)} alt="err" />
         <div className="progress-bar">

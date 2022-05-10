@@ -168,7 +168,7 @@ const UserSettings = ({ UpdateUserDetails }) => {
                   onChange={handleChange}
                 />
               )}
-              {uploadedImgState && (
+              {!uploadedImgState && (
                 <UploadImg
                   file={userFile}
                   setUrlarray={setUrlarray}
@@ -180,7 +180,7 @@ const UserSettings = ({ UpdateUserDetails }) => {
               type="submit"
               disabled={uploadedImgState}
               className="usersetting-btn">
-              <Button name={"Submit"} state={btnState} />
+              <Button name={"Update"} state={btnState} />
             </button>
           </form>
         </motion.div>

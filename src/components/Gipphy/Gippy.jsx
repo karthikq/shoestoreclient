@@ -6,7 +6,7 @@ import "./gippy.styles.scss";
 
 const Gippy = ({ itemClass }) => {
   return (
-    <div className={itemClass}>
+    <div className={itemClass ? itemClass : "gippy-img"}>
       <img src={gippy} alt="error" />
     </div>
   );

@@ -263,11 +263,11 @@
 
   .usersetting-btn {
     width: 10rem;
-    background-color: rgba(160, 16, 16, 0.795);
+    background-color: rgb(155, 8, 8);
   }
   .usersetting-btn-active {
     width: 12rem;
-    background-color: rgb(160, 16, 16);
+    background-color: rgb(141, 14, 14);
   }
 }
 .cart-items-list {
@@ -434,6 +434,141 @@
     }
     100% {
       transform: rotate(360deg);
+    }
+  }
+}
+@media screen and (max-width: 1080px) {
+  // .usersetting-form {
+  //   width: 90%;
+  // }
+  .usercart-actions {
+    gap: 1.9rem 2rem;
+    flex-wrap: wrap;
+  }
+  .usercart-bar {
+    width: 100%;
+    min-width: auto;
+    padding-left: 1rem;
+    padding-top: 0.8rem;
+    padding-right: 0;
+    h2 {
+      font-size: 2rem;
+    }
+  }
+  .cart-item-box {
+    width: 95%;
+    margin: 0 auto;
+    padding: 1rem;
+    padding-left: 0rem;
+    padding-right: 0rem;
+    justify-content: space-around;
+  }
+  .usercart-order {
+    .usersetting-btn {
+      width: 10rem;
+      padding: 0.45rem;
+    }
+    .usersetting-btn-active {
+      width: 12rem;
+    }
+  }
+}
+@media screen and (max-width: 720px) {
+  .usersetting-form {
+    width: 100%;
+    position: relative;
+    left: -0.5rem;
+  }
+  .usersetting-input_items-header {
+    gap: 1.25rem 0;
+    flex-direction: column;
+    .usersetting-input {
+      padding: 0.8rem 0.9rem;
+      width: 93%;
+    }
+  }
+
+  .cart-item-box {
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-left: 1rem;
+    align-items: flex-start;
+    gap: 0.5rem 0;
+    position: relative;
+    left: 0.3rem;
+    .cart-item-left {
+      width: 95%;
+      margin-top: 0.5rem;
+      flex-direction: column;
+
+      .cart-item-details {
+        padding-left: 0.5rem;
+      }
+      img {
+        width: 100%;
+        height: 150px;
+      }
+    }
+    .cart-item-center {
+      .cart-item-arrow {
+        font-size: 1.1rem;
+      }
+      span {
+        font-size: 1rem;
+      }
+    }
+    .cart-item-right {
+      p {
+        margin: 0.5rem 0 0;
+        font-size: 1rem;
+      }
+    }
+  }
+  .usercart-order {
+    width: 100%;
+    .usersetting-btn {
+      width: 100%;
+      padding: 0.45rem;
+    }
+    .usersetting-btn-active {
+      width: 12rem;
+    }
+  }
+  .cart-item-remove {
+    bottom: 1rem;
+    top: initial;
+  }
+}
+@media screen and (max-width: 550px) {
+  .usersetting-form {
+    width: 100%;
+    position: relative;
+    left: -0.5rem;
+  }
+  .usersetting-input_items-header {
+    gap: 1.25rem 0;
+    flex-direction: column;
+    .usersetting-input {
+      padding: 0.8rem 0.9rem;
+      padding-left: 0.8rem;
+      width: 90%;
+    }
+  }
+  .usersetting-input_items {
+    .usersetting-input {
+      width: 94%;
+    }
+    .usersetting-profile {
+      padding-left: 0.8rem;
+    }
+  }
+  .usersetting-btn {
+    width: 100%;
+    left: 0.5rem;
+  }
+  .usercart-order {
+    .usersetting-btn {
+      left: 0;
     }
   }
 }

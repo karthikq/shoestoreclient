@@ -4,7 +4,11 @@ import React, { useEffect, useState } from "react";
 import "./user.styles.scss";
 import { GiConverseShoe } from "react-icons/gi";
 import { MdFavorite, MdOutlineMail } from "react-icons/md";
-import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
+import {
+  AiOutlineShoppingCart,
+  AiOutlineUnorderedList,
+  AiOutlineUser,
+} from "react-icons/ai";
 import { BsCheckCircle } from "react-icons/bs";
 import Userproducts from "../../components/UserComp/Userproducts";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -28,6 +32,7 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
   const location = useLocation();
   const disptach = useDispatch();
   const [loaderState, setLoaderState] = useState(true);
+  const [userProfile, setuserProfile] = useState("");
 
   const { id } = useParams();
 
@@ -52,14 +57,22 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
     };
   }, [location.hash]);
 
+  useEffect(() => {
+    if (foundUser._id === userData._id) {
+      setuserProfile(userData);
+    } else {
+      setuserProfile(foundUser);
+    }
+  }, [foundUser, userData]);
+
   return (
     <div className="user-container">
       <div className="user-contents">
         <div className="user-profile">
           <img
             src={
-              foundUser.profileUrl
-                ? foundUser.profileUrl
+              userProfile
+                ? userProfile?.profileUrl
                 : "https://i.ibb.co/3734bpp/avataaars-1.png"
             }
             alt="profile_img"
@@ -70,14 +83,14 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
           <div className="user-profile_details">
             <span className="user-profile_span">
               <BiUserCircle className="user-profile_mail-icon" /> :
-              {foundUser.username?.split(" ")[0]}
+              {userProfile.username?.split(" ")[0]}
             </span>
             <span className="user-profile_span">
               <MdOutlineMail className="user-profile_mail-icon" /> Mail to :
               <a
                 style={{ color: "#888888" }}
-                href={"mailto:" + foundUser.email}>
-                {foundUser.email}
+                href={"mailto:" + userProfile.email}>
+                {userProfile.email}
               </a>
             </span>
           </div>
@@ -86,7 +99,7 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
           <div className="user-details_nav">
             <ul>
               <UsernavList
-                icon={<GiConverseShoe />}
+                icon={<AiOutlineUnorderedList />}
                 parseState={parseState}
                 path="products"
                 name="Products"
