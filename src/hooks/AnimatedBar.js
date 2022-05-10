@@ -34,7 +34,7 @@ const AnimatedBar = (fetchProducts) => {
       postitionofBar(bar);
     }
     if (path === "/categ/options") {
-      fetchProducts();
+      // fetchProducts();
       postitionofBar(bar);
     }
     if (path === "/product/list") {

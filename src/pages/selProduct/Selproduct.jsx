@@ -140,6 +140,15 @@ const Selproduct = ({
                   ? "selproduct-details selproduct-details_content"
                   : "selproduct-details"
               }>
+              {selproduct && userData && (
+                <div className="selproduct-options_details">
+                  <MenuDropdown
+                    loginUser={userData}
+                    postUser={selproduct}
+                    product={selproduct}
+                  />
+                </div>
+              )}
               <div className="selproduct-created_user">
                 {/* <div className="selproduct-created_user-details">
                   <img
@@ -163,7 +172,7 @@ const Selproduct = ({
                     </span>
                   ) : (
                     <span className="p_desp">
-                      {selproduct.p_desp}
+                      {selproduct.p_desp + " "}
                       <span
                         className="p_desp_more"
                         onClick={() => setreadMore(false)}>
@@ -173,6 +182,11 @@ const Selproduct = ({
                   )}
                 </div>
               )}
+              <div className="selproduct-price">
+                <span className="selproduct-price_span">
+                  Price :₹ {selproduct.price}
+                </span>
+              </div>
               <div className="sel-product_rating">
                 <div className="sel-product-rating_items">
                   {selproduct && (
@@ -201,6 +215,7 @@ const Selproduct = ({
                   (user) => user?.user?._id === userData._id
                 ) ? (
                   <p
+                    className="selproduct-rating_p"
                     onClick={() => {
                       setAddUserRating(true);
                       dispatch(removeRating(selproduct.p_id));
@@ -209,7 +224,11 @@ const Selproduct = ({
                   </p>
                 ) : (
                   !addUserRating && (
-                    <p onClick={() => setAddUserRating(true)}>Add rating</p>
+                    <p
+                      className="selproduct-rating_p"
+                      onClick={() => setAddUserRating(true)}>
+                      Add rating
+                    </p>
                   )
                 )}
               </div>

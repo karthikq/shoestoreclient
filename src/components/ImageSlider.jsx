@@ -33,7 +33,7 @@ const ImageSlider = ({ imagesArray, imgClass }) => {
           <Swiper
             onSwiper={setThumbsSwiper}
             effect={"cards"}
-            slidesPerView={3}
+            slidesPerView={imagesArray?.length}
             freeMode={true}
             watchSlidesProgress={true}
             modules={[FreeMode, Thumbs]}

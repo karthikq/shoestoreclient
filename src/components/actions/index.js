@@ -1,5 +1,5 @@
 /** @format */
-import axios from "axios";
+
 import { backendApi } from "../api/api";
 
 import toast from "react-hot-toast";
@@ -8,12 +8,12 @@ import {
   EDIT_PRODUCT,
   FETCH_PRODUCTS,
   GET_PRODUCT,
-  LIKE_PRODUCT,
   REMOVE_PRODUCT,
   SINGLE_PRODUCT,
   UPDATE_USER,
   UPDATE_VIEW,
 } from "../reducers/constants";
+import ToastErrors from "../errors/ToastErrors";
 
 export const fetchProducts = () => async (dispatch) => {
   try {
@@ -114,7 +114,6 @@ export const addRating = (product, count) => async (dispatch) => {
       });
     }
   } catch (error) {
-    console.log(error);
     toast.error("There was an error while exexuting please refresh page");
   }
 };
@@ -139,12 +138,6 @@ export const removeRating = (product) => async (dispatch) => {
   } catch (error) {
     toast.error("Please refresh page");
   }
-};
-
-export const getcsrfToken = () => async (dispatch) => {
-  const { data } = await backendApi.get("/getcsrftoken");
-
-  return data;
 };
 
 export const createProduct =
@@ -180,54 +173,58 @@ export const createProduct =
       const errors = error.response;
       if (errors.status === 500) {
         toast.error("Server error please refresh page and try again");
-      } else {
-        toast.error("Please login and continue");
+      }
+      if (errors.status === 422) {
+        toast.error("Error while creating product");
+      }
+      if (errors.status === 403) {
+        ToastErrors(errors.status, toast, navigate);
       }
     }
   };
 
 export const editProduct =
-  (productDetails, productData, urlarray, navigate) => async (dispatch) => {
-    productData.p_img = urlarray;
-    console.log("S1");
+  (productDetails, updatedData, urlarray, navigate) => async (dispatch) => {
+    updatedData.p_img = urlarray;
+
     try {
-      const toastToken = toast.loading("Creating product");
+      const toastToken = toast.loading("Updating product");
 
       const { data } = await backendApi.patch(
-        "/product/edit/",
-        productDetails.p_id,
-        productData
+        "/product/edit/" + productDetails.p_id,
+        updatedData
       );
-      console.log(data);
-      // await dispatch({
-      //   type: EDIT_PRODUCT,
-      //   payload: data,
-      // });
-      // toast.success("Product created", {
-      //   id: toastToken,
-      // });
-      // navigate("/");
+
+      await dispatch({
+        type: EDIT_PRODUCT,
+        payload: data,
+      });
+      toast.success("Product updated", {
+        id: toastToken,
+      });
+      navigate(-1);
     } catch (error) {
       toast.dismiss();
 
       const errors = error.response;
       if (errors.status === 500) {
         toast.error("Server error please refresh page and try again");
-      } else {
-        toast.error("Please login and continue");
+      }
+      if (errors.status === 403) {
+        toast.error("Not allowed to edit the post");
+      }
+      if (errors.status === 404) {
+        toast.error("Product not found");
+        navigate("/");
       }
     }
   };
 export const removeProduct =
   (prodId, navigate) => async (disptach, getState) => {
     try {
-      const product = getState().Products[0].p_id;
-
       const toastToken = toast.loading("Deleting product please wait");
 
       const { data } = await backendApi.patch("/product/remove/" + prodId);
-
-      console.log(data);
 
       await disptach({
         type: REMOVE_PRODUCT,
@@ -241,12 +238,11 @@ export const removeProduct =
       toast.success("Product deleted", {
         id: toastToken,
       });
-      console.log(window.location.pathname.split("/")[1]);
+
       if (window.location.pathname.split("/")[1] === "single") {
         navigate(-1);
       }
     } catch (error) {
-      console.log(error);
       toast.dismiss();
       const status = error.response?.status;
       if (status === 404) {

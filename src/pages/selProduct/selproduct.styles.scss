@@ -7,13 +7,11 @@
 }
 .selproduct-container {
   width: 100%;
-  top: 0rem;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+  height: 100vh;
+
   background-color: rgba(31, 24, 24, 0.918);
-  padding-bottom: 2rem;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -23,6 +21,7 @@
     position: absolute;
     right: 1.5rem;
     top: 1.5rem;
+    z-index: 151;
     .selproduct-close_icon {
       cursor: pointer;
       font-size: 1.4rem;
@@ -46,10 +45,11 @@ canvas {
 }
 .selproduct-contents {
   width: 85%;
+  margin: 0 auto;
   min-height: 70vh;
   padding: 2.5rem 1rem;
-  margin: 3rem 0;
-  margin-top: 3.5rem;
+
+  margin-top: 3rem;
   margin-bottom: 2.5rem;
 
   background-color: #fefefefe;
@@ -62,7 +62,8 @@ canvas {
   box-shadow: rgba(0, 0, 0, 0.068) 0px 0px 50px -12px;
   // border-radius: 15px;
   position: relative;
-  .selproduct-options {
+  .selproduct-options,
+  .selproduct-options_details {
     position: absolute;
     right: 2rem;
     top: 1.5rem;
@@ -80,6 +81,9 @@ canvas {
         border: 2px solid rgba(117, 117, 117, 0.541);
       }
     }
+  }
+  .selproduct-options_details {
+    display: none;
   }
 }
 .selproduct-img {
@@ -119,7 +123,7 @@ canvas {
     margin-bottom: 0rem;
   }
   .p_desp-div {
-    margin: 0.7rem 0;
+    margin: 0.6rem 0;
   }
   .p_desp {
     display: block;
@@ -127,7 +131,7 @@ canvas {
     margin-left: 0.2rem;
     line-height: 1.6;
     font-size: 1rem;
-    color: rgba(0, 0, 0, 0.781);
+    color: rgba(0, 0, 0, 0.767);
     margin: 0rem 0 0;
     .p_desp_more {
       cursor: pointer;
@@ -253,10 +257,20 @@ canvas {
   min-height: 50px !important;
 }
 
+.selproduct-price {
+  margin-top: 0.9rem;
+  margin-bottom: 0.9rem;
+  .selproduct-price_span {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    color: rgb(202, 5, 5);
+    font-weight: 500;
+  }
+}
 .sel-product_rating {
-  margin-top: 1em;
+  margin-top: 0.5em;
   margin-bottom: 1.4rem;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Poppins", sans-serif;
   .sel-product-rating_items {
     display: flex;
     align-items: center;
@@ -268,15 +282,16 @@ canvas {
     font-weight: 500;
     opacity: 0.4;
   }
-  p {
+  .selproduct-rating_p {
     font-size: 0.8rem;
     font-weight: 400;
     cursor: pointer;
     width: 6rem;
-    margin: 0.4rem 0 0.8rem;
+    margin: 0rem 0 0.5rem;
     opacity: 0.9;
     margin-left: 0.4rem;
-
+    position: relative;
+    bottom: 0.2rem;
     &:hover {
       color: #ff2e63;
     }
@@ -317,4 +332,83 @@ canvas {
   font-size: 0.9rem;
   margin: 0;
   color: rgb(95, 95, 95);
+}
+@media screen and (max-width: 1440px) {
+  .selproduct-contents {
+    min-height: 60vh;
+    padding: 1rem 0;
+    gap: 0 3rem;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .selproduct-contents {
+    width: 90%;
+
+    padding: 1rem 0;
+    gap: 0 3rem;
+  }
+}
+@media screen and (max-width: 1080px) {
+  .selproduct-container {
+    .selproduct-close {
+      position: absolute;
+      right: 1.2rem;
+      top: 1.8rem;
+      z-index: 151;
+      .selproduct-close_icon {
+        cursor: pointer;
+        font-size: 1.1rem;
+        color: rgb(12, 12, 12);
+        padding: 0.4rem;
+        background-color: rgb(243, 243, 243);
+        border: 2px solid rgba(31, 31, 31, 0.116);
+        border-radius: 4px;
+        transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        &:hover {
+          border: 2px solid lightgray;
+          color: #ff2e63;
+        }
+        &:active {
+          transform: scale(0.9);
+        }
+      }
+    }
+  }
+  .selproduct-contents {
+    width: 100%;
+
+    gap: 0 2rem;
+    flex-direction: column;
+    margin: 0;
+    background: white;
+    .selproduct-options {
+      display: none;
+    }
+    .selproduct-options_details {
+      display: block;
+      top: 1.5rem;
+      right: 0;
+    }
+  }
+  .selproduct-img {
+    margin-top: 5rem;
+    width: 90%;
+    height: 100%;
+    padding-right: 0;
+  }
+  .selproduct-details {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 500px) {
+  .selproduct-img {
+    margin-top: 4rem;
+    .selproduct-main_img {
+      width: 100%;
+
+      height: 280px;
+      object-fit: cover;
+    }
+  }
 }

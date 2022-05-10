@@ -20,17 +20,23 @@ import {
   singleProduct,
 } from "../../components/actions";
 import BackdropLoader from "../../components/loader/Backdrop";
+import WordConvertor from "../../components/currency/toWords";
 const animatedComponents = makeAnimated();
 
 const Createproduct = ({ createProduct, editState, editProduct }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.Products[0]);
+  const userDetails = useSelector((state) => state.User.userDetails);
 
   const [backdropState, setBackdropState] = useState(false);
-
+  const [errors, setErrors] = useState({
+    type: "",
+    text: "",
+  });
   const [uploadedImg, setUploadedImg] = useState("");
   const [uploadedImgState, setUploadedImgState] = useState(false);
+  const [priceInwords, setPriceinWords] = useState("");
 
   const [uploads, setUploads] = useState([]);
 
@@ -56,19 +62,24 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
     if (editState && id) {
       await dispatch(singleProduct(id));
     }
-    if (productDetails) {
-      setUserData({
-        p_name: productDetails.p_name,
-        p_img: productDetails.p_img,
-        p_desp: productDetails.p_desp,
-        p_price: productDetails.price,
-        p_category: productDetails.keywords,
-      });
-      setUploadedImg(productDetails.p_img);
-    }
   };
-  console.log(userData);
-
+  useEffect(() => {
+    setBackdropState(true);
+    setTimeout(() => {
+      if (productDetails && userDetails._id === productDetails.userId) {
+        setBackdropState(false);
+        setUserData({
+          p_name: productDetails.p_name,
+          p_img: productDetails.p_img,
+          p_desp: productDetails.p_desp,
+          p_price: productDetails.price,
+          p_category: productDetails.keywords,
+        });
+        setUploadedImg(productDetails.p_img);
+        setPriceinWords(WordConvertor(productDetails.price));
+      }
+    }, 500);
+  }, [productDetails, userDetails]);
   const handleUploadedImg = (e) => {
     setUploadedImg("");
 
@@ -98,28 +109,41 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
       return toast.error("Imagefile is required");
     }
     if (!userData.p_category.length === 0) {
-      return toast.error("Please select a category");
+      toast.error("Please select a category");
+      return setErrors({
+        type: "category",
+        text: "Please select a category",
+      });
     }
     if (userData.p_category.length > 3) {
-      return toast.error("You canno't select more than 3 categories");
+      toast.error("You cann't select more than 3 categories");
+      return setErrors({
+        type: "category",
+        text: "You can't select more than 3 categories",
+      });
     }
     if (userData.p_price <= 0) {
-      return toast.error("Price cannot be less than zero");
+      toast.error("Price cannot be less than zero");
+      return setErrors({
+        type: "price",
+        text: "Price cannot be less than zero",
+      });
     }
-    toast.loading("Uploading image's");
+
     if (editState) {
       const result = productDetails.p_img.map(
         (item) => uploadedImg.includes(item) && true
       );
 
       if (result[0] !== true) {
+        toast.loading("Uploading image's");
         setUploadedImgState(true);
       } else {
         setUploadedImgState(false);
-        console.log(userData);
         editProduct(productDetails, userData, uploadedImg, navigate);
       }
     } else {
+      toast.loading("Uploading image's");
       setUploadedImgState(true);
     }
 
@@ -144,7 +168,7 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
       toast.dismiss();
       if (urlarray.length > 0 && urlarray.length === uploads.length) {
         // setUserData({ ...userData, p_img: urlarray });
-
+        toast.success("Images uploaded");
         if (editState && productDetails) {
           editProduct(productDetails, userData, urlarray, navigate);
         } else {
@@ -185,7 +209,11 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
       <BackdropLoader open={backdropState} setOpen={setBackdropState} />
       <div className="create-p_contents">
         <h3>
-          {uploadedImgState ? "Uploading please wait" : "Upload your product"}
+          {uploadedImgState
+            ? "Uploading please wait"
+            : editState
+            ? "Edit your product"
+            : "Upload your product"}
         </h3>
         {uploadedImgState ? (
           <div style={{ marginTop: "2rem" }}>
@@ -259,17 +287,24 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
                 Price{" "}
                 <span style={{ fontSize: "1rem", fontWeight: "300" }}>
                   (₹Rs)
-                </span>{" "}
+                </span>
               </label>
               <input
                 type="number"
                 required
                 name="p_price"
+                min={1}
+                max={10000}
                 value={userData.p_price}
-                onChange={(e) =>
-                  setUserData({ ...userData, p_price: e.target.value })
-                }
+                onChange={(e) => {
+                  setUserData({ ...userData, p_price: e.target.value });
+                  setPriceinWords(WordConvertor(e.target.value));
+                }}
               />
+              {errors.type === "price" && (
+                <span className="product-error_span">{errors.text}</span>
+              )}
+              <span className="product-price_words">{priceInwords}</span>
               <label className="other-label">Choose a category</label>
               {/* <select
                 name="category"    onChange={(e) =>
@@ -293,7 +328,7 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
                 closeMenuOnSelect={false}
                 value={options.filter(
                   (option) =>
-                    userData.p_category.includes(option.value) && option.value
+                    userData?.p_category?.includes(option.value) && option.value
                 )}
                 components={animatedComponents}
                 isMulti
@@ -305,25 +340,29 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
                   });
                 }}
               />
+              {errors.type === "category" && (
+                <span className="product-error_span">{errors.text}</span>
+              )}
               <label className="other-label">
                 Product despscription (optional)
                 <span
                   className={
-                    userData.p_desp.length === 200
+                    userData.p_desp?.length === 200
                       ? "desp_length desp_length-active"
                       : "desp_length"
                   }>
-                  {userData.p_desp.length}/200
+                  {userData.p_desp?.length}/200
                 </span>
               </label>
               <textarea
                 name="p_desp"
                 cols="30"
                 rows="5"
+                value={userData.p_desp}
                 maxLength={200}
                 onChange={(e) =>
                   setUserData({ ...userData, p_desp: e.target.value })
-                }></textarea>
+                }></textarea>{" "}
             </motion.div>
             <button type="submit" className="create-p_btn">
               <BiRightArrowAlt className="create-p_icon" />

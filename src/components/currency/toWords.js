@@ -1,6 +1,5 @@
 /** @format */
 
-import React from "react";
 import { ToWords } from "to-words";
 const WordConvertor = (value) => {
   const word = new ToWords({
@@ -13,7 +12,7 @@ const WordConvertor = (value) => {
     },
   });
   let words = word.convert(value);
-  console.log(words);
+
   return words;
 };
 
