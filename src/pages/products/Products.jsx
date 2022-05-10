@@ -51,13 +51,19 @@ const Products = ({ fetchselProduct, products }) => {
           </div>
           <div ref={productref} className="product-trending">
             {products.map(
-              (item) => item && <Productbox item={item} key={item.p_id} />
+              (item, index) =>
+                item && <Productbox item={item} key={item.p_id} />
             )}
           </div>
         </div>
         <div className="product-contents">
           <h4>Latest</h4>
-          <div className="product-trending"></div>
+          <div className="product-trending">
+            {products.map(
+              (item, index) =>
+                item && <Productbox item={item} key={item.p_id} />
+            )}
+          </div>
         </div>
       </motion.div>{" "}
       {/* <AnimatePresence>

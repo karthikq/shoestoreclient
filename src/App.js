@@ -111,7 +111,6 @@ function App({ fetchProducts, fetchUserDetails }) {
         </Routes>
       </AnimatePresence>
       <Toaster
-        position="bottom-right"
         reverseOrder={false}
         toastOptions={{
           className: "",

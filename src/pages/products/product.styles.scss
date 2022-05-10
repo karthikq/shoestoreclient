@@ -6,14 +6,16 @@
   min-height: 100vh;
   background-color: #f7f7f7;
   position: relative;
-  contain: strict;
+}
+.product-contents:nth-child(1) {
+  padding-top: 6rem;
 }
 .product-contents {
-  width: 90%;
+  width: 95%;
 
   margin: 0 auto;
   color: rgb(29, 22, 22);
-  padding: 6% 0 1%;
+  padding: 1rem 0 0rem;
   h4 {
     font-family: "Newsreader", serif;
     color: #333333;
