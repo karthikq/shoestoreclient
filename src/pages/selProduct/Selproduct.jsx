@@ -1,17 +1,14 @@
 /** @format */
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  AiFillHeart,
   AiOutlineClose,
-  AiOutlineEye,
-  AiOutlineHeart,
   AiOutlineShoppingCart,
   AiTwotoneLike,
 } from "react-icons/ai";
 import "./selproduct.styles.scss";
 import { motion } from "framer-motion";
-import StarRatings from "react-star-ratings";
+
 import { BiLike } from "react-icons/bi";
 import _ from "lodash";
 import ImageSlider from "../../components/ImageSlider";
@@ -23,7 +20,6 @@ import {
   removeRating,
   singleProduct,
   updateLike,
-  updateViewCount,
 } from "../../components/actions";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -33,10 +29,9 @@ import {
   userAddtofav,
 } from "../../components/actions/User";
 import ReactConfitte from "../../components/ReactConfitte";
-import { useLocation } from "react-use";
-import { ProductContextobj } from "../../context/selProductcontext";
+
 import Rating from "@mui/material/Rating";
-import { BsFillHeartFill } from "react-icons/bs";
+
 import MenuDropdown from "../../components/ProductActions/Menu";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -52,8 +47,6 @@ const Selproduct = ({
   const [addUserRating, setAddUserRating] = useState(false);
   const [confettiState, setconfettiState] = useState(false);
   const [readMore, setreadMore] = useState(false);
-
-  const location = useLocation();
 
   // const [selProduct, setSelproduct] = useState();
 

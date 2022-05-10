@@ -4,10 +4,10 @@ import "./App.css";
 import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/home/Home";
 import Options from "./pages/Options/Options";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Products from "./pages/products/Products";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Createproduct from "./pages/Create/Createproduct";
 import { fetchProducts } from "./components/actions";
 import { connect, useSelector } from "react-redux";
@@ -17,7 +17,7 @@ import { fetchUserDetails } from "./components/actions/User";
 import Login from "./pages/auth/Login";
 import AnimatedBar from "./hooks/AnimatedBar";
 import queryString from "query-string";
-import { authObject } from "./context/authContext";
+
 import Register from "./pages/auth/Register";
 import ProtectedRotue from "./components/Routes/ProtectedRotue";
 import User from "./pages/user/User";
@@ -27,12 +27,8 @@ function App({ fetchProducts, fetchUserDetails }) {
   const authState = useSelector((state) => state.User.auth);
   AnimatedBar(fetchProducts);
 
-  const { state, setState } = useContext(authObject);
-
   const location = useLocation();
   const [navigateState, setNavigateState] = useState(false);
-
-  const navigate = useNavigate();
 
   // useEffect(() => {
   //   const { loginState } = queryString.parse(location.search);
@@ -89,11 +85,7 @@ function App({ fetchProducts, fetchUserDetails }) {
 
           <Route
             path="/create/product"
-            element={
-              <ProtectedRotue isAllowed={authState}>
-                <Createproduct editState={false} />
-              </ProtectedRotue>
-            }
+            element={<Createproduct editState={false} />}
           />
           <Route
             path="/edit/product/:id"

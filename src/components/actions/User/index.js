@@ -2,8 +2,6 @@
 
 import toast from "react-hot-toast";
 
-import { BiErrorCircle } from "react-icons/bi";
-
 import { backendApi } from "../../api/api";
 import ToastErrors from "../../errors/ToastErrors";
 import {

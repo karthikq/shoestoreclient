@@ -390,6 +390,20 @@
     }
   }
 }
+@media screen and (max-width: 750px) {
+  .create-p_contents {
+    padding-top: 2rem;
+    h3 {
+      width: 90%;
+      text-align: center;
+      font-size: 2.7rem;
+    }
+  }
+  .create-p_form {
+    width: 90%;
+    margin-top: 5rem;
+  }
+}
 
 @media screen and (max-width: 500px) {
   :root {
@@ -402,5 +416,28 @@
     padding: 0.35rem 0.6rem;
 
     border-radius: 50%;
+  }
+  .create-p_contents {
+    padding-top: 0.5rem;
+    h3 {
+      width: 90%;
+      text-align: center;
+      font-size: 2.2rem;
+    }
+  }
+  .create-p_form {
+    width: 90%;
+    margin-top: 3.5rem;
+    .file-label {
+      right: 0;
+      font-size: 0.95rem;
+      padding: 0.2rem 1rem 0.4rem;
+    }
+    .other-label {
+      font-size: 1rem;
+    }
+    .create-p_span {
+      right: 0;
+    }
   }
 }

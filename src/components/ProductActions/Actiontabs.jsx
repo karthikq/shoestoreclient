@@ -12,8 +12,7 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import Gippy from "../Gipphy/Gippy";
 import UserAvatar from "../LikedUsers/UserAvatar";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchIndUser } from "../actions/User";
+import { useSelector } from "react-redux";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -49,7 +48,7 @@ function a11yProps(index) {
 
 export const ProductTabs = ({ likes, ratings, views, creator }) => {
   const [value, setValue] = React.useState(0);
-  const dispatch = useDispatch();
+
   const createdUser = useSelector((state) => state.User.foundUserDetails);
 
   const handleChange = (event, newValue) => {
