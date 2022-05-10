@@ -37,13 +37,7 @@ import MenuDropdown from "../../components/ProductActions/Menu";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { ProductTabs } from "../../components/ProductActions/Actiontabs";
 
-const Selproduct = ({
-  setselproductState,
-  selproductState,
-  selproduct,
-  foundUser,
-  userData,
-}) => {
+const Selproduct = ({ selproduct, foundUser, userData }) => {
   const [addUserRating, setAddUserRating] = useState(false);
   const [confettiState, setconfettiState] = useState(false);
   const [readMore, setreadMore] = useState(false);
@@ -106,7 +100,12 @@ const Selproduct = ({
           // exit={{ opacity: 0 }}
           // transition={{ duration: 0.8 }}
           className="selproduct-container"
-          role={"presentation"}>
+          style={{
+            backgroundImage: "url(" + selproduct.p_img + ")",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+          }}>
           <div className="selproduct-close" onClick={() => navigate(-1)}>
             <AiOutlineClose className="selproduct-close_icon" />
           </div>

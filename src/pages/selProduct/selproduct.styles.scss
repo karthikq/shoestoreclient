@@ -10,13 +10,23 @@
 
   height: 100vh;
 
-  background-color: rgba(31, 24, 24, 0.918);
-
   position: fixed;
   top: 0;
   left: 0;
   overflow-y: auto;
   z-index: 150;
+  background-repeat: no-repeat;
+  position: relative;
+  &:after {
+    position: absolute;
+    top: 0;
+    content: "";
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.904), rgba(0, 0, 0, 0.5));
+    z-index: -1;
+  }
   .selproduct-close {
     position: absolute;
     right: 1.5rem;
@@ -27,12 +37,12 @@
       font-size: 1.4rem;
       color: white;
       padding: 0.4rem;
-      border: 2px solid rgba(238, 238, 238, 0.253);
-      border-radius: 5px;
+      border: 2px solid rgba(238, 238, 238, 0);
+      border-radius: 4px;
       transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
       &:hover {
-        border: 2px solid lightgray;
-        color: #ff2e63;
+        border: 2px solid rgba(211, 211, 211, 0);
+        color: #c4c4c4;
       }
       &:active {
         transform: scale(0.9);
@@ -353,7 +363,7 @@ canvas {
     background: white;
     .selproduct-close {
       right: 1.2rem;
-      top: 1.8rem;
+      top: 1.5rem;
       z-index: 151;
       .selproduct-close_icon {
         font-size: 1.1rem;
