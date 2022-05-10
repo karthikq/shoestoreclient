@@ -168,7 +168,7 @@ const UserSettings = ({ UpdateUserDetails }) => {
                   onChange={handleChange}
                 />
               )}
-              {!uploadedImgState && (
+              {uploadedImgState && (
                 <UploadImg
                   file={userFile}
                   setUrlarray={setUrlarray}
