@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
 import { fetchProducts, singleProduct } from "../../components/actions";
 import { getProducts } from "../../redux/product";
+import RadiusBtn from "../../components/button/RadiusBtn";
 
 const Home = ({ products, fetchProducts, singleProduct }) => {
   const dispatch = useDispatch();
@@ -33,14 +34,7 @@ const Home = ({ products, fetchProducts, singleProduct }) => {
         <h1>
           EXPLORE <span>LATEST SHOES</span>
         </h1>
-        <div
-          className="explore-btn"
-          onClick={() => {
-            // document.querySelector(".animate-bar").style.left = `${-100}%`;
-            navigate("/categ/options");
-          }}>
-          <BiRightArrowAlt className="explore-icon" />
-        </div>
+        <RadiusBtn path="/categ/options" type={"button"} />
       </div>
     </motion.div>
   );

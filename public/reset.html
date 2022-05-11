@@ -1,0 +1,61 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Reset password</title>
+    <style>
+      .email-container {
+        display: flex;
+
+        font-family: "Poppins", sans-serif;
+      }
+      .email-contents {
+        height: 85%;
+        text-align: left;
+        margin: 4rem 3rem 0;
+      }
+      .email-h1 {
+        font-size: 2rem;
+        margin-top: 0;
+        margin-bottom: 0.8rem;
+      }
+      .email-span {
+        display: block;
+        max-width: 30rem;
+        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+      }
+      .email-btn {
+        cursor: pointer;
+        margin-top: 1.2rem;
+        padding: 0.4rem;
+        width: 9rem;
+        border-radius: 15px;
+        background-color: black;
+        color: white;
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <div class="email-contents">
+        <h1 class="email-h1">Reset your password</h1>
+        <span class="email-span">
+          You're receiving this e-mail because you requested a password reset
+          for your shoestore account. <br />
+          Please tap the button below to choose a new password.
+        </span>
+        <a href="http://localhost:3000/reset/">
+          <button class="email-btn">Click here</button>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

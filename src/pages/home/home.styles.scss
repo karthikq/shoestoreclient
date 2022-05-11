@@ -86,26 +86,7 @@
     }
   }
 }
-.explore-btn {
-  border-radius: 15px;
-  background-color: rgba(247, 247, 247, 0.911);
-  color: rgb(7, 7, 7);
-  width: 90px;
-  height: 32px;
-  display: grid;
-  place-content: center;
-  transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
-  cursor: pointer;
-  .explore-icon {
-    font-size: 1.5rem;
-  }
-  &:hover {
-    transform: translateY(-3px);
-  }
-  &:active {
-    transform: scale(0.9);
-  }
-}
+
 @media screen and (max-width: 720px) {
   .home-container {
     &::before {

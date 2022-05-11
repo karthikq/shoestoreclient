@@ -22,6 +22,7 @@ import Register from "./pages/auth/Register";
 import ProtectedRotue from "./components/Routes/ProtectedRotue";
 import User from "./pages/user/User";
 import { ProductContextobj } from "./context/selProductcontext";
+import ResetPass from "./pages/resetPassword/ResetPass";
 
 function App({ fetchProducts, fetchUserDetails }) {
   const authState = useSelector((state) => state.User.auth);
@@ -82,7 +83,6 @@ function App({ fetchProducts, fetchUserDetails }) {
           />
           <Route path="/product/list" element={<Products />} />
           <Route path="/single/product/:id" element={<Selproduct />} />
-
           <Route
             path="/create/product"
             element={<Createproduct editState={false} />}
@@ -106,7 +106,12 @@ function App({ fetchProducts, fetchUserDetails }) {
                 <Register />
               </ProtectedRotue>
             }
+          />{" "}
+          <Route
+            path="/user/reset/password"
+            element={<ResetPass state={true} />}
           />
+          <Route path="/reset/user/:id" element={<ResetPass state={false} />} />
           <Route path="/get/user/:id" element={<User />} />
         </Routes>
       </AnimatePresence>
