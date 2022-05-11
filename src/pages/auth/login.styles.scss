@@ -104,7 +104,7 @@
     border: 0;
     color: #ffffff;
     background-color: #1b1d27;
-    border: 2px solid rgba(255, 255, 255, 0);
+    border: 2px solid #1b1d27;
     &::placeholder {
       /* Chrome, Firefox, Opera, Safari 10.1+ */
       color: #a5a5a5;
@@ -121,7 +121,7 @@
       color: #a5a5a5;
     }
     &:focus {
-      border: 2px solid rgba(255, 255, 255, 0.363);
+      border: 2px solid rgb(116, 114, 114);
     }
   }
   .login_input {
@@ -200,7 +200,7 @@
     background-color: #fc2057;
     cursor: not-allowed;
     &:disabled {
-      opacity: 0.3;
+      opacity: 0.8;
     }
     &:active {
       transform: scale(1);

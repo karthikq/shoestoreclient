@@ -90,7 +90,7 @@ export const addtocart = (prodId, navigate) => async (dispatch, getState) => {
 
     const toastToken = toast.loading(message);
     const { data } = await backendApi.patch("/user/add/cart/" + prodId);
-
+    console.log(data);
     await dispatch({
       type: UPDATE_USER,
       payload: data.userData,
@@ -103,7 +103,12 @@ export const addtocart = (prodId, navigate) => async (dispatch, getState) => {
     });
   } catch (error) {
     toast.dismiss();
-    ToastErrors(error.response.status, toast, navigate);
+    const err = error.response;
+    if (err.status === 401) {
+      toast.error("Cannot add your own product to cart");
+    } else {
+      ToastErrors(err.status, toast, navigate);
+    }
   }
 };
 

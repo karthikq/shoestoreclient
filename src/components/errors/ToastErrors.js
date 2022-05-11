@@ -28,8 +28,15 @@ const ToastErrors = (error, toast, navigate) => {
         ),
       }
     );
-  } else {
-    toast.error("Error please refresh the page");
+  }
+  if (error.status === 500) {
+    toast.error("Server error please refresh and try again");
+  }
+  if (error.status === 422) {
+    toast.error("Invalid data");
+  }
+  if (error.status === 402) {
+    toast.error("Not authenticated");
   }
 };
 

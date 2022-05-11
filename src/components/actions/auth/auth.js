@@ -44,7 +44,6 @@ export const LoginUser =
       if (error.status === 500) {
         toast.error("Server error please try again");
       }
-      toast.error("Server error please try again");
     }
   };
 export const ResiterUser =

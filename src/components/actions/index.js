@@ -148,7 +148,6 @@ export const createProduct =
       const toastToken = toast.loading("Creating product");
 
       const { data } = await backendApi.post("/product/create", productDetails);
-      console.log(data);
 
       await dispatch({
         type: CREATE_PRODUCT,

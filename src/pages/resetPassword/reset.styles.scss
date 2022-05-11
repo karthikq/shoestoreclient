@@ -2,13 +2,26 @@
 
 .reset-pass_container {
   width: 100%;
-  height: 100vh;
+  height: auto;
+  position: relative;
+  background: linear-gradient(
+    90.03deg,
+    #000000f8 50%,
+    rgba(9, 9, 9, 0.11) 140.82%
+  );
+  video {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
 }
 
 .reset-pass_contents {
-  width: 92%;
+  width: 87%;
   margin: 0 auto;
-  height: 95%;
+  min-height: 100vh;
   padding: 1rem 0;
   color: white;
   display: flex;
@@ -16,38 +29,62 @@
   align-items: flex-start;
   justify-content: center;
   font-family: "Poppins", sans-serif;
-
-  .reset-h1 {
-    font-size: 2.85rem;
-    margin-top: 0;
-    margin-bottom: 1.75rem;
-    font-weight: 600;
-  }
-  input {
-    font-family: "Poppins", sans-serif;
-    padding: 0.65rem 0.8rem;
-    width: 25rem;
-    background-color: #282a36;
-    color: white;
-    border: 0;
-    outline: 0;
-    border-radius: 20px;
-    border: 2px solid rgb(46, 46, 46);
-  }
-  .reset-error {
-    font-size: 0.9rem;
-    color: rgb(233, 2, 2);
-    font-weight: 500;
-  }
-  .reset-error_active {
-    color: rgb(0, 165, 0);
-  }
   .reset-form {
+    width: 30rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem 0;
   }
+  .reset-h1 {
+    font-size: 2.7rem;
+    margin-top: 0;
+    margin-bottom: 0.55rem;
+    font-weight: 600;
+  }
+  .reset-h1_user {
+    font-size: 2.9rem;
+    margin-bottom: 1.6rem;
+  }
+  input {
+    font-family: "Poppins", sans-serif;
+    padding: 0.75rem 0.85rem;
+
+    width: 80%;
+    border-radius: 18px;
+    outline: 0;
+    border: 0;
+    color: #ffffff;
+    background-color: #1b1d27;
+    border: 2px solid rgba(255, 255, 255, 0);
+    &::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #a5a5a5;
+      opacity: 1; /* Firefox */
+    }
+
+    &:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: #a5a5a5;
+    }
+
+    &::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: #a5a5a5;
+    }
+    &:focus {
+      border: 2px solid rgba(255, 255, 255, 0.363);
+    }
+  }
+  .reset-error {
+    font-size: 0.9rem;
+    color: rgb(250, 14, 14);
+    font-weight: 500;
+  }
+  .reset-error_active {
+    color: rgb(0, 165, 0);
+  }
+
   .explore-btn {
     margin-left: 0.4rem;
     margin-top: 2.1rem;
@@ -61,24 +98,27 @@
   }
   .reset-back {
     text-decoration: none;
-    margin-top: 1.2rem;
+    margin-top: 0rem;
+    margin-bottom: 1.7rem;
     color: rgb(151, 151, 151);
     font-size: 0.9rem;
     padding: 0.2rem;
-    margin-left: 0.45rem;
+    margin-left: 0.2rem;
     &:hover {
       color: white;
     }
   }
 }
 .reset-pass_form {
+  width: 100%;
   margin-top: 0.2rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.8rem 0;
   input {
-    margin: 0.3rem 0;
+    width: 85%;
+    margin: 0.4rem 0;
   }
   .reset-error {
     padding-left: 0.5rem;
