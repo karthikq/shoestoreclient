@@ -36,8 +36,9 @@ import MenuDropdown from "../../components/ProductActions/Menu";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { ProductTabs } from "../../components/ProductActions/Actiontabs";
+import BackdropLoader from "../../components/loader/Backdrop";
 
-const Selproduct = ({ selproduct, foundUser, userData }) => {
+const Selproduct = ({ selproduct, userData, auth }) => {
   const [addUserRating, setAddUserRating] = useState(false);
   const [confettiState, setconfettiState] = useState(false);
   const [readMore, setreadMore] = useState(false);
@@ -53,15 +54,9 @@ const Selproduct = ({ selproduct, foundUser, userData }) => {
     dispatch(singleProduct(id));
   }, [id]);
 
-  React.useEffect(() => {
-    if (selproduct.userId) {
-      dispatch(fetchIndUser(selproduct.userId));
-    }
-  }, []);
-
   //
   const changeproductRating = async (newrating, name) => {
-    await dispatch(addRating(selproduct.p_id, parseInt(newrating)));
+    await dispatch(addRating(selproduct.p_id, parseInt(newrating), navigate));
     setAddUserRating(false);
 
     if (newrating === 5) {
@@ -93,19 +88,18 @@ const Selproduct = ({ selproduct, foundUser, userData }) => {
   return (
     <React.Fragment>
       <ReactConfitte state={confettiState} setState={setconfettiState} />
-      {selproduct && (
+      <BackdropLoader open={!selproduct} />
+      {
         <motion.div
           // initial={{ opacity: 0 }}
           // animate={{ opacity: 1 }}
           // exit={{ opacity: 0 }}
           // transition={{ duration: 0.8 }}
-          className="selproduct-container"
-          style={{
-            backgroundImage: "url(" + selproduct.p_img + ")",
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-          }}>
+          className="selproduct-container">
+          {" "}
+          <div className="bg-image">
+            <img src={selproduct.p_img} alt="bg" className="bg-image_main" />
+          </div>
           <div className="selproduct-close" onClick={() => navigate(-1)}>
             <AiOutlineClose className="selproduct-close_icon" />
           </div>
@@ -203,25 +197,29 @@ const Selproduct = ({ selproduct, foundUser, userData }) => {
                     {selproduct.totalRating?.toFixed(2)}
                   </span>
                 </div>
-                {selproduct.rating?.find(
-                  (user) => user?.user?._id === userData._id
-                ) ? (
-                  <p
-                    className="selproduct-rating_p"
-                    onClick={() => {
-                      setAddUserRating(true);
-                      dispatch(removeRating(selproduct.p_id));
-                    }}>
-                    change rating
-                  </p>
-                ) : (
-                  !addUserRating && (
+                {auth ? (
+                  selproduct.rating?.find(
+                    (user) => user?.user?._id === userData._id
+                  ) ? (
                     <p
                       className="selproduct-rating_p"
-                      onClick={() => setAddUserRating(true)}>
-                      Add rating
+                      onClick={() => {
+                        setAddUserRating(true);
+                        dispatch(removeRating(selproduct.p_id, navigate));
+                      }}>
+                      change rating
                     </p>
+                  ) : (
+                    !addUserRating && (
+                      <p
+                        className="selproduct-rating_p"
+                        onClick={() => setAddUserRating(true)}>
+                        Add rating
+                      </p>
+                    )
                   )
+                ) : (
+                  ""
                 )}
               </div>
               <div className="selproduct-actions">
@@ -232,7 +230,7 @@ const Selproduct = ({ selproduct, foundUser, userData }) => {
                     <AiTwotoneLike
                       className="selproduct-like_icon"
                       onClick={() => {
-                        dispatch(updateLike(selproduct.p_id));
+                        dispatch(updateLike(selproduct.p_id, navigate));
                       }}
                     />
                   ) : (
@@ -280,22 +278,23 @@ const Selproduct = ({ selproduct, foundUser, userData }) => {
                   likes={selproduct?.likes}
                   ratings={selproduct?.rating}
                   views={selproduct.viewCount}
-                  creator={foundUser}
+                  selproduct={selproduct}
                 />
               </div>
             </div>
           </motion.div>
         </motion.div>
-      )}
+      }
     </React.Fragment>
   );
 };
 
 const mapStatetoProps = (state) => {
   return {
-    selproduct: state.Products[0],
+    selproduct: state.Products.length > 1 ? "" : state.Products[0],
     userData: state.User.userDetails,
-    foundUser: state.User.foundUserDetails,
+
+    auth: state.User.auth,
   };
 };
 

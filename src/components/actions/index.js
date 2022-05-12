@@ -31,7 +31,7 @@ export const fetchProducts = () => async (dispatch) => {
 export const singleProduct = (p_id) => async (dispatch, getState) => {
   try {
     const { data } = await backendApi.get("/product/get/" + p_id);
-
+    await dispatch(updateViewCount(p_id));
     dispatch({
       type: SINGLE_PRODUCT,
       payload: data.productData,
@@ -68,7 +68,6 @@ export const updateViewCount = (product) => async (dispatch) => {
       type: UPDATE_VIEW,
       payload: data.updatedProduct,
     });
-    console.log(data);
   } catch (error) {
     console.log(error);
     // if (error) {
@@ -77,7 +76,7 @@ export const updateViewCount = (product) => async (dispatch) => {
   }
 };
 
-export const updateLike = (product) => async (dispatch) => {
+export const updateLike = (product, navigate) => async (dispatch) => {
   try {
     const { data } = await backendApi.patch("/product/like/" + product);
 
@@ -87,13 +86,14 @@ export const updateLike = (product) => async (dispatch) => {
     });
   } catch (error) {
     toast.dismiss();
-    toast.error("You have already liked the post");
+    const err = error.response;
+    ToastErrors(err.status, toast, navigate);
     // if (error) {
     //   toast.error("Product not found");
     // }
   }
 };
-export const addRating = (product, count) => async (dispatch) => {
+export const addRating = (product, count, navigate) => async (dispatch) => {
   try {
     const toastToken = toast.loading("Adding rating to the product");
 
@@ -114,11 +114,14 @@ export const addRating = (product, count) => async (dispatch) => {
       });
     }
   } catch (error) {
-    toast.error("There was an error while exexuting please refresh page");
+    toast.dismiss();
+    const err = error.response;
+    console.log(err);
+    ToastErrors(err.status, toast, navigate);
   }
 };
 
-export const removeRating = (product) => async (dispatch) => {
+export const removeRating = (product, navigate) => async (dispatch) => {
   try {
     const toastToken = toast.loading("Removing the product rating");
     const { data } = await backendApi.patch(
@@ -136,7 +139,10 @@ export const removeRating = (product) => async (dispatch) => {
       id: toastToken,
     });
   } catch (error) {
-    toast.error("Please refresh page");
+    toast.dismiss();
+    const err = error.response;
+
+    ToastErrors(err.status, toast, navigate);
   }
 };
 

@@ -49,7 +49,37 @@
       }
     }
   }
+  .bg-image {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+
+    &:after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: "";
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.904),
+        rgba(0, 0, 0, 0.5)
+      );
+      z-index: 1;
+    }
+    .bg-image_main {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
 }
+
 canvas {
   transition: all 0.5s ease;
 }
@@ -95,6 +125,12 @@ canvas {
   .selproduct-options_details {
     display: none;
   }
+}
+.menu_item {
+  font-family: "Poppins", sans-serif;
+}
+ul {
+  font-family: "Poppins", sans-serif;
 }
 .selproduct-img {
   padding-left: 0rem;

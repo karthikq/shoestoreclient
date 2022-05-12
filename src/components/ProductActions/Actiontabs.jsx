@@ -12,7 +12,8 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import Gippy from "../Gipphy/Gippy";
 import UserAvatar from "../LikedUsers/UserAvatar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchIndUser } from "../actions/User";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,10 +47,16 @@ function a11yProps(index) {
   };
 }
 
-export const ProductTabs = ({ likes, ratings, views, creator }) => {
+export const ProductTabs = ({ likes, ratings, views, selproduct }) => {
   const [value, setValue] = React.useState(0);
+  const dispatch = useDispatch();
 
   const createdUser = useSelector((state) => state.User.foundUserDetails);
+  React.useEffect(() => {
+    if (selproduct.userId) {
+      dispatch(fetchIndUser(selproduct.userId));
+    }
+  }, [selproduct]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -106,8 +113,9 @@ export const ProductTabs = ({ likes, ratings, views, creator }) => {
                     avatar={userId.profileUrl}
                     name={userId.username}
                     key={userId._id}
+                    userId={userId._id}
                     value=""
-                    userId={createdUser._id}
+                    createdUser={createdUser._id}
                   />
                 )
             )
@@ -127,7 +135,7 @@ export const ProductTabs = ({ likes, ratings, views, creator }) => {
                     name={user.username}
                     key={user._id}
                     value={value}
-                    userId={createdUser._id}
+                    userId={user._id}
                   />
                 )
             )

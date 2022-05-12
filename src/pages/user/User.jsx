@@ -39,6 +39,7 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
   useEffect(() => {
     disptach(fetchProducts());
     disptach(fetchIndUser(id));
+    setLoaderState(true);
   }, [id]);
 
   const [parseState, setParseState] = useState("");
@@ -63,10 +64,14 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
     } else {
       setuserProfile(foundUser);
     }
+    return () => {
+      setuserProfile("");
+    };
   }, [foundUser, userData]);
 
   return (
     <div className="user-container">
+      <BackdropLoader open={loaderState} />
       <div className="user-contents">
         <div className="user-profile">
           <img

@@ -5,7 +5,7 @@ import "./like.styles.scss";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { useNavigate } from "react-router-dom";
 
-const UserAvatar = ({ avatar, name, value, userId }) => {
+const UserAvatar = ({ avatar, name, value, userId, createdUser }) => {
   const navigate = useNavigate();
   return (
     <div className="selproduct-likes_user">

@@ -11,8 +11,10 @@ const UserCart = ({ item, addtocart, userData }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="product-bag_icon">
-      <BsBag onClick={() => addtocart(item._id, navigate)} />
+    <div
+      className="product-bag_icon"
+      onClick={() => addtocart(item._id, navigate)}>
+      <BsBag />
     </div>
   );
 };

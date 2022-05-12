@@ -4,15 +4,16 @@ import React, { useEffect, useState } from "react";
 import "./product.styles.scss";
 import Productbox from "../../components/Product/Productbox";
 import { AnimatePresence, motion } from "framer-motion";
-
-import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
+import NewReleasesIcon from "@mui/icons-material/NewReleases";
 
 import { connect } from "react-redux";
 import { fetchselProduct } from "../../components/actions";
+import { BiTrendingUp } from "react-icons/bi";
+import ProductsList from "./ProductsList";
+import { AiOutlineEye } from "react-icons/ai";
 
 const Products = ({ fetchselProduct, products }) => {
-  const productref = React.useRef();
-
   useEffect(() => {
     fetchselProduct();
   }, []);
@@ -26,46 +27,36 @@ const Products = ({ fetchselProduct, products }) => {
         transition={{ duration: 0.8, ease: "linear" }}
         className="product-container">
         <div className="product-contents">
-          <div className="product-header">
-            <h4>Most Popular</h4>
-            <div className="product-arrow_icons">
-              <span
-                className="product-arrow_icon"
-                onClick={() =>
-                  (document.querySelectorAll(
-                    ".product-trending"
-                  )[0].scrollLeft -= 500)
-                }>
-                <FiArrowLeft />
-              </span>
-              <span
-                className="product-arrow_icon"
-                onClick={() =>
-                  (document.querySelectorAll(
-                    ".product-trending"
-                  )[0].scrollLeft += 500)
-                }>
-                <FiArrowRight />
-              </span>
-            </div>
-          </div>
-          <div ref={productref} className="product-trending">
-            {products.map(
-              (item, index) =>
-                item && <Productbox item={item} key={item.p_id} />
-            )}
-          </div>
+          <ProductsList
+            products={products}
+            details={{
+              text: "Most popular",
+              icon: <WhatshotIcon className="product-header_icon" />,
+            }}
+            state="popular"
+          />
         </div>
         <div className="product-contents">
-          <h4>Latest</h4>
-          <div className="product-trending">
-            {products.map(
-              (item, index) =>
-                item && <Productbox item={item} key={item.p_id} />
-            )}
-          </div>
+          <ProductsList
+            products={products}
+            details={{
+              text: "Latest",
+              icon: <NewReleasesIcon className="product-header_icon" />,
+            }}
+            state="latest"
+          />
         </div>
-      </motion.div>{" "}
+        <div className="product-contents">
+          <ProductsList
+            products={products}
+            details={{
+              text: "Most viewed",
+              icon: <AiOutlineEye className="product-header_icon" />,
+            }}
+            state="Viewed"
+          />
+        </div>
+      </motion.div>
       {/* <AnimatePresence>
         {selproductState.state && (
           <Selproduct

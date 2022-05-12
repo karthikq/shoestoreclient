@@ -5,8 +5,8 @@
   width: 300px;
   height: 300px;
   color: rgb(29, 22, 22);
-
-  box-shadow: 0px 15px 50px rgba(0, 0, 0, 0.267);
+  box-shadow: rgba(50, 50, 93, 0.24) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.247) 0px 30px 60px -30px;
   border-radius: 12px;
   position: relative;
   overflow: hidden;
@@ -110,6 +110,22 @@
           color: white;
         }
       }
+    }
+  }
+  .product-stars {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    color: rgba(255, 255, 255, 0.795);
+    .product-star_span {
+      font-family: "Poppins", sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 0 0.2rem;
+      font-size: 0.85rem;
+    }
+    .product-star_icon {
+      font-size: 1rem;
     }
   }
 

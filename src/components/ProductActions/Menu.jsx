@@ -13,7 +13,7 @@ import Modal from "../model/Model";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PersonIcon from "@mui/icons-material/Person";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { removeProduct } from "../actions";
 import { useNavigate } from "react-router-dom";
@@ -64,6 +64,7 @@ const StyledMenu = styled((props) => (
 const MenuDropdown = ({ loginUser, postUser, product }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [modelState, setModelState] = React.useState(false);
+  const auth = useSelector((state) => state.User.auth);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -114,18 +115,26 @@ const MenuDropdown = ({ loginUser, postUser, product }) => {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}>
-        <MenuItem onClick={handleEdit}>
-          <EditIcon />
-          Edit
-        </MenuItem>
-        {loginUser?._id === postUser?.userId && (
-          <MenuItem onClick={handleDelete}>
+        {auth && loginUser?._id === postUser?.userId && (
+          <MenuItem
+            onClick={handleEdit}
+            style={{ fontFamily: "Poppins", fontWeight: "600" }}>
+            <EditIcon />
+            Edit
+          </MenuItem>
+        )}
+        {auth && loginUser?._id === postUser?.userId && (
+          <MenuItem
+            onClick={handleDelete}
+            style={{ fontFamily: "Poppins", fontWeight: "600" }}>
             <DeleteIcon />
             Delete
           </MenuItem>
         )}
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose}>
+        <MenuItem
+          onClick={() => navigate(`/get/user/${postUser?.userId}#products`)}
+          style={{ fontFamily: "Poppins", fontWeight: "600" }}>
           <PersonIcon />
           User
         </MenuItem>

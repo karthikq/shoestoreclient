@@ -17,6 +17,7 @@ import { ProductContextobj } from "../../context/selProductcontext";
 import Modal from "../model/Model";
 import { useDispatch } from "react-redux";
 import { removeProduct } from "../actions";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
 
 const Productbox = ({ item, userData, updateViewCount }) => {
   const navigate = useNavigate();
@@ -37,11 +38,10 @@ const Productbox = ({ item, userData, updateViewCount }) => {
         cb={productCb}
         text="Do you want to delete this product "
       />
-      <motion.div layout className="product-box">
+      <motion.div className="product-box">
         <div
           className="product-img"
           onClick={async () => {
-            await updateViewCount(item.p_id);
             // window.history.pushState("", {}, "/single/product/" + item.p_id);
             navigate("/single/product/" + item.p_id, {
               state: item,
@@ -64,6 +64,7 @@ const Productbox = ({ item, userData, updateViewCount }) => {
             ))}
           </div>
         </div>
+
         <Userfav userData={userData} item={item} />
         {item.userId !== userData._id ? (
           <UserCart item={item} userData={userData} />
@@ -84,6 +85,14 @@ const Productbox = ({ item, userData, updateViewCount }) => {
             starSpacing="1px"
           /> */}
         </div>
+        {item.totalRating && (
+          <div className="product-stars">
+            <span className="product-star_span">
+              {item.totalRating}{" "}
+              <StarBorderIcon className="product-star_icon" />
+            </span>
+          </div>
+        )}
       </motion.div>
     </React.Fragment>
   );
