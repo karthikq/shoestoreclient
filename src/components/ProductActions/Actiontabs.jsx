@@ -14,6 +14,7 @@ import Gippy from "../Gipphy/Gippy";
 import UserAvatar from "../LikedUsers/UserAvatar";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchIndUser } from "../actions/User";
+import { CgDetailsMore } from "react-icons/cg";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -87,8 +88,8 @@ export const ProductTabs = ({ likes, ratings, views, selproduct }) => {
           />
           <Tab
             iconPosition="start"
-            icon={<RemoveRedEyeIcon style={{ fontSize: "1.4rem" }} />}
-            label="Views"
+            icon={<CgDetailsMore style={{ fontSize: "1.4rem" }} />}
+            label="Details"
             {...a11yProps(2)}
           />
         </Tabs>
@@ -146,7 +147,12 @@ export const ProductTabs = ({ likes, ratings, views, selproduct }) => {
       </TabPanel>
       <TabPanel value={value} index={3}>
         <div className="selproduct-likes">
-          <p className="selporudct-views_count">Total Views : {views}</p>
+          <p className="selporudct-views_count">
+            Total views :<b>{views}</b>
+          </p>
+          <p className="selporudct-views_count">
+            Created on : <b> {selproduct.date}</b>
+          </p>
         </div>
       </TabPanel>
     </Box>

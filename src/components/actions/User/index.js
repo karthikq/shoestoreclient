@@ -74,10 +74,12 @@ export const userAddtofav =
       });
     } catch (error) {
       toast.dismiss();
-      if (error.response.status === 403) {
-        ToastErrors(error.response.status, toast, navigate);
+
+      const err = error.response;
+      if (err.status === 401) {
+        toast.error("Cannot add your own product to fav's");
       } else {
-        toast.error("Error please refresh the page");
+        ToastErrors(err.status, toast, navigate);
       }
     }
   };

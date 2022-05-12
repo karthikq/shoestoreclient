@@ -8,30 +8,6 @@ import Productbox from "../../components/Product/Productbox";
 const ProductsList = ({ products, details, state }) => {
   const product = useRef();
 
-  const productitems = (value) => {
-    var sortedProduct = products;
-    if (value === "popular") {
-      //       sortedProduct = sortedProduct.filter((data) => {
-      //         return data.totalRating >= 3 ? data : "";
-      //       });
-      console.log("S1");
-      sortedProduct.sort((a, b) => (a.totalRating - b.totalRating ? 1 : -1));
-    }
-    if (value === "latest") {
-      console.log("S2");
-      //       console.log(sortedProduct.sort((a, b) => (a.date - b.date ? 1 : -1)));
-      sortedProduct.sort((a, b) => (a.createdAt - b.createdAt ? 1 : -1));
-    }
-
-    if (value === "viewed") {
-      sortedProduct.sort((a, b) => (a.viewCount - b.viewCount ? 1 : -1));
-      //        sortedProduct.sort
-      //       sortedProduct.sort((a, b) => (a?.totalRating - b?.totalRating ? 1 : -1));
-    }
-    return sortedProduct.map((item, index) => (
-      <Productbox item={item} key={item.p_id} />
-    ));
-  };
   return (
     <React.Fragment>
       <div className="product-header">
@@ -52,7 +28,9 @@ const ProductsList = ({ products, details, state }) => {
         </div>
       </div>
       <div ref={product} className="product-trending">
-        {productitems(state)}
+        {products.map(
+          (item, index) => item && <Productbox item={item} key={item.p_id} />
+        )}
       </div>
     </React.Fragment>
   );
