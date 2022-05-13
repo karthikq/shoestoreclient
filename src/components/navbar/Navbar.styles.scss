@@ -26,7 +26,7 @@
 
   position: fixed;
   left: 1rem;
-  top: 2rem;
+  top: 1.2rem;
   z-index: 80;
   display: flex;
   flex-direction: column;
@@ -52,7 +52,7 @@
   }
 }
 .nav-icon-active {
-  top: 1rem;
+  top: 1.2rem;
   left: 250px;
   .navspan {
     background-color: white !important;

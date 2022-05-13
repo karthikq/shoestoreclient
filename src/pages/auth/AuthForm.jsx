@@ -10,7 +10,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { LoginUser, ResiterUser } from "../../components/actions/auth/auth";
 import toast from "react-hot-toast";
 import { MdErrorOutline } from "react-icons/md";
+import { AiOutlinePlus } from "react-icons/ai";
 import Button from "../../components/button/Button";
+
 const AuthForm = ({
   loginState,
   handleAuth,

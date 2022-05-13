@@ -76,8 +76,12 @@ const MenuDropdown = ({ loginUser, postUser, product }) => {
     setAnchorEl(false);
     navigate(`/edit/product/${product.p_id}`);
   };
-  const cb = () => {
-    dispatch(removeProduct(postUser._id, navigate));
+
+  const cb = async () => {
+    dispatch(removeProduct(postUser._id, navigate, path));
+  };
+  const path = () => {
+    navigate(-1);
   };
   const handleDelete = () => {
     setAnchorEl(false);

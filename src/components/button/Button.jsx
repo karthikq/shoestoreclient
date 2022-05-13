@@ -1,6 +1,7 @@
 /** @format */
 
 import React from "react";
+import { AiOutlinePlus } from "react-icons/ai";
 import SimpleLoader from "../loader/SimpleLoader";
 import "./btn.styles.scss";
 
