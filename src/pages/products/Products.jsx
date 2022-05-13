@@ -19,6 +19,7 @@ import img2 from "./2.gif";
 import img3 from "./3.gif";
 
 const Products = ({ fetchselProduct, products }) => {
+  const [p_item, setp_item] = useState("");
   useEffect(() => {
     fetchselProduct();
   }, []);
@@ -42,6 +43,16 @@ const Products = ({ fetchselProduct, products }) => {
             value="popular"
           />
         </div>
+        {/* <div
+          className="product_video"
+          style={{
+            background: `url(${p_item?.p_img[0]}) no-repeat center`,
+            backgroundAttachment: "fixed",
+          }}>
+          <video autoPlay loop className="">
+            <source src="../../videos/4.mp4" />
+          </video>  
+        </div> */}
         <div className="product-contents">
           <ProductsList
             products={products}

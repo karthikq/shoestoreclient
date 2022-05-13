@@ -24,7 +24,6 @@ const ProductsList = ({ products, details, value }) => {
       sortedProduct.sort((a, b) => {
         return new Date(b.sortDate) - new Date(a.sortDate);
       });
-      console.log(sortedProduct, value);
     }
     if (value === "viewed") {
       sortedProduct.sort((a, b) => {
@@ -37,8 +36,11 @@ const ProductsList = ({ products, details, value }) => {
     <React.Fragment>
       <div className="product-header">
         <div className="product-header-left">
-          <h4 className="product-h4">{details.text}</h4>
-          <img className="product-header_img" src={details.img} alt="gif" />
+          <h4 className="product-h4">
+            {details.text.split(" ")[0]}{" "}
+            <span>{details.text.split(" ")[1]}</span>
+          </h4>
+          {/* <img className="product-header_img" src={details.img} alt="gif" /> */}
         </div>
         <div className="product-arrow_icons">
           <span

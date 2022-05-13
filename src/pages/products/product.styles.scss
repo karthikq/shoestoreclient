@@ -8,26 +8,30 @@
   position: relative;
 }
 .product-contents:nth-child(1) {
-  padding-top: 5rem;
+  padding-top: 4rem;
 }
 .product-contents {
-  width: 90%;
+  width: 92%;
 
   margin: 0 auto;
   color: rgb(29, 22, 22);
   padding: 1rem 0 0rem;
   .product-h4 {
-    font-family: "Newsreader", serif;
+    font-family: "Poppins", sans-serif;
     color: #000000;
-    font-size: 2.6rem;
-    font-weight: 700;
+    font-size: 2.85rem;
+
     padding-left: 0rem;
     margin: 0;
-    text-transform: capitalize;
+    font-weight: 400;
     display: flex;
     align-items: center;
 
     gap: 0 0.5rem;
+    span {
+      font-weight: 700;
+      text-transform: lowercase;
+    }
     .product-header_icon {
       font-size: 1.8rem;
       position: relative;
@@ -53,10 +57,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 3px solid rgba(128, 128, 128, 0.034);
-  box-shadow: rgba(50, 50, 93, 0.055) 0px 50px 100px -20px,
-    rgba(255, 1, 1, 0.048) 0px 30px 60px -30px;
-  padding: 0.9rem 1.4rem;
+  // border: 3px solid rgba(128, 128, 128, 0.034);
+  // box-shadow: rgba(50, 50, 93, 0.055) 0px 50px 100px -20px,
+  //   rgba(255, 1, 1, 0.048) 0px 30px 60px -30px;
+  padding: 0.5rem 0.9rem;
   border-radius: 20px;
   .product-arrow_icons {
     width: 8rem;
@@ -89,10 +93,10 @@
   min-height: 26rem;
   padding-left: 2.6rem;
   padding-right: 0.5rem;
-  padding-top: 4.5rem;
+  padding-top: 3.8rem;
   display: flex;
 
-  gap: 0 2.9rem;
+  gap: 0 2rem;
 
   overflow-x: auto;
   overflow-y: hidden;
@@ -118,6 +122,36 @@
     background: rgb(201, 201, 201);
   }
 }
+
+.product_video {
+  width: 90%;
+  margin: 0 auto;
+  height: 12em;
+  opacity: 0.9;
+  margin-bottom: 5rem;
+  position: relative;
+  &::before {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    background: linear-gradient(
+      0deg,
+      rgba(20, 20, 20, 0.774),
+      rgba(20, 20, 20, 0)
+    );
+    content: "";
+    width: 100%;
+    height: 100%;
+  }
+  background-attachment: fixed;
+  .product_video-main {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-attachment: fixed;
+  }
+}
+
 @media screen and (max-width: 1080px) {
   .product-contents {
     width: 95%;
@@ -140,9 +174,8 @@
     width: 95%;
     padding-top: 0;
     .product-h4 {
-      font-family: "Newsreader", serif;
       color: #000000;
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       line-height: 1.1;
     }
     .product-header-left {
@@ -155,7 +188,8 @@
     width: auto;
   }
   .product-header {
-    padding: 0.6rem 0.9rem;
+    padding: 00rem 0.5rem;
+
     .product-arrow_icons {
       width: 7rem;
       gap: 0.5rem 0rem;
@@ -169,7 +203,7 @@
   }
   .product-trending {
     width: auto;
-    min-height: 21rem;
+    min-height: 20rem;
     padding-left: 1rem;
     padding-right: 0.5rem;
     padding-top: 3rem;
