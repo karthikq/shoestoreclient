@@ -3,6 +3,8 @@
 import axios from "axios";
 import { backendUrl } from "./Backendurl";
 
+console.log(backendUrl());
+
 export const backendApi = axios.create({
   baseURL: backendUrl(),
 
