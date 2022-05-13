@@ -6,7 +6,7 @@
   height: 300px;
   color: rgb(29, 22, 22);
   box-shadow: rgba(50, 50, 93, 0.24) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.247) 0px 30px 60px -30px;
+    rgba(0, 0, 0, 0.123) 0px 30px 60px -30px;
   border-radius: 12px;
   position: relative;
   overflow: hidden;
@@ -144,4 +144,10 @@
   //     }
   //   }
   // }
+}
+@media screen and (max-width: 1080px) {
+  .product-box {
+    width: 270px;
+    height: 270px;
+  }
 }

@@ -14,6 +14,10 @@ import ProductsList from "./ProductsList";
 import { AiOutlineEye, AiOutlineFire } from "react-icons/ai";
 import { WiStrongWind } from "react-icons/wi";
 
+import img1 from "./1.gif";
+import img2 from "./2.gif";
+import img3 from "./3.gif";
+
 const Products = ({ fetchselProduct, products }) => {
   useEffect(() => {
     fetchselProduct();
@@ -33,6 +37,7 @@ const Products = ({ fetchselProduct, products }) => {
             details={{
               text: "Most popular",
               icon: <AiOutlineFire className="product-header_icon" />,
+              img: img1,
             }}
             value="popular"
           />
@@ -41,8 +46,9 @@ const Products = ({ fetchselProduct, products }) => {
           <ProductsList
             products={products}
             details={{
-              text: "Latest",
+              text: "New Products",
               icon: <WiStrongWind className="product-header_icon" />,
+              img: img2,
             }}
             value="new"
           />
@@ -53,6 +59,7 @@ const Products = ({ fetchselProduct, products }) => {
             details={{
               text: "Most viewed",
               icon: <AiOutlineEye className="product-header_icon" />,
+              img: img3,
             }}
             value="viewed"
           />

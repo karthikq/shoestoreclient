@@ -36,9 +36,10 @@ const ProductsList = ({ products, details, value }) => {
   return (
     <React.Fragment>
       <div className="product-header">
-        <h4 className="product-h4">
-          {details.text} {details.icon}
-        </h4>
+        <div className="product-header-left">
+          <h4 className="product-h4">{details.text}</h4>
+          <img className="product-header_img" src={details.img} alt="gif" />
+        </div>
         <div className="product-arrow_icons">
           <span
             className="product-arrow_icon"

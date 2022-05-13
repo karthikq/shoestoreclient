@@ -404,7 +404,7 @@ ul {
 }
 @media screen and (max-width: 1080px) {
   .selproduct-container {
-    background: white;
+    background: rgb(255, 255, 255);
     .selproduct-close {
       right: 1.2rem;
       top: 1.5rem;
@@ -424,7 +424,12 @@ ul {
     gap: 0 2rem;
     flex-direction: column;
     margin: 0;
-    background: white;
+    background: linear-gradient(
+      0deg,
+      rgb(255, 255, 255),
+      rgb(255, 255, 255),
+      rgba(255, 255, 255, 0.068) 95%
+    );
     .selproduct-options {
       display: none;
     }
