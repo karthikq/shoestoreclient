@@ -12,6 +12,7 @@ import Gippy from "../Gipphy/Gippy";
 import Model from "../model/Model";
 import { motion } from "framer-motion";
 import NoItems from "../errors/NoItems";
+import EmptyLoader from "../loader/EmptyLoader";
 const UserCart = ({ userData }) => {
   const cartTotal = CartTotal(userData);
   const [btnState, setBtnState] = useState(false);
@@ -69,7 +70,10 @@ const UserCart = ({ userData }) => {
               product && <CartItems product={product} quantity={quantity} />
           )
         ) : (
-          <NoItems text="Add now" path="/categ/options" />
+          <div>
+            {/* <NoItems text="Add now" path="/categ/options" /> */}
+            <EmptyLoader state="cart" />
+          </div>
         )}
       </motion.div>
     </div>

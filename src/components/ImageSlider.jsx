@@ -2,9 +2,10 @@
 
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, EffectCards, FreeMode, Thumbs } from "swiper";
+import { Navigation, EffectCards, FreeMode, Thumbs, Lazy } from "swiper";
 // Import Swiper styles
 import "swiper/css";
+import "swiper/css/lazy";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
@@ -21,7 +22,7 @@ const ImageSlider = ({ imagesArray, imgClass }) => {
             effect={"cards"}
             navigation={true}
             thumbs={{ swiper: thumbsSwiper }}
-            modules={[FreeMode, Navigation, Thumbs, EffectCards]}
+            modules={[FreeMode, Navigation, Thumbs, EffectCards, Lazy]}
             className="mySwiper">
             {imagesArray?.map((item) => (
               <SwiperSlide key={item}>
@@ -33,14 +34,14 @@ const ImageSlider = ({ imagesArray, imgClass }) => {
           <Swiper
             onSwiper={setThumbsSwiper}
             effect={"cards"}
-            slidesPerView={imagesArray?.length}
+            slidesPerView={imagesArray.length}
             freeMode={true}
             spaceBetween={0}
             watchSlidesProgress={true}
             modules={[FreeMode, Thumbs]}
             className="mySwiper">
             {imagesArray?.map((item) => (
-              <SwiperSlide key={item}>
+              <SwiperSlide key={item} className="slider-div">
                 <img src={item} alt="error" className="thumbs-slider_img" />
               </SwiperSlide>
             ))}

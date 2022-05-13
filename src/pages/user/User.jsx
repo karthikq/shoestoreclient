@@ -116,7 +116,7 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
                     icon={<MdFavorite />}
                     parseState={parseState}
                     path="fav"
-                    name="Favouritie's"
+                    name="Favourites"
                   />
                   <UsernavList
                     icon={<AiOutlineShoppingCart />}
@@ -149,7 +149,11 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
                   (item) => item && <Productbox item={item} key={item._id} />
                 )
               ) : (
-                <NoItems text="Upload now" path="/create/product" />
+                <NoItems
+                  text="Upload now"
+                  path="/create/product"
+                  state={true}
+                />
               )
             ) : (
               ""
@@ -163,7 +167,7 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
                     product && <Productbox item={product} key={product._id} />
                 )
               ) : (
-                <NoItems text="Add now" path="/categ/options" />
+                <NoItems text="Add now" path="/categ/options" state={true} />
               )
             ) : (
               ""

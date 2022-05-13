@@ -18,11 +18,12 @@
   padding: 1rem 0 0rem;
   .product-h4 {
     font-family: "Newsreader", serif;
-    color: #333333;
-    font-size: 2.75rem;
-    font-weight: 700;
+    color: #000000;
+    font-size: 2.9rem;
+    font-weight: 600;
     padding-left: 0rem;
     margin: 0;
+    text-transform: capitalize;
     display: flex;
     align-items: center;
 
@@ -31,6 +32,7 @@
       font-size: 1.8rem;
       position: relative;
       bottom: 0.15rem;
+      color: rgba(0, 0, 0, 0.685);
     }
   }
 }
@@ -38,6 +40,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border: 3px solid rgba(128, 128, 128, 0.055);
+  box-shadow: rgba(50, 50, 93, 0.075) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.116) 0px 30px 60px -30px;
+  padding: 0.9rem 1.4rem;
+  border-radius: 20px;
   .product-arrow_icons {
     width: 8rem;
     display: flex;

@@ -116,7 +116,10 @@
     position: absolute;
     right: 0.5rem;
     top: 0.5rem;
-    color: rgba(255, 255, 255, 0.795);
+    background-color: #bebebea9;
+    border-radius: 20px;
+    padding: 0rem 0.4rem;
+    color: rgba(255, 255, 255, 0.993);
     .product-star_span {
       font-family: "Poppins", sans-serif;
       display: flex;

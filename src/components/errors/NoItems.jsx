@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import Gippy from "../Gipphy/Gippy";
 import "./error.styles.scss";
 
-const NoItems = ({ text, path }) => {
+const NoItems = ({ text, path, state }) => {
   return (
     <div className="cart-item_empty">
-      <Gippy />
+      {state && <Gippy />}
       <h3>No Items found</h3>
       <Link to={path}>
         <span>{text}</span>

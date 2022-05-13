@@ -23,11 +23,7 @@ import {
 } from "../../components/actions";
 import { useNavigate, useParams } from "react-router-dom";
 
-import {
-  addtocart,
-  fetchIndUser,
-  userAddtofav,
-} from "../../components/actions/User";
+import { addtocart, userAddtofav } from "../../components/actions/User";
 import ReactConfitte from "../../components/ReactConfitte";
 
 import Rating from "@mui/material/Rating";
@@ -89,7 +85,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
     <React.Fragment>
       <ReactConfitte state={confettiState} setState={setconfettiState} />
       <BackdropLoader open={!selproduct} />
-      {
+      {selproduct && (
         <motion.div
           // initial={{ opacity: 0 }}
           // animate={{ opacity: 1 }}
@@ -97,9 +93,11 @@ const Selproduct = ({ selproduct, userData, auth }) => {
           // transition={{ duration: 0.8 }}
           className="selproduct-container">
           {" "}
-          <div className="bg-image">
-            <img src={selproduct.p_img} alt="bg" className="bg-image_main" />
-          </div>
+          {selproduct && (
+            <div className="bg-image">
+              <img src={selproduct?.p_img} alt="bg" className="bg-image_main" />
+            </div>
+          )}
           <div className="selproduct-close" onClick={() => navigate(-1)}>
             <AiOutlineClose className="selproduct-close_icon" />
           </div>
@@ -284,7 +282,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
             </div>
           </motion.div>
         </motion.div>
-      }
+      )}
     </React.Fragment>
   );
 };

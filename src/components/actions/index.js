@@ -216,22 +216,24 @@ export const editProduct =
     }
   };
 export const removeProduct =
-  (prodId, navigate, redirectpath) => async (disptach, getState) => {
+  (prodId, navigate, path) => async (disptach, getState) => {
     try {
-      let path = redirectpath;
       const toastToken = toast.loading("Deleting product please wait");
 
       const { data } = await backendApi.patch("/product/remove/" + prodId);
 
       disptach({
-        type: REMOVE_PRODUCT,
-        payload: data.product,
-      });
-      disptach({
         type: UPDATE_USER,
         payload: data.userData,
       });
-      redirectpath();
+      disptach({
+        type: REMOVE_PRODUCT,
+        payload: data.product,
+      });
+      if (path === "productpage") {
+        console.log("S");
+        window.history.back();
+      }
       toast.success("Product deleted", {
         id: toastToken,
       });

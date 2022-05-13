@@ -78,11 +78,10 @@ const MenuDropdown = ({ loginUser, postUser, product }) => {
   };
 
   const cb = async () => {
+    const path = "productpage";
     dispatch(removeProduct(postUser._id, navigate, path));
   };
-  const path = () => {
-    navigate(-1);
-  };
+
   const handleDelete = () => {
     setAnchorEl(false);
     setModelState(true);
@@ -125,15 +124,14 @@ const MenuDropdown = ({ loginUser, postUser, product }) => {
                 Delete
               </li>
             )}
-            {auth && loginUser?._id === postUser?.userId && (
-              <li
-                onClick={() =>
-                  navigate(`/get/user/${postUser?.userId}#products`)
-                }>
-                <BsFillPersonFill />
-                User
-              </li>
-            )}
+
+            <li
+              onClick={() =>
+                navigate(`/get/user/${postUser?.userId}#products`)
+              }>
+              <BsFillPersonFill />
+              User
+            </li>
           </ul>
         </div>
       )}

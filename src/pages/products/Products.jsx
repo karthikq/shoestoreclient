@@ -12,35 +12,12 @@ import { fetchselProduct } from "../../components/actions";
 import { BiTrendingUp } from "react-icons/bi";
 import ProductsList from "./ProductsList";
 import { AiOutlineEye, AiOutlineFire } from "react-icons/ai";
-import { MdOutlineNewReleases } from "react-icons/md";
+import { WiStrongWind } from "react-icons/wi";
 
 const Products = ({ fetchselProduct, products }) => {
   useEffect(() => {
     fetchselProduct();
   }, []);
-
-  const productitems = (value) => {
-    var sortedProduct = products;
-    if (value === "popular") {
-      //       sortedProduct = sortedProduct.filter((data) => {
-      //         return data.totalRating >= 3 ? data : "";
-      //       });
-
-      sortedProduct.sort((a, b) => (a.totalRating - b.totalRating ? 1 : -1));
-    }
-    if (value === "latest") {
-      //       console.log(sortedProduct.sort((a, b) => (a.date - b.date ? 1 : -1)));
-      sortedProduct.sort((a, b) => (a.createdAt - b.createdAt ? 1 : -1));
-    }
-
-    if (value === "viewed") {
-      sortedProduct.sort((a, b) => (a.viewCount - b.viewCount ? 1 : -1));
-      //        sortedProduct.sort
-      //       sortedProduct.sort((a, b) => (a?.totalRating - b?.totalRating ? 1 : -1));
-    }
-
-    return sortedProduct;
-  };
 
   return (
     <>
@@ -52,32 +29,32 @@ const Products = ({ fetchselProduct, products }) => {
         className="product-container">
         <div className="product-contents">
           <ProductsList
-            products={productitems("popular")}
+            products={products}
             details={{
               text: "Most popular",
               icon: <AiOutlineFire className="product-header_icon" />,
             }}
-            state="popular"
+            value="popular"
           />
         </div>
         <div className="product-contents">
           <ProductsList
-            products={productitems("latest")}
+            products={products}
             details={{
               text: "Latest",
-              icon: <MdOutlineNewReleases className="product-header_icon" />,
+              icon: <WiStrongWind className="product-header_icon" />,
             }}
-            state="latest"
+            value="new"
           />
         </div>
         <div className="product-contents">
           <ProductsList
-            products={productitems("viewed")}
+            products={products}
             details={{
               text: "Most viewed",
               icon: <AiOutlineEye className="product-header_icon" />,
             }}
-            state="viewed"
+            value="viewed"
           />
         </div>
       </motion.div>

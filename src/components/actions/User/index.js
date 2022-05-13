@@ -40,8 +40,6 @@ export const fetchIndUser = (userId) => async (dispatch) => {
     toast.dismiss();
     if (error.response.status === 404) {
       toast.error("User not found!!!");
-    } else {
-      toast.error("Please refresh and try again");
     }
   }
 };

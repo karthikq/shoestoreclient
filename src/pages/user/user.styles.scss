@@ -72,7 +72,7 @@
 
 .user-details {
   width: 88%;
-
+  margin-top: 0.5rem;
   border-top: 3px solid rgb(235, 235, 235);
   .user-details_nav {
     ul {
@@ -140,7 +140,7 @@
     width: 100%;
     margin: 0 auto;
     margin-top: 5rem;
-    min-height: 22rem;
+    min-height: 10rem;
     padding-bottom: 4rem;
     display: flex;
     align-items: flex-start;

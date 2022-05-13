@@ -1,5 +1,16 @@
 /** @format */
 
+.empty-container {
+  display: grid;
+  place-content: center;
+  position: relative;
+  left: 2rem;
+}
+#empty_item {
+  margin: 0 auto;
+  width: 300px;
+  height: 200px;
+}
 .loader,
 .loader:before,
 .loader:after {
