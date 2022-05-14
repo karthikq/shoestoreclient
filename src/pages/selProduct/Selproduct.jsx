@@ -21,7 +21,7 @@ import {
   singleProduct,
   updateLike,
 } from "../../components/actions";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { addtocart, userAddtofav } from "../../components/actions/User";
 import ReactConfitte from "../../components/ReactConfitte";
@@ -29,10 +29,10 @@ import ReactConfitte from "../../components/ReactConfitte";
 import Rating from "@mui/material/Rating";
 
 import MenuDropdown from "../../components/ProductActions/Menu";
-
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { ProductTabs } from "../../components/ProductActions/Actiontabs";
 import BackdropLoader from "../../components/loader/Backdrop";
+import SelprodSkelLoader from "../../components/loader/SelprodSkelLoader";
 
 const Selproduct = ({ selproduct, userData, auth }) => {
   const [addUserRating, setAddUserRating] = useState(false);
@@ -43,6 +43,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { id } = useParams();
 
@@ -85,6 +86,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
     <React.Fragment>
       <ReactConfitte state={confettiState} setState={setconfettiState} />
       <BackdropLoader open={!selproduct} />
+      {!selproduct && <SelprodSkelLoader />}
       {selproduct && (
         <motion.div
           // initial={{ opacity: 0 }}
@@ -92,13 +94,14 @@ const Selproduct = ({ selproduct, userData, auth }) => {
           // exit={{ opacity: 0 }}
           // transition={{ duration: 0.8 }}
           className="selproduct-container">
-          {" "}
           {selproduct && (
             <div className="bg-image">
               <img src={selproduct?.p_img} alt="bg" className="bg-image_main" />
             </div>
           )}
-          <div className="selproduct-close" onClick={() => navigate(-1)}>
+          <div
+            className="selproduct-close"
+            onClick={() => window.history.back()}>
             <AiOutlineClose className="selproduct-close_icon" />
           </div>
           <motion.div layout="position" className="selproduct-contents">

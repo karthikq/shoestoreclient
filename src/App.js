@@ -69,7 +69,7 @@ function App({ fetchProducts, fetchUserDetails }) {
       <div className="animate-bar"></div>
       {value.state && <Selproduct />}
       {/* <Login state={state} setState={setState} /> */}
-      <AnimatePresence exitBeforeEnter>
+      <AnimatePresence>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route
@@ -81,8 +81,8 @@ function App({ fetchProducts, fetchUserDetails }) {
               />
             }
           />
-          <Route path="/product/list" element={<Products />} />
           <Route path="/single/product/:id" element={<Selproduct />} />
+          <Route path="/product/list" element={<Products />} />
           <Route
             path="/create/product"
             element={<Createproduct editState={false} />}

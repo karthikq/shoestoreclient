@@ -7,7 +7,7 @@ import { BsBag } from "react-icons/bs";
 import StarRatings from "react-star-ratings";
 import { connect, useSelector } from "react-redux";
 import { singleProduct, updateViewCount } from "../actions";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AiFillHeart, AiOutlineDelete } from "react-icons/ai";
 import { addtocart, userAddtofav } from "../actions/User";
 import Userfav from "../userActions/Userfav";
@@ -38,20 +38,21 @@ const Productbox = ({ item, userData, updateViewCount }) => {
         cb={productCb}
         text="Do you want to delete this product "
       />
-      <motion.div className="product-box">
-        <div
-          className="product-img"
-          onClick={async () => {
-            // window.history.pushState("", {}, "/single/product/" + item.p_id);
+      {/* onClick={() => {
+          
             navigate("/single/product/" + item.p_id, {
               state: item,
             });
-            // setState(true);
-          }}>
-          {item.p_img?.length >= 0 && (
-            <img src={item.p_img[0]} alt={item.p_id} />
-          )}
-        </div>
+      
+          }} */}
+      <motion.div className="product-box">
+        <Link to={"/single/product/" + item.p_id}>
+          <div className="product-img">
+            {item.p_img?.length >= 0 && (
+              <img src={item.p_img[0]} alt={item.p_id} />
+            )}
+          </div>
+        </Link>
 
         <div className="product-details">
           <h3>{item.p_name}</h3>

@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./product.styles.scss";
 import Productbox from "../../components/Product/Productbox";
 import { AnimatePresence, motion } from "framer-motion";
@@ -17,21 +17,20 @@ import { WiStrongWind } from "react-icons/wi";
 import img1 from "./1.gif";
 import img2 from "./2.gif";
 import img3 from "./3.gif";
+import Selproduct from "../selProduct/Selproduct";
+import { ProductContextobj } from "../../context/selProductcontext";
 
 const Products = ({ fetchselProduct, products }) => {
   const [p_item, setp_item] = useState("");
   useEffect(() => {
     fetchselProduct();
   }, []);
+  const { state } = useContext(ProductContextobj);
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.8, ease: "linear" }}
-        className="product-container">
+      {/* <Selproduct state={state} /> */}
+      <motion.div className="product-container">
         <div className="product-contents">
           <ProductsList
             products={products}
@@ -53,7 +52,7 @@ const Products = ({ fetchselProduct, products }) => {
             <source src="../../videos/4.mp4" />
           </video>  
         </div> */}
-        <div className="product-contents">
+        {/* <div className="product-contents">
           <ProductsList
             products={products}
             details={{
@@ -74,16 +73,26 @@ const Products = ({ fetchselProduct, products }) => {
             }}
             value="viewed"
           />
+        </div> */}
+        <div className="product-items-container">
+          <div className="product-items_header">
+            <h3>category name</h3>
+            <div className="product-items_dropdown">
+              <select name="" id="">
+                <option value="">casul</option>
+                <option value="">v</option>
+                <option value="">casul</option>
+                <option value="">casul</option>
+              </select>
+            </div>
+          </div>
+          <div className="product-items_list">
+            {products?.map(
+              (item) => item && <Productbox item={item} key={item._id} />
+            )}
+          </div>
         </div>
       </motion.div>
-      {/* <AnimatePresence>
-        {selproductState.state && (
-          <Selproduct
-            setselproductState={setselproductState}
-            selproductState={selproductState}
-          />
-        )}
-      </AnimatePresence> */}
     </>
   );
 };

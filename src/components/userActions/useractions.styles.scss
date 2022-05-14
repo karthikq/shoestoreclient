@@ -39,7 +39,7 @@
 .product-bag_icon {
   position: absolute;
   z-index: 10;
-  right: 0.8rem;
+  right: 0.5rem;
   bottom: 0.8rem;
   font-family: "Newsreader", serif;
 
@@ -57,7 +57,7 @@
     transform: scale(1.1);
     color: #e01c4d;
 
-    background-color: rgb(245, 245, 245);
+    background-color: rgba(114, 114, 114, 0.356);
   }
   &:active {
     transform: scale(0.8);
