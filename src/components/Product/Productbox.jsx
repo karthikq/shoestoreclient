@@ -45,7 +45,7 @@ const Productbox = ({ item, userData, updateViewCount }) => {
             });
       
           }} */}
-      <motion.div className="product-box">
+      <motion.div layout="position" className="product-box">
         <Link to={"/single/product/" + item.p_id}>
           <div className="product-img">
             {item.p_img?.length >= 0 && (

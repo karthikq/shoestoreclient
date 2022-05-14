@@ -21,16 +21,34 @@ import Selproduct from "../selProduct/Selproduct";
 import { ProductContextobj } from "../../context/selProductcontext";
 
 const Products = ({ fetchselProduct, products }) => {
-  const [p_item, setp_item] = useState("");
+  const [itemCateg, setItemCateg] = useState("casual");
+
   useEffect(() => {
     fetchselProduct();
   }, []);
   const { state } = useContext(ProductContextobj);
+  const options = [
+    { value: "casual", label: "Casual", color: "#00B8D9" },
+    { value: "running", label: "Running", color: "#0052CC" },
+    { value: "sports", label: "Sports", color: "#5243AA" },
+    {
+      value: "boatshoes",
+      label: "Boat shoes",
+      color: "#FF5630",
+      isFixed: true,
+    },
+    { value: "flipflop", label: "Flip flop", color: "#FF8B00" },
+    { value: "loafers", label: "Loafers", color: "#FFC400" },
+    { value: "boots", label: "Boots", color: "#36B37E" },
+    { value: "formalshoes", label: "Formal shoes", color: "#00875A" },
+    { value: "sandals", label: "Sandals", color: "#253858" },
+  ];
+  console.log(itemCateg);
 
   return (
     <>
       {/* <Selproduct state={state} /> */}
-      <motion.div className="product-container">
+      <div className="product-container">
         <div className="product-contents">
           <ProductsList
             products={products}
@@ -76,23 +94,32 @@ const Products = ({ fetchselProduct, products }) => {
         </div> */}
         <div className="product-items-container">
           <div className="product-items_header">
-            <h3>category name</h3>
+            <h3>Products</h3>
             <div className="product-items_dropdown">
-              <select name="" id="">
-                <option value="">casul</option>
-                <option value="">v</option>
-                <option value="">casul</option>
-                <option value="">casul</option>
+              <select
+                name="itemCateg"
+                value={itemCateg}
+                onChange={(e) => setItemCateg(e.target.value)}>
+                {options.map((item) => (
+                  <option value={item.value} key={item.label}>
+                    {item.value}
+                  </option>
+                ))}
               </select>
             </div>
-          </div>
-          <div className="product-items_list">
-            {products?.map(
-              (item) => item && <Productbox item={item} key={item._id} />
-            )}
-          </div>
+          </div>{" "}
+          <motion.div layout="position" className="product-items_list">
+            <AnimatePresence>
+              {products?.map(
+                (item) =>
+                  item?.keywords?.includes(itemCateg) && (
+                    <Productbox item={item} key={item._id} />
+                  )
+              )}
+            </AnimatePresence>
+          </motion.div>{" "}
         </div>
-      </motion.div>
+      </div>
     </>
   );
 };
