@@ -102,9 +102,13 @@
   height: 32px;
 
   border-radius: 20px;
-  border: 2px solid rgba(105, 24, 197, 0);
+  // border: 2px solid rgba(105, 24, 197, 0);
+  // background-color: rgba(247, 247, 247, 0.911);
+  // color: rgb(15, 15, 15);
   background-color: rgba(247, 247, 247, 0.911);
-  color: rgb(15, 15, 15);
+  background-color: transparent;
+  border: 2px solid rgba(110, 110, 110, 0.315);
+  color: rgb(238, 238, 238);
   outline: 0;
 
   letter-spacing: 0.6px;
@@ -116,8 +120,9 @@
     transform: scale(0.8);
   }
   &:hover {
+    transform: translateX(5px);
     border: 2px solid rgba(219, 219, 219, 0.623);
-    background-color: #141414;
+
     color: white;
   }
   .options-arrow-icon {

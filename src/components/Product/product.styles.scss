@@ -2,19 +2,26 @@
 
 .product-box {
   flex-shrink: 0;
-  width: 290px;
+  width: 270px;
   height: 320px;
-  color: rgb(29, 22, 22);
+  padding: 0.5rem;
+  border: 3px solid #ff1f1f4b;
+  border-radius: 10px;
+  // color: rgb(29, 22, 22);
+  color: white;
   // box-shadow: rgba(50, 50, 93, 0.24) 0px 50px 100px -20px,
   //   rgba(0, 0, 0, 0.123) 0px 30px 60px -30px;
   // border-radius: 12px;
   position: relative;
   overflow: hidden;
-
+  &:hover {
+    border: 3px solid #ff1f1f5b;
+  }
   .product-img {
     width: 100%;
     height: 220px;
     overflow: hidden;
+    border-radius: 5px;
     cursor: pointer;
     img {
       width: 100%;
@@ -46,12 +53,15 @@
     bottom: 0;
     z-index: 1;
     width: 100%;
-    color: rgb(2, 2, 2);
+    color: rgb(255, 255, 255);
     min-height: 4rem;
     padding-top: 0.5rem;
     padding-bottom: 0.6rem;
     transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
-
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem 0;
     &::after {
       transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
       position: absolute;
@@ -76,29 +86,26 @@
       letter-spacing: 0.4px;
       text-transform: capitalize;
       // color: #e01c4d;
-      padding-left: 0.8rem;
+      padding-left: 0.2rem;
       padding-right: 0.5rem;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0rem;
       line-height: 1.5;
     }
     .span_price {
-      padding-left: 1rem;
+      padding-left: 0.5rem;
       padding-right: 0.5rem;
       font-weight: 400;
-      font-size: 0.9rem;
-      color: #f12828;
+      font-size: 0.92rem;
+      color: #fc1f1f;
       letter-spacing: 0.5px;
       position: relative;
-      bottom: 0.2rem;
+      bottom: 0.1rem;
     }
     .product-details_cat-span {
       width: 90%;
       display: block;
       font-size: 0.85rem;
-      padding-left: 0.8rem;
-
-      margin-top: 0.1rem;
-      margin-bottom: 0.4rem;
+      padding-left: 0.4rem;
 
       display: flex;
       justify-content: flex-start;
@@ -107,15 +114,15 @@
       .span_cat {
         color: #5e5e5ec9;
         &:hover {
-          color: rgb(20, 20, 20);
+          color: rgb(245, 245, 245);
         }
       }
     }
   }
   .product-stars {
     position: absolute;
-    right: 0.5rem;
-    top: 0.5rem;
+    right: 0.7rem;
+    top: 0.8rem;
     background-color: #bebebea9;
     border-radius: 20px;
     padding: 0rem 0.4rem;
@@ -148,7 +155,7 @@
 @media screen and (max-width: 1080px) {
   .product-box {
     width: 270px;
-    height: 280px;
+    min-height: 280px;
     border-radius: 10px;
   }
 }

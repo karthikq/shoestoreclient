@@ -25,8 +25,8 @@
   width: 25px;
 
   position: fixed;
-  left: 1rem;
-  top: 1.2rem;
+  left: 1.2rem;
+  top: 1.4rem;
   z-index: 80;
   display: flex;
   flex-direction: column;
@@ -37,8 +37,9 @@
     background-color: white;
     border-radius: 10px;
     width: 35px;
-    height: 4px;
-    margin: 3px 0;
+    height: 3px;
+
+    margin: 2.5px 0;
     transition: 0.4s cubic-bezier(0.68, -0.6, 0.232, 1.6);
   }
   .navspan:nth-of-type(1) {
@@ -69,7 +70,7 @@
   .navspan:nth-child(3) {
     transform-origin: bottom;
     width: 50%;
-    transform: translate(11px, -8px) rotatez(45deg);
+    transform: translate(11px, -4px) rotatez(45deg);
   }
 }
 .nav-items {

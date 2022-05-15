@@ -2,11 +2,11 @@
 
 .product-fav {
   position: absolute;
-  top: 0.5rem;
-  left: 0.6rem;
+  top: 0.75rem;
+  left: 0.75rem;
   z-index: 50;
   .product-fav_icon {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     cursor: pointer;
     color: rgb(255, 255, 255);
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
@@ -55,7 +55,7 @@
 
   &:hover {
     transform: scale(1.1);
-    color: #e01c4d;
+    color: #eeeeee;
 
     background-color: rgba(114, 114, 114, 0.356);
   }

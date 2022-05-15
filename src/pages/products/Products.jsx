@@ -94,9 +94,11 @@ const Products = ({ fetchselProduct, products }) => {
         </div> */}
         <div className="product-items-container">
           <div className="product-items_header">
-            <h3>Products</h3>
+            <h3>All Products</h3>
             <div className="product-items_dropdown">
+              <span className="product-items_span">Choose a category</span>
               <select
+                className="product-items_select"
                 name="itemCateg"
                 value={itemCateg}
                 onChange={(e) => setItemCateg(e.target.value)}>
