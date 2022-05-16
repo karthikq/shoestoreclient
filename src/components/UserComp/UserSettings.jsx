@@ -14,6 +14,8 @@ import { UpdateUserDetails } from "../actions/User";
 import Loader from "../loader/Loader";
 import Button from "../button/Button";
 import SimpleLoader from "../loader/SimpleLoader";
+import validator from "validator";
+import CSCpicker from "../Countries/CSCpicker";
 
 const UserSettings = ({ UpdateUserDetails }) => {
   const navigate = useNavigate();
@@ -25,12 +27,23 @@ const UserSettings = ({ UpdateUserDetails }) => {
   const [newuserData, setNewuserData] = useState({});
   const [urlarray, setUrlarray] = useState("");
   const [btnState, setbtnState] = useState(false);
+  const [details, setDetails] = useState({
+    country: "",
+    state: "",
+    city: "",
+  });
+
+  const [error, setError] = useState({
+    type: "",
+    text: "",
+    errors: [],
+  });
 
   const {
     register,
-    formState: { errors },
     reset,
     handleSubmit,
+    formState: { errors },
   } = useForm({
     defaultValues: useMemo(() => {
       return userDetails;
@@ -65,6 +78,15 @@ const UserSettings = ({ UpdateUserDetails }) => {
   };
   const onSubmit = (data) => {
     toast.dismiss();
+    const { phonenumber } = data;
+    if (phonenumber) {
+      const isValid = validator.isMobilePhone(phonenumber, "en-IN");
+      if (!isValid) {
+        return setError({ type: "phone", text: "Mobile no is not valid" });
+      } else {
+        setError("");
+      }
+    }
     if (userDetails.profileUrl === imagePath) {
       UpdateUserDetails(data, callBack);
     } else {
@@ -87,7 +109,7 @@ const UserSettings = ({ UpdateUserDetails }) => {
       toast.dismiss();
     }
   }, [urlarray]);
-
+  console.log(errors);
   return (
     <div className="usersetting-container">
       <AnimatePresence exitBeforeEnter>
@@ -112,18 +134,6 @@ const UserSettings = ({ UpdateUserDetails }) => {
                 placeholder="last name"
                 className="usersetting-input"
                 {...register("lastname")}
-              />
-            </div>
-
-            <div className="usersetting-input_items">
-              {/* <label>Email</label> */}
-              <input
-                readOnly
-                type="email"
-                required
-                placeholder="Email"
-                className="usersetting-input"
-                {...register("email")}
               />
             </div>
             <div className="usersetting-input_items">
@@ -176,6 +186,55 @@ const UserSettings = ({ UpdateUserDetails }) => {
                 />
               )}
             </div>
+            <div className="usersetting-input_items">
+              {/* <label>Email</label> */}
+              <input
+                readOnly
+                type="email"
+                required
+                placeholder="Email"
+                className="usersetting-input"
+                {...register("email")}
+              />
+            </div>
+            <div className="usersetting-input_items">
+              {/* <label>Email</label> */}
+              <input
+                name="phonenumber"
+                type="text"
+                placeholder="Mobile No"
+                className="usersetting-input"
+                {...register("phonenumber")}
+              />
+              {error.type === "phone" && (
+                <span className="usersetting_error_span">{error.text}</span>
+              )}
+            </div>
+            <CSCpicker
+              state="country"
+              details={details}
+              setDetails={setDetails}
+            />
+
+            <div className="usersetting-input_items-header">
+              {details.country && (
+                <CSCpicker
+                  state="state"
+                  value={details.country}
+                  details={details}
+                  setDetails={setDetails}
+                />
+              )}
+
+              <input
+                name="city"
+                type="text"
+                placeholder="City"
+                className="usersetting-input"
+                {...register("city")}
+              />
+            </div>
+            <div className="input"></div>
             <button
               type="submit"
               disabled={uploadedImgState}

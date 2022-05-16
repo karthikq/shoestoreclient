@@ -94,36 +94,33 @@
   //   }
 }
 .options-btn {
-  font-family: "Montserrat", sans-serif;
-  text-align: center;
   margin-top: 3.5rem;
-
-  width: 100px;
-  height: 32px;
-
-  border-radius: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   // border: 2px solid rgba(105, 24, 197, 0);
   // background-color: rgba(247, 247, 247, 0.911);
   // color: rgb(15, 15, 15);
   background-color: rgba(247, 247, 247, 0.911);
   background-color: transparent;
-  border: 2px solid rgba(110, 110, 110, 0.315);
-  color: rgb(238, 238, 238);
+  border: 2px solid rgba(146, 146, 146, 0.651);
+  color: rgba(235, 235, 235, 0.774);
   outline: 0;
 
   letter-spacing: 0.6px;
   cursor: pointer;
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   display: grid;
   place-content: center;
-  &:active {
-    transform: scale(0.8);
-  }
+  transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+
   &:hover {
     transform: translateX(5px);
-    border: 2px solid rgba(219, 219, 219, 0.623);
+    border: 2px solid rgb(194, 9, 9);
 
-    color: white;
+    color: rgb(194, 9, 9);
+  }
+  &:active {
+    transform: scale(0.8);
   }
   .options-arrow-icon {
     font-size: 1.35rem;
