@@ -210,28 +210,28 @@ const UserSettings = ({ UpdateUserDetails }) => {
                 <span className="usersetting_error_span">{error.text}</span>
               )}
             </div>
-            <CSCpicker
-              state="country"
-              details={details}
-              setDetails={setDetails}
-            />
+
+            <div className="usersetting-input_items">
+              <CSCpicker
+                state="country"
+                details={details}
+                setDetails={setDetails}
+              />
+            </div>
 
             <div className="usersetting-input_items-header">
-              {details.country && (
-                <CSCpicker
-                  state="state"
-                  value={details.country}
-                  details={details}
-                  setDetails={setDetails}
-                />
-              )}
+              <CSCpicker
+                state="state"
+                value={details.country || ""}
+                details={details}
+                setDetails={setDetails}
+              />
 
-              <input
-                name="city"
-                type="text"
-                placeholder="City"
-                className="usersetting-input"
-                {...register("city")}
+              <CSCpicker
+                state="city"
+                value={details.state || ""}
+                details={details}
+                setDetails={setDetails}
               />
             </div>
             <div className="input"></div>

@@ -7,6 +7,7 @@ import { CSCApi } from "../api/CSCApi";
 const CSCpicker = ({ state, details, setDetails, value }) => {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
+  const [city, setCity] = useState([]);
 
   const fetchCountries = async () => {
     try {
@@ -20,18 +21,28 @@ const CSCpicker = ({ state, details, setDetails, value }) => {
   const fetchStateofCountry = async (value) => {
     try {
       const { data } = await CSCApi.get("/countries/" + value + "/states");
-      console.log(data);
+
       setStates(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchCityofstate = async (value) => {
+    try {
+      const { data } = await CSCApi.get(
+        "/countries/" + details.country + "/states/" + details.state + "/cities"
+      );
+
+      setCity(data);
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
     getItems(state);
-  }, [state]);
+  }, [state, details]);
 
   const getItems = async (state) => {
-    console.log(state);
     if (state === "country") {
       await fetchCountries();
     }
@@ -39,30 +50,36 @@ const CSCpicker = ({ state, details, setDetails, value }) => {
       await fetchStateofCountry(value);
     }
     if (state === "city") {
-      await fetchCountries();
+      await fetchCityofstate(value);
     }
   };
 
   return (
-    <div className="usersetting-input_items">
-      {
-        <select
-          name="country"
-          className="usersetting-select"
-          onChange={(e) =>
-            setDetails({
-              country: e.target.value,
-            })
-          }>
-          <optgroup label="Countries">
-            {state === "country" &&
-              countries?.map((item) => (
-                <option value={item.iso2}>{item.name}</option>
-              ))}
-          </optgroup>
-        </select>
-      }
-    </div>
+    <>
+      <select
+        name={state}
+        className="usersetting-select"
+        onChange={(e) => {
+          state === "country" &&
+            setDetails({ ...details, country: e.target.value });
+          state === "state" &&
+            setDetails({ ...details, state: e.target.value });
+          state === "city" && setDetails({ ...details, city: e.target.value });
+        }}>
+        <optgroup label={state + "s"}>
+          {state === "country" &&
+            countries?.map((item) => (
+              <option value={item.iso2}>{item.name}</option>
+            ))}{" "}
+          {state === "state" &&
+            states?.map((item) => (
+              <option value={item.iso2}>{item.name}</option>
+            ))}{" "}
+          {state === "city" &&
+            city?.map((item) => <option value={item.iso2}>{item.name}</option>)}
+        </optgroup>
+      </select>
+    </>
   );
 };
 
