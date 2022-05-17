@@ -6,8 +6,8 @@
 .selproduct-likes_user {
   display: flex;
 
-  gap: 0 1rem;
-  margin: 0 0 0.7em;
+  gap: 0 0.8rem;
+  margin: 0 0 0.4rem;
   font-family: "Poppins", sans-serif;
   //   border: 3px solid rgba(211, 211, 211, 0.144);
   border-radius: 7px;
@@ -20,8 +20,8 @@
   //   }
 
   img {
-    width: 48px;
-    height: 48px;
+    width: 47px;
+    height: 47px;
     border-radius: 50%;
     object-fit: cover;
   }
