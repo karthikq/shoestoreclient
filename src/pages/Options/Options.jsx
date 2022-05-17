@@ -12,6 +12,7 @@ import OptionItem from "./OptionItem";
 import { useNavigate } from "react-router-dom";
 import { fetchselProduct, fetchProducts } from "../../components/actions";
 import BackdropLoader from "../../components/loader/Backdrop";
+import allproducts from "../../ProdCat.json";
 
 const Options = ({ fetchselProduct, navigationState, fetchProducts }) => {
   const [selOptions, setSelOptions] = useState([]);
@@ -76,71 +77,20 @@ const Options = ({ fetchselProduct, navigationState, fetchProducts }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2 }}>
-          <BiCategoryAlt className="option-cat-icon" /> Select category's
+          {/* <BiCategoryAlt className="option-cat-icon" /> */}
+          Select type's
         </motion.h2>
         <div className="options-list">
           <form onSubmit={onSubmit}>
             <div className="options-btn-list">
-              <OptionItem
-                checkExists={checkExists}
-                selOptions={selOptions}
-                value="Sneakers"
-                id={1}
-              />
-              <OptionItem
-                checkExists={checkExists}
-                selOptions={selOptions}
-                value="Casual"
-                id={2}
-              />
-              <OptionItem
-                checkExists={checkExists}
-                selOptions={selOptions}
-                value="Running"
-                id={3}
-              />
-              <OptionItem
-                checkExists={checkExists}
-                selOptions={selOptions}
-                value="Sports"
-                id={4}
-              />
-              <OptionItem
-                checkExists={checkExists}
-                selOptions={selOptions}
-                value="Boat shoes"
-                id={5}
-              />
-              <OptionItem
-                checkExists={checkExists}
-                selOptions={selOptions}
-                value="Flip flops"
-                id={6}
-              />
-              <OptionItem
-                checkExists={checkExists}
-                selOptions={selOptions}
-                value="Loafers"
-                id={7}
-              />
-              <OptionItem
-                checkExists={checkExists}
-                selOptions={selOptions}
-                value="Boots"
-                id={8}
-              />
-              <OptionItem
-                checkExists={checkExists}
-                selOptions={selOptions}
-                value="Formal Shoes"
-                id={9}
-              />
-              <OptionItem
-                checkExists={checkExists}
-                selOptions={selOptions}
-                value="Sandals"
-                id={10}
-              />
+              {allproducts.map((item) => (
+                <OptionItem
+                  checkExists={checkExists}
+                  selOptions={selOptions}
+                  value={item.type}
+                  id={1}
+                />
+              ))}
             </div>
 
             <motion.button

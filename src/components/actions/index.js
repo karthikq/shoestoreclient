@@ -49,7 +49,7 @@ export const fetchselProduct = () => async (dispatch, getState) => {
   if (getState().Products.length > 0) {
     const data = getState().Products.filter((item) => {
       return products.find((i) => {
-        return item.keywords.includes(i) ? item : "";
+        return i === item.p_type?.toLowerCase() && item;
       });
     });
 

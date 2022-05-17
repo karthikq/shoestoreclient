@@ -20,16 +20,6 @@ const ProductsList = ({ products, details, value }) => {
         return b.totalRating - a.totalRating;
       });
     }
-    if (value === "new") {
-      sortedProduct.sort((a, b) => {
-        return new Date(b.sortDate) - new Date(a.sortDate);
-      });
-    }
-    if (value === "viewed") {
-      sortedProduct.sort((a, b) => {
-        return b.viewCount - a.viewCount;
-      });
-    }
     return <ProductsMap products={sortedProduct} />;
   };
   return (

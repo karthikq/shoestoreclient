@@ -21,6 +21,8 @@ import {
 } from "../../components/actions";
 import BackdropLoader from "../../components/loader/Backdrop";
 import WordConvertor from "../../components/currency/toWords";
+import allproducts from "../../ProdCat.json";
+
 const animatedComponents = makeAnimated();
 
 const Createproduct = ({ createProduct, editState, editProduct }) => {
@@ -48,6 +50,8 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
     p_desp: "",
     p_price: "",
     p_category: "",
+    p_type: "",
+    p_brand: "",
   });
   const { id } = useParams();
 
@@ -109,6 +113,13 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
 
     if (!uploadedImg) {
       return toast.error("Imagefile is required");
+    }
+    if (!userData.p_type) {
+      toast.error("Product type is required");
+      return setErrors({
+        type: "type",
+        text: "Product type is required",
+      });
     }
     if (userData.p_category.length === 0) {
       toast.error("Please select a category");
@@ -190,20 +201,11 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
   // }
 
   const options = [
-    { value: "casual", label: "Casual", color: "#00B8D9" },
-    { value: "running", label: "Running", color: "#0052CC" },
-    { value: "sports", label: "Sports", color: "#5243AA" },
-    {
-      value: "boatshoes",
-      label: "Boat shoes",
-      color: "#FF5630",
-      isFixed: true,
-    },
-    { value: "flipflop", label: "Flip flop", color: "#FF8B00" },
-    { value: "loafers", label: "Loafers", color: "#FFC400" },
-    { value: "boots", label: "Boots", color: "#36B37E" },
-    { value: "formalshoes", label: "Formal shoes", color: "#00875A" },
-    { value: "sandals", label: "Sandals", color: "#253858" },
+    { value: "Shoes", label: "Shoe", color: "#00B8D9" },
+    { value: "Mobiles", label: "Mobile", color: "#0052CC" },
+    { value: "Electronics", label: "Electronics", color: "#5243AA" },
+    { value: "Watches", label: "Watches" },
+    { value: "Games", label: "Games", color: "#FF8B00" },
   ];
 
   return (
@@ -307,34 +309,84 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
                 <span className="product-error_span">{errors.text}</span>
               )}
               <span className="product-price_words">{priceInwords}</span>
-              <label className="other-label">Choose a category</label>
-              {/* <select
-                name="category"    onChange={(e) =>
-                  setUserData({ ...userData, p_category: [...userData.p_category,e.target.value] })
-                }
-                value={userData.p_category}
-               >
-                <option value="sneakers">sneakers</option>
-                <option value="casual">casual</option>
-                <option value="rnning">Running</option>
-                <option value="sports">Sports</option>
-                <option value="boatshoes">Boat shoes</option>
-                <option value="flipflop">Flip flop</option>
-                <option value="loafers">Loafers</option>
-                <option value="boots">Boots</option>
-                <option value="formalshoes">Formal shoes</option>
-                <option value="sandals">Sandals</option>
-              </select> */}
+              <label className="other-label">Product Brand</label>
+              <input
+                type="text"
+                required
+                name="p_brand"
+                minLength={2}
+                maxLength={25}
+                value={userData.p_brand}
+                onChange={(e) => {
+                  setUserData({ ...userData, p_brand: e.target.value });
+                }}
+              />
+              {errors.type === "brand" && (
+                <span className="product-error_span">{errors.text}</span>
+              )}
+              <label className="other-label">Select Type</label>
+              <Select
+                className="select-input select-input_type"
+                closeMenuOnSelect={false}
+                // value={options.filter(
+                //   (option) =>
+                //     userData?.p_type?.includes(option.value) && option.value
+                // )}
+                components={animatedComponents}
+                isLoading={userData.p_type ? false : true}
+                isClearable
+                options={options}
+                onChange={(e) => {
+                  setUserData({
+                    ...userData,
+                    p_type: e.value,
+                    p_category: [],
+                  });
+                }}
+              />
+              {errors.type === "type" && (
+                <span className="product-error_span">{errors.text}</span>
+              )}
+              <label className="other-label">
+                Choose a category{" "}
+                <span
+                  style={{
+                    fontWeight: "300",
+                    fontSize: "0.9rem",
+                    marginLeft: "0.5rem",
+                    color: "rgb(95, 95, 95)",
+                  }}>
+                  max 3
+                </span>{" "}
+              </label>
               <Select
                 className="select-input"
                 closeMenuOnSelect={false}
-                value={options.filter(
-                  (option) =>
-                    userData?.p_category?.includes(option.value) && option.value
-                )}
                 components={animatedComponents}
                 isMulti
-                options={options}
+                isLoading={userData.p_category.length > 0 ? false : true}
+                value={allproducts
+                  .find((item) => {
+                    if (!userData?.p_type) {
+                      return [""];
+                    } else {
+                      return item.type === userData?.p_type;
+                    }
+                  })
+                  .options.filter(
+                    (option) =>
+                      userData?.p_category?.includes(option.value) &&
+                      option.value
+                  )}
+                options={
+                  allproducts.find((item) => {
+                    if (!userData?.p_type) {
+                      return [""];
+                    } else {
+                      return item.type === userData?.p_type;
+                    }
+                  }).options
+                }
                 onChange={(e) => {
                   setUserData({
                     ...userData,

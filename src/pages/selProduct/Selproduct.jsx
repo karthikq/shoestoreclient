@@ -99,9 +99,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
               <img src={selproduct?.p_img} alt="bg" className="bg-image_main" />
             </div>
           )}
-          <div
-            className="selproduct-close"
-            onClick={() => window.history.back()}>
+          <div className="selproduct-close" onClick={() => navigate(-1)}>
             <AiOutlineClose className="selproduct-close_icon" />
           </div>
           <motion.div layout="position" className="selproduct-contents">

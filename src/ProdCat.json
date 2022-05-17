@@ -1,0 +1,200 @@
+[
+  {
+    "type": "Shoes",
+    "options": [
+      { "value": "casual", "label": "Casual", "color": "#00B8D9" },
+      { "value": "running", "label": "Running", "color": "#0052CC" },
+      { "value": "sports", "label": "Sports", "color": "#5243AA" },
+      {
+        "value": "boatshoes",
+        "label": "Boat shoes",
+        "color": "#FF5630"
+      },
+      { "value": "flipflop", "label": "Flip flop", "color": "#FF8B00" },
+      { "value": "loafers", "label": "Loafers", "color": "#FFC400" },
+      { "value": "boots", "label": "Boots", "color": "#36B37E" },
+      { "value": "formalshoes", "label": "Formal shoes", "color": "#00875A" },
+      { "value": "sandals", "label": "Sandals", "color": "#253858" }
+    ],
+    "brands": [
+      { "value": "flipflop", "label": "Nike" },
+      { "value": "loafers", "label": "adidas" },
+      { "value": "boots", "label": "New Balance" },
+      { "value": "formalshoes", "label": "ASICS" },
+      { "value": "sandals", "label": "Kering (PUMA)" },
+      { "value": "sandals", "label": "Skechers" },
+      { "value": "sandals", "label": "Fila" },
+      { "value": "sandals", "label": "Bata" },
+      { "value": "sandals", "label": "Burberry" },
+      { "value": "sandals", "label": "VF Corporation" },
+      { "value": "sandals", "label": "Other" },
+      { "value": "spark", "label": "Spark" },
+      { "value": "spark", "label": "Spark" }
+    ]
+  },
+  {
+    "type": "Games",
+    "options": [
+      { "label": "Sandbox", "value": "sandbox" },
+      {
+        "label": "Real-time strategy (RTS)",
+        "value": "realtimestrategy"
+      },
+      {
+        "label": "Shooters (FPS and TPS)",
+        "value": "shooters"
+      },
+      {
+        "label": "Multiplayer online battle arena (MOBA)",
+        "value": "multiplayer"
+      },
+      {
+        "label": "Role-playing (RPG, ARPG, and More)",
+        "value": "roleplaying"
+      },
+      {
+        "label": "Simulation and sports",
+        "value": "simulation"
+      },
+      {
+        "label": "Puzzlers and party games",
+        "value": "puzzlers"
+      },
+      {
+        "label": "Action-adventure",
+        "value": "actionadventure"
+      },
+      {
+        "label": "Survival and horror",
+        "value": "survivalandhorror"
+      },
+      { "label": "Platformer", "value": "platformer" }
+    ]
+  },
+  {
+    "type": "Mobiles",
+    "brands": [
+      { "value": "nokia", "label": "Nokia" },
+      {
+        "value": "samsung",
+        "label": "Samsung"
+      },
+      {
+        "value": "apple",
+        "label": "Apple"
+      },
+      { "value": "asus", "label": "Asus" },
+      {
+        "value": "motorola",
+        "label": "Motorola"
+      },
+      {
+        "value": "redmi",
+        "label": "Redmi"
+      },
+      {
+        "value": "lg",
+        "label": "Lg"
+      },
+      {
+        "value": "vivo",
+        "label": "Vivo"
+      },
+      {
+        "value": "oppo",
+        "label": "Oppo"
+      },
+      {
+        "value": "karbon",
+        "label": "Karbon"
+      }
+    ],
+    "options": [
+      { "value": "tablet", "label": "Tablet's" },
+      { "value": "phablet", "label": "Phablet's" },
+      { "value": "smartphone", "label": "Smartphone" },
+      { "value": "watchphone", "label": "Watch Phone" },
+      { "value": "keypad", "label": "Keypad Phone" }
+    ]
+  },
+  {
+    "type": "Watches",
+    "brands": [
+      { "value": "Sandbox", "label": "Timex Watches" },
+      {
+        "value": "Real-time strategy (RTS)",
+        "label": "Titan Watches"
+      },
+      {
+        "value": "Shooters (FPS and TPS)",
+        "label": "Rolex Watches"
+      },
+      {
+        "value": "Multiplayer online battle arena (MOBA)",
+        "label": "Casio Watches"
+      },
+      {
+        "value": "Role-playing (RPG, ARPG, and More)",
+        "label": "Tommy Hilfiger Watches"
+      },
+      {
+        "value": "Simulation and sports",
+        "label": "Giordano Watches"
+      },
+      {
+        "value": "Puzzlers and party games",
+        "label": "Fastrack Watches"
+      },
+      {
+        "value": "Action-adventure",
+        "label": "Tag Heuer Watches"
+      },
+      {
+        "value": "Survival and horror",
+        "label": "Armani Exchange Watches"
+      },
+      { "value": "Platformer", "label": "Ted Baker Watches" },
+      { "value": "Platformer", "label": "Adidas Watches" },
+      { "value": "Platformer", "label": "Chumbak Watches" },
+      { "value": "Platformer", "label": "Dressberry Watches" },
+      { "value": "Platformer", "label": "DKNY Watches" },
+      { "value": "Platformer", "label": "Daniel Wellington Watches" },
+      { "value": "Platformer", "label": "Roadster Watches" }
+    ],
+    "options": [
+      { "value": "analog", "label": "Analog Watch" },
+      { "value": "digital", "label": "Digital_Watch" },
+      { "value": "automatic", "label": "Automatic Watch" },
+      { "value": "chornograph", "label": "Chronograph Watch" },
+      { "value": "diving", "label": "Diving Watch" },
+      { "value": "dress", "label": "Dress Watch" },
+      { "value": "quartz", "label": "Quartz Watch" },
+      { "value": "mechanical", "label": "Mechanical Watch" },
+      { "value": "pilot", "label": "Pilot Watch" },
+      { "value": "field", "label": "Field Watch" },
+      { "value": "smart", "label": "Smart Watch" },
+      { "value": "luxury", "label": "Luxury Watch" }
+    ]
+  },
+  {
+    "type": "Electronics",
+    "options": [
+      { "value": "tvandvideo", "label": "TV & Video" },
+      { "value": "audioandtheater", "label": "Audio & Home Theater." },
+      { "value": "computer", "label": "Computers" },
+      { "value": "chronograph", "label": "Chronograph Watch" },
+      { "value": "camera", "label": "Camera & Photo" },
+      { "value": "wearable", "label": "Wearable Technology." },
+      { "value": "carelectronics", "label": "Car Electronics & GPS" },
+      { "value": "mechanicalwatch", "label": "Mechanical Watch" },
+      { "value": "portableaudio", "label": "Portable Audio" },
+      { "value": "officeelectronics", "label": "Office Electronics" },
+      { "value": "musicalinstruments", "label": "Musical Instruments" },
+      { "value": "amazondevices", "label": "Amazon Devices" }
+    ]
+  },
+  {
+    "type": "Other",
+    "options": [{}]
+  }
+]

@@ -19,31 +19,19 @@ import img2 from "./2.gif";
 import img3 from "./3.gif";
 import Selproduct from "../selProduct/Selproduct";
 import { ProductContextobj } from "../../context/selProductcontext";
+import allproducts from "../../ProdCat.json";
 
 const Products = ({ fetchselProduct, products }) => {
-  const [itemCateg, setItemCateg] = useState("casual");
+  const [itemCateg, setItemCateg] = useState();
 
   useEffect(() => {
     fetchselProduct();
+
+    setItemCateg(
+      sessionStorage.getItem("itemCateg")?.split(",")[0] ||
+        allproducts[0].options[0].value
+    );
   }, []);
-  const { state } = useContext(ProductContextobj);
-  const options = [
-    { value: "casual", label: "Casual", color: "#00B8D9" },
-    { value: "running", label: "Running", color: "#0052CC" },
-    { value: "sports", label: "Sports", color: "#5243AA" },
-    {
-      value: "boatshoes",
-      label: "Boat shoes",
-      color: "#FF5630",
-      isFixed: true,
-    },
-    { value: "flipflop", label: "Flip flop", color: "#FF8B00" },
-    { value: "loafers", label: "Loafers", color: "#FFC400" },
-    { value: "boots", label: "Boots", color: "#36B37E" },
-    { value: "formalshoes", label: "Formal shoes", color: "#00875A" },
-    { value: "sandals", label: "Sandals", color: "#253858" },
-  ];
-  console.log(itemCateg);
 
   return (
     <>
@@ -101,8 +89,11 @@ const Products = ({ fetchselProduct, products }) => {
                 className="product-items_select"
                 name="itemCateg"
                 value={itemCateg}
-                onChange={(e) => setItemCateg(e.target.value)}>
-                {options.map((item) => (
+                onChange={(e) => {
+                  setItemCateg(e.target.value);
+                  sessionStorage.setItem("itemCateg", e.target.value);
+                }}>
+                {allproducts[0].options.map((item) => (
                   <option value={item.value} key={item.label}>
                     {item.value}
                   </option>

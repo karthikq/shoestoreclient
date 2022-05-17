@@ -9,14 +9,13 @@ import { connect, useDispatch } from "react-redux";
 import { fetchProducts, singleProduct } from "../../components/actions";
 import { getProducts } from "../../redux/product";
 import RadiusBtn from "../../components/button/RadiusBtn";
+import Typewriter from "typewriter-effect";
 
 const Home = ({ products, fetchProducts, singleProduct }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // fetchProducts();
-  }, []);
+  // fetchProducts();
 
   return (
     <motion.div
@@ -32,7 +31,29 @@ const Home = ({ products, fetchProducts, singleProduct }) => {
       </div>
       <div className="home-contents">
         <h1>
-          EXPLORE <span>LATEST SHOES</span>
+          EXPLORE{" "}
+          <span id="type_span">
+            Latest shoes
+            {/* <Typewriter
+              options={{ loop: true }}
+              onInit={(typewriter) => {
+                typewriter
+                  .typeString("Latest Shoes")
+                  .pauseFor(1000)
+                  .deleteAll()
+                  .typeString("Watches")
+                  .pauseFor(1000)
+                  .deleteAll()
+                  .typeString("Games")
+                  .pauseFor(1000)
+                  .deleteAll()
+                  .typeString("Electornic's")
+                  .pauseFor(1000)
+                  .deleteAll()
+                  .start();
+              }}
+            /> */}
+          </span>
         </h1>
         <RadiusBtn path="/categ/options" type={"button"} />
       </div>
