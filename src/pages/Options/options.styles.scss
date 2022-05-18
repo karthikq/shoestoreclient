@@ -14,21 +14,22 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 3rem 0;
+  gap: 2.5rem 0;
 
   h2 {
-    font-size: 3rem;
+    font-size: 2.95rem;
     margin-top: 0rem;
     margin-bottom: 0rem;
     color: white;
     font-weight: 600;
-    letter-spacing: 0.2px;
+    letter-spacing: 0px;
     display: flex;
     align-items: center;
     position: relative;
     bottom: 0.5rem;
     .option-cat-icon {
       margin-right: 0.4rem;
+      font-size: 3.5rem;
     }
     // span {
     //   margin-left: 0.5rem;

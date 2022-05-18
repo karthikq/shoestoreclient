@@ -34,7 +34,7 @@ const Products = ({ fetchselProduct, products }) => {
   }, []);
 
   return (
-    <>
+    <React.Fragment>
       {/* <Selproduct state={state} /> */}
       <div className="product-container">
         <div className="product-contents">
@@ -80,40 +80,38 @@ const Products = ({ fetchselProduct, products }) => {
             value="viewed"
           />
         </div> */}
-        <div className="product-items-container">
-          <div className="product-items_header">
-            <h3>All Products</h3>
-            <div className="product-items_dropdown">
-              <span className="product-items_span">Choose a category</span>
-              <select
-                className="product-items_select"
-                name="itemCateg"
-                value={itemCateg}
-                onChange={(e) => {
-                  setItemCateg(e.target.value);
-                  sessionStorage.setItem("itemCateg", e.target.value);
-                }}>
-                {allproducts[0].options.map((item) => (
-                  <option value={item.value} key={item.label}>
-                    {item.value}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>{" "}
-          <motion.div layout="position" className="product-items_list">
-            <AnimatePresence>
-              {products?.map(
-                (item) =>
-                  item?.keywords?.includes(itemCateg) && (
-                    <Productbox item={item} key={item._id} />
-                  )
-              )}
-            </AnimatePresence>
-          </motion.div>{" "}
-        </div>
+      </div>{" "}
+      <div className="product-items-container">
+        <div className="product-items_header">
+          <h3>All Products</h3>
+          <div className="product-items_dropdown">
+            <span className="product-items_span">Choose a category</span>
+            <select
+              className="product-items_select"
+              name="itemCateg"
+              value={itemCateg}
+              onChange={(e) => {
+                setItemCateg(e.target.value);
+                sessionStorage.setItem("itemCateg", e.target.value);
+              }}>
+              {allproducts[0].options.map((item) => (
+                <option value={item.value} key={item.label}>
+                  {item.value}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>{" "}
+        <motion.div className="product-items_list">
+          {products?.map(
+            (item) =>
+              item?.keywords?.includes(itemCateg) && (
+                <Productbox item={item} key={item._id} />
+              )
+          )}
+        </motion.div>{" "}
       </div>
-    </>
+    </React.Fragment>
   );
 };
 const mapStatetoProps = (state) => {

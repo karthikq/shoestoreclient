@@ -61,16 +61,15 @@ function App({ fetchProducts, fetchUserDetails }) {
       fetchUserDetails();
     }
   }, []);
-  const value = useContext(ProductContextobj);
 
   return (
     <div>
       <Navbar />
       <div className="animate-bar"></div>
-      {value.state && <Selproduct />}
+
       {/* <Login state={state} setState={setState} /> */}
       <AnimatePresence>
-        <Routes location={location} key={location.pathname}>
+        <Routes>
           <Route path="/" element={<Home />} />
           <Route
             path="/categ/options"

@@ -115,6 +115,9 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
       return toast.error("Imagefile is required");
     }
     if (!userData.p_type) {
+    }
+
+    if (!userData.p_type) {
       toast.error("Product type is required");
       return setErrors({
         type: "type",
@@ -288,7 +291,7 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
                 }
               />
               <label className="other-label">
-                Price{" "}
+                Product price{" "}
                 <span style={{ fontSize: "1rem", fontWeight: "300" }}>
                   (₹Rs)
                 </span>

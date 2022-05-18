@@ -46,7 +46,7 @@ const Navbar = ({ auth, LogoutUser, user }) => {
     if (location.pathname === "/product/list") {
       document
         .querySelectorAll(".navspan")
-        .forEach((item) => (item.style.backgroundColor = "black"));
+        .forEach((item) => (item.style.backgroundColor = "white"));
     } else {
       document
         .querySelectorAll(".navspan")

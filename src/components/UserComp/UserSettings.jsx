@@ -77,6 +77,8 @@ const UserSettings = ({ UpdateUserDetails }) => {
     setImagepath(imageUrl);
   };
   const onSubmit = (data) => {
+    data.userDetails = details;
+
     toast.dismiss();
     const { phonenumber } = data;
     if (phonenumber) {

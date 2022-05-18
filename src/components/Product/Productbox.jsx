@@ -45,7 +45,11 @@ const Productbox = ({ item, userData, updateViewCount }) => {
             });
       
           }} */}
-      <motion.div layout="position" className="product-box">
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="product-box">
         <Link to={"/single/product/" + item.p_id}>
           <div className="product-img">
             {item.p_img?.length >= 0 && (
@@ -89,7 +93,7 @@ const Productbox = ({ item, userData, updateViewCount }) => {
         {item.totalRating && (
           <div className="product-stars">
             <span className="product-star_span">
-              {item.totalRating}{" "}
+              {item.totalRating.toFixed(2)}
               <StarBorderIcon className="product-star_icon" />
             </span>
           </div>

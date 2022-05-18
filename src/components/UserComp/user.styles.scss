@@ -53,6 +53,15 @@
       height: 250px !important;
     }
   }
+  .usersetting-textarea:-webkit-autofill,
+  .usersetting-textarea:-webkit-autofill:hover,
+  .usersetting-textarea:-webkit-autofill:focus,
+  .usersetting-textarea:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 100px #1b1d27 inset !important;
+  }
+  .usersetting-textarea:-webkit-autofill {
+    -webkit-text-fill-color: #ffffff !important;
+  }
   .usersetting-textarea {
     background-color: black;
   }
@@ -511,9 +520,13 @@
   .usersetting-input_items-header {
     gap: 1.25rem 0;
     flex-direction: column;
-    .usersetting-input {
+    .usersetting-input,
+    .usersetting-select {
       padding: 0.8rem 0.9rem;
       width: 93%;
+    }
+    .usersetting-select {
+      width: 97%;
     }
   }
 
@@ -573,6 +586,9 @@
     width: 100%;
     position: relative;
     left: -0.5rem;
+    .usersetting-select {
+      width: 99%;
+    }
   }
   .usersetting-input_items-header {
     gap: 1.25rem 0;
@@ -581,6 +597,9 @@
       padding: 0.8rem 0.9rem;
       padding-left: 0.8rem;
       width: 90%;
+    }
+    .usersetting-select {
+      width: 99%;
     }
   }
   .usersetting-input_items {

@@ -64,7 +64,7 @@ const CSCpicker = ({ state, details, setDetails, value }) => {
             setDetails({ ...details, country: e.target.value });
           state === "state" &&
             setDetails({ ...details, state: e.target.value });
-          state === "city" && setDetails({ ...details, city: e.target.value });
+          state === "city" && setDetails({ ...details, city: e.target.name });
         }}>
         <optgroup label={state + "s"}>
           {state === "country" &&

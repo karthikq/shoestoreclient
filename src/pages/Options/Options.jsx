@@ -23,13 +23,16 @@ const Options = ({ fetchselProduct, navigationState, fetchProducts }) => {
   const checkExists = (userChoice) => {
     const value = userChoice.toLowerCase().replace(/\s/g, "");
     const val = selOptions?.find((item) => item === value);
+
     if (val) {
       const data = selOptions?.filter((item) => item !== val);
+
       setSelOptions(data);
     } else {
-      return setSelOptions([...selOptions, value]);
+      setSelOptions([value]);
     }
   };
+  console.log(selOptions.length);
   useEffect(() => {
     fetchProducts();
     const data = sessionStorage.getItem("data");
@@ -77,9 +80,10 @@ const Options = ({ fetchselProduct, navigationState, fetchProducts }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 2 }}>
-          {/* <BiCategoryAlt className="option-cat-icon" /> */}
-          Select type's
+          <BiCategoryAlt className="option-cat-icon" />
+          Choose a category
         </motion.h2>
+
         <div className="options-list">
           <form onSubmit={onSubmit}>
             <div className="options-btn-list">
@@ -97,7 +101,7 @@ const Options = ({ fetchselProduct, navigationState, fetchProducts }) => {
               disabled={open}
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
               className={
                 btnState ? "options-btn-active options-btn" : "options-btn"
               }
