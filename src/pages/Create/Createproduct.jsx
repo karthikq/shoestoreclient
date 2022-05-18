@@ -291,8 +291,14 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
                 }
               />
               <label className="other-label">
-                Product price{" "}
-                <span style={{ fontSize: "1rem", fontWeight: "300" }}>
+                Product price
+                <span
+                  style={{
+                    fontSize: "0.9rem",
+                    fontWeight: "300",
+                    opacity: 0.7,
+                    marginLeft: "0.4rem",
+                  }}>
                   (₹Rs)
                 </span>
               </label>

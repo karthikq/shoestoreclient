@@ -46,9 +46,9 @@ const Productbox = ({ item, userData, updateViewCount }) => {
       
           }} */}
       <motion.div
-        initial={{ opacity: 0, scale: 0 }}
+        initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.7 }}
         className="product-box">
         <Link to={"/single/product/" + item.p_id}>
           <div className="product-img">

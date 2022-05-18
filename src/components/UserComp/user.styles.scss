@@ -113,12 +113,39 @@
     margin-bottom: 1.1rem;
     margin-left: 0.8rem;
   }
+  .phone_cont {
+    width: 97%;
+    padding: 0rem;
+    margin: 0 auto;
+  }
+  .phone_input {
+    width: 100% !important;
+    border-radius: 15px !important;
+    color: white !important;
+
+    height: 52px !important;
+    background-color: #1b1d27 !important;
+    border: 2px solid rgba(255, 255, 255, 0.123) !important;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  .phone_button {
+    border-radius: 15px 0 0 15px !important;
+    background-color: #f5f5f5 !important;
+    &:hover {
+      border-radius: 15px 0 0 15px !important;
+    }
+  }
+
+  .open {
+    border-radius: 15px 0 0 15px !important;
+  }
 }
 .usersetting_error_span {
-  color: rgb(241, 25, 25);
+  color: rgb(206, 5, 5);
   font-weight: 400;
   font-size: 0.9rem;
   margin-left: 0.8rem;
+  letter-spacing: 0.2px;
   display: block;
   margin-top: 0.8rem;
 }
@@ -608,6 +635,10 @@
     }
     .usersetting-profile {
       padding-left: 0.8rem;
+    }
+    .phone_cont {
+      width: 99%;
+      left: 0.5rem;
     }
   }
   .usersetting-btn {

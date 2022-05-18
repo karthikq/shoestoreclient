@@ -121,7 +121,7 @@
     margin: 0.7rem 0;
     font-size: 1rem;
     border-radius: 0px;
-    width: 98%;
+    width: 99%;
     letter-spacing: 0.3px;
     transition: all 0.2s ease-in-out;
     outline: 0;
@@ -169,8 +169,8 @@
     background: transparent !important;
     color: #000000;
     padding: 0;
-    margin: 0.8rem 0;
-    width: 102% !important;
+    margin: 1.2rem 0;
+    width: 103.5%;
     border: 0;
     // border-bottom: 3px solid #ff2e62fd !important;
     // &:focus {
@@ -258,6 +258,9 @@
     margin: 0.75rem 0 0rem;
     font-family: "Poppins", sans-serif;
     letter-spacing: 0.5px;
+    position: relative;
+    top: 0.2rem;
+    left: -0.1rem;
     .desp_length {
       font-size: 0.8rem;
       margin-left: 0.5rem;
@@ -295,6 +298,7 @@
     transform-origin: center;
     font-weight: 400;
     letter-spacing: 0.3px;
+
     &:hover {
       border: 3px solid #c20b0bfd;
       background-color: #1b1516;
@@ -417,7 +421,7 @@
     }
   }
   .create-p_form {
-    width: 90%;
+    width: 89%;
     margin-top: 3.5rem;
     .file-label {
       right: 0;
@@ -429,6 +433,9 @@
     }
     .create-p_span {
       right: 0;
+    }
+    .select-input {
+      width: 104%;
     }
   }
 }

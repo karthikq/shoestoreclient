@@ -16,6 +16,14 @@ import Button from "../button/Button";
 import SimpleLoader from "../loader/SimpleLoader";
 import validator from "validator";
 import CSCpicker from "../Countries/CSCpicker";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import startsWith from "lodash.startswith";
+import {
+  isPossiblePhoneNumber,
+  isValidPhoneNumber,
+  validatePhoneNumberLength,
+} from "libphonenumber-js";
 
 const UserSettings = ({ UpdateUserDetails }) => {
   const navigate = useNavigate();
@@ -27,6 +35,12 @@ const UserSettings = ({ UpdateUserDetails }) => {
   const [newuserData, setNewuserData] = useState({});
   const [urlarray, setUrlarray] = useState("");
   const [btnState, setbtnState] = useState(false);
+
+  const [phoneDetails, setPhoneDetails] = useState({
+    value: "",
+    details: {},
+  });
+
   const [details, setDetails] = useState({
     country: "",
     state: "",
@@ -51,6 +65,8 @@ const UserSettings = ({ UpdateUserDetails }) => {
   });
   useEffect(() => {
     setImagepath(userDetails.profileUrl);
+    setPhoneDetails(userDetails?.phoneDetails);
+    setDetails(userDetails?.userLocation);
     reset(userDetails);
   }, [userDetails]);
 
@@ -77,16 +93,42 @@ const UserSettings = ({ UpdateUserDetails }) => {
     setImagepath(imageUrl);
   };
   const onSubmit = (data) => {
-    data.userDetails = details;
-
+    data.userLocation = details;
+    data.phoneDetails = phoneDetails;
+    setError("");
     toast.dismiss();
-    const { phonenumber } = data;
-    if (phonenumber) {
-      const isValid = validator.isMobilePhone(phonenumber, "en-IN");
+
+    if (phoneDetails.value) {
+      const phonenumber = phoneDetails.value
+        .split("")
+        .splice(phoneDetails.details.dialCode.length, phoneDetails.value.length)
+        .join("");
+
+      const isValid = isValidPhoneNumber(
+        phonenumber,
+        phoneDetails.details.countryCode.toUpperCase()
+      );
+
       if (!isValid) {
         return setError({ type: "phone", text: "Mobile no is not valid" });
       } else {
         setError("");
+      }
+      if (phoneDetails.details.countryCode.toUpperCase() !== details.country) {
+        return setError({
+          type: "country",
+          text: `Mobile (${phoneDetails.details.countryCode.toUpperCase()}) and user (${
+            details.country
+          }) location's doesn't match`,
+        });
+      }
+    }
+    if (details.country) {
+      if (!details.state) {
+        return setError({
+          type: "state",
+          text: "Please select state and city if there is...",
+        });
       }
     }
     if (userDetails.profileUrl === imagePath) {
@@ -111,7 +153,7 @@ const UserSettings = ({ UpdateUserDetails }) => {
       toast.dismiss();
     }
   }, [urlarray]);
-  console.log(errors);
+
   return (
     <div className="usersetting-container">
       <AnimatePresence exitBeforeEnter>
@@ -201,42 +243,63 @@ const UserSettings = ({ UpdateUserDetails }) => {
             </div>
             <div className="usersetting-input_items">
               {/* <label>Email</label> */}
-              <input
+              {/* <input
                 name="phonenumber"
                 type="text"
                 placeholder="Mobile No"
                 className="usersetting-input"
                 {...register("phonenumber")}
+              /> */}
+              <PhoneInput
+                containerClass="phone_cont"
+                inputClass="phone_input"
+                buttonClass="phone_button"
+                country={"in"}
+                enableSearch
+                enableAreaCodeStretch
+                value={phoneDetails?.value}
+                placeholder="Mobile No"
+                onChange={(e, { countryCode, dialCode, name: country }) => {
+                  setError("");
+
+                  setPhoneDetails({
+                    value: e,
+                    details: { countryCode, dialCode, country },
+                  });
+                }}
               />
               {error.type === "phone" && (
                 <span className="usersetting_error_span">{error.text}</span>
               )}
             </div>
-
             <div className="usersetting-input_items">
               <CSCpicker
                 state="country"
                 details={details}
                 setDetails={setDetails}
-              />
+              />{" "}
+              {error.type === "country" && (
+                <span className="usersetting_error_span">{error.text}</span>
+              )}
+              {error.type === "state" && (
+                <span className="usersetting_error_span">{error.text}</span>
+              )}
             </div>
-
             <div className="usersetting-input_items-header">
               <CSCpicker
                 state="state"
-                value={details.country || ""}
+                value={details?.country || ""}
                 details={details}
                 setDetails={setDetails}
               />
 
               <CSCpicker
                 state="city"
-                value={details.state || ""}
+                value={details?.state || ""}
                 details={details}
                 setDetails={setDetails}
               />
-            </div>
-            <div className="input"></div>
+            </div>{" "}
             <button
               type="submit"
               disabled={uploadedImgState}
