@@ -6,7 +6,7 @@ import React from "react";
 const SelprodSkelLoader = () => {
   return (
     <div className="product_skeleton">
-      <div className="selproduct_skl-contents">
+      <div className="selproduct-contents selproduct_skl-contents">
         <Skeleton variant="rectangular" className="skl_selproduct-img" />
         <div className="selproduct-details">
           <Skeleton variant="text" width={"80%"} className="selproduct-h2" />
