@@ -33,8 +33,7 @@ const Home = ({ products, fetchProducts, singleProduct }) => {
         <h1>
           EXPLORE{" "}
           <span id="type_span">
-            Latest shoes
-            {/* <Typewriter
+            <Typewriter
               options={{ loop: true }}
               onInit={(typewriter) => {
                 typewriter
@@ -52,7 +51,7 @@ const Home = ({ products, fetchProducts, singleProduct }) => {
                   .deleteAll()
                   .start();
               }}
-            /> */}
+            />
           </span>
         </h1>
         <RadiusBtn path="/categ/options" type={"button"} />
