@@ -37,7 +37,7 @@
     background-color: white;
     border-radius: 10px;
     width: 35px;
-    height: 3px;
+    height: 4px;
 
     margin: 2.5px 0;
     transition: 0.4s cubic-bezier(0.68, -0.6, 0.232, 1.6);
@@ -70,7 +70,7 @@
   .navspan:nth-child(3) {
     transform-origin: bottom;
     width: 50%;
-    transform: translate(11px, -4px) rotatez(45deg);
+    transform: translate(11px, -5.4px) rotatez(45deg);
   }
 }
 .nav-items {

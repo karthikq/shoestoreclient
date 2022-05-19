@@ -14,7 +14,7 @@ import Badge from "@mui/material/Badge";
 import "./Navbar.styles.scss";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { IoLogOutOutline } from "react-icons/io";
+
 import { authObject } from "../../context/authContext";
 import { LogoutUser } from "../actions/auth/auth";
 

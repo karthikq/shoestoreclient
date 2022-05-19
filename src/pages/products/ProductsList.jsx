@@ -1,14 +1,14 @@
 /** @format */
 
 import React, { useRef } from "react";
-import { BiTrendingUp } from "react-icons/bi";
+
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
-import Productbox from "../../components/Product/Productbox";
+
 import ProductsMap from "./ProductsMap";
 
 const ProductsList = ({ products, details, value }) => {
   const product = useRef();
-
+  console.log(sessionStorage.getItem("data"));
   const sortProducts = () => {
     let sortedProduct = products;
     if (value === "popular") {

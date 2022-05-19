@@ -84,24 +84,31 @@
 canvas {
   transition: all 0.5s ease;
 }
-.selproduct-contents,
-.selproduct_skl-contents {
-  width: 85%;
+.selproduct-contents {
+  width: 90%;
   margin: 0 auto;
-  min-height: 70vh;
-  padding: 2.5rem 1rem;
-
-  margin-top: 4rem;
-  margin-bottom: 2rem;
-
+  height: auto;
+  position: relative;
+  z-index: 1;
   background-color: #fefefefe;
+}
+.selproduct-contents_flex,
+.selproduct_skl-contents {
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  padding: 3rem 1rem;
+  min-height: 60vh;
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0 4rem;
   position: relative;
 
-  box-shadow: rgba(0, 0, 0, 0.068) 0px 0px 50px -12px;
+  // box-shadow: rgba(0, 0, 0, 0.068) 0px 0px 50px -12px;
   // border-radius: 15px;
   position: relative;
   .selproduct-options,
@@ -174,7 +181,7 @@ ul {
   .selproduct-h2 {
     margin-top: 0;
 
-    font-size: 1.8rem;
+    font-size: 1.85rem;
     letter-spacing: 0.3px;
     font-weight: 500;
     margin-bottom: 0rem;
@@ -195,6 +202,16 @@ ul {
       font-weight: 600;
       font-size: 0.9rem;
     }
+  }
+}
+.selproduct-price {
+  margin-top: 0.9rem;
+  margin-bottom: 0.9rem;
+  .selproduct-price_span {
+    font-size: 1.15rem;
+    margin-top: 0.5rem;
+    color: rgb(202, 5, 5);
+    font-weight: 500;
   }
 }
 
@@ -314,16 +331,6 @@ ul {
   min-height: 50px !important;
 }
 
-.selproduct-price {
-  margin-top: 0.9rem;
-  margin-bottom: 0.9rem;
-  .selproduct-price_span {
-    font-size: 1.2rem;
-    margin-top: 0.5rem;
-    color: rgb(202, 5, 5);
-    font-weight: 500;
-  }
-}
 .sel-product_rating {
   margin-top: 0.5em;
   margin-bottom: 1.4rem;
@@ -344,9 +351,9 @@ ul {
     font-weight: 400;
     cursor: pointer;
     width: 6rem;
-    margin: 0rem 0 0.5rem;
+    margin: 0rem 0 0rem;
     opacity: 0.9;
-    margin-left: 0.4rem;
+    margin-left: 0rem;
     position: relative;
     bottom: 0.2rem;
     &:hover {
@@ -392,14 +399,14 @@ ul {
 }
 
 @media screen and (max-width: 1440px) {
-  .selproduct-contents {
+  .selproduct-contents_flex {
     min-height: 60vh;
     padding: 1rem 0;
     gap: 0 3rem;
   }
 }
 @media screen and (max-width: 1280px) {
-  .selproduct-contents {
+  .selproduct-contents_flex {
     width: 90%;
 
     padding: 1rem 0;
@@ -425,7 +432,7 @@ ul {
       }
     }
   }
-  .selproduct-contents {
+  .selproduct-contents_flex {
     width: 100%;
 
     gap: 0 2rem;
