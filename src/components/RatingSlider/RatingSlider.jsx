@@ -9,33 +9,43 @@ import {
 } from "react-icons/bs";
 import { MdStar } from "react-icons/md";
 
-const RatingSlider = ({ selproduct }) => {
-  const imgRef = useRef();
+const RatingSlider = ({ selproduct, state, header }) => {
   const [imgIndex, setImgIndex] = useState(0);
-  const ratingsArray = selproduct?.rating;
+  const ratingsArray = selproduct;
 
   return (
     <div className="selproduct-product-ratings">
       <h2 className="rating-h2">
-        <MdStar /> Ratings
+        <MdStar /> {header}
       </h2>
       <div className="selproduct-product_rating-box">
         <div className="selproduct-product_rating-user">
           <div
             className="selproduct-p"
             style={{ transform: `translateX(-${imgIndex * 100}%)` }}>
-            {ratingsArray?.map(({ user }) => (
-              <img src={user.profileUrl} key={user._id} alt="error" />
-            ))}
+            {state
+              ? ratingsArray?.map(({ user }) => (
+                  <img src={user.profileUrl} key={user._id} alt="error" />
+                ))
+              : ratingsArray?.map(({ userId }) => (
+                  <img src={userId.profileUrl} key={userId._id} alt="error" />
+                ))}
           </div>
         </div>
         <div className="selproduct-product-raitng_details">
-          <h2>{ratingsArray && ratingsArray[imgIndex]?.user.username}</h2>
+          {state && (
+            <h2>{ratingsArray && ratingsArray[imgIndex]?.user.firstname}</h2>
+          )}
+          {!state && (
+            <h2>{ratingsArray && ratingsArray[imgIndex]?.userId.firstname}</h2>
+          )}
           <span>
             Rated {ratingsArray && ratingsArray[imgIndex]?.value} stars{" "}
-          </span>
+          </span>{" "}
+          <span> {ratingsArray && ratingsArray[imgIndex]?.text}</span>
           <div className="arrow_icons">
             <button
+              disabled={ratingsArray?.length <= 1}
               onClick={() => {
                 if (imgIndex <= 0) {
                   return setImgIndex(ratingsArray.length - 1);
@@ -45,6 +55,7 @@ const RatingSlider = ({ selproduct }) => {
               <BsArrowLeftShort className="arrow_icon" />
             </button>
             <button
+              disabled={ratingsArray?.length <= 1}
               onClick={() => {
                 if (imgIndex >= ratingsArray.length - 1) {
                   return setImgIndex(0);

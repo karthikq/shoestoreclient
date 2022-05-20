@@ -50,7 +50,7 @@ const Productbox = ({ item, userData, updateViewCount }) => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.7 }}
         className="product-box">
-        <Link to={"/single/product/" + item.p_id}>
+        <Link to={"/single/product/" + item.p_id + "?query=" + item.p_type}>
           <div className="product-img">
             {item.p_img?.length >= 0 && (
               <img src={item.p_img[0]} alt={item.p_id} />

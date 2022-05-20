@@ -10,7 +10,7 @@ const Inputskl = () => {
       height={"3rem"}
       width={"100%"}
       animation="wave"
-      sx={{ bgcolor: "grey.900", marginBottom: "1.4rem" }}
+      sx={{ bgcolor: "grey.900", marginBottom: "1.4rem", borderRadius: "2px" }}
     />
   );
 };

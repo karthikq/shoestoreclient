@@ -14,3 +14,4 @@ export const UPDATE_USER = "UPDATE_USER";
 export const REGISTER_USER = "REGISTER_USER";
 export const FOUND_USER = "FOUND_USER";
 export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
+export const FETCH_SIMILAR_PROD = "FETCH_SIMILAR_PROD";

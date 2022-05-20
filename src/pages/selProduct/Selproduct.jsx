@@ -34,11 +34,17 @@ import { ProductTabs } from "../../components/ProductActions/Actiontabs";
 import BackdropLoader from "../../components/loader/Backdrop";
 import SelprodSkelLoader from "../../components/loader/SelprodSkelLoader";
 import SelproductDetails from "../../components/selprodDetails/SelproductDetails";
+import { FetchSimilarprod } from "../../components/actions/Similar";
+import { async } from "@firebase/util";
 
 const Selproduct = ({ selproduct, userData, auth }) => {
   const [addUserRating, setAddUserRating] = useState(false);
   const [confettiState, setconfettiState] = useState(false);
   const [readMore, setreadMore] = useState(false);
+  const [review, setReview] = useState({
+    rating: "",
+    text: "",
+  });
 
   // const [selProduct, setSelproduct] = useState();
 
@@ -52,18 +58,10 @@ const Selproduct = ({ selproduct, userData, auth }) => {
     dispatch(singleProduct(id));
   }, [id]);
 
-  //
   const changeproductRating = async (newrating, name) => {
-    await dispatch(addRating(selproduct.p_id, parseInt(newrating), navigate));
-    setAddUserRating(false);
+    // setAddUserRating(false);
 
-    if (newrating === 5) {
-      setconfettiState(true);
-    }
-
-    setTimeout(() => {
-      setconfettiState(false);
-    }, [4000]);
+    setReview({ ...review, rating: newrating });
   };
 
   const totalLikes = _.sum(selproduct?.likes?.map((item) => item.count));
@@ -83,6 +81,17 @@ const Selproduct = ({ selproduct, userData, auth }) => {
   //   name="rating"
   //   changeRating={addUserRating && changeproductRating}
   // />
+  const handleReview = async () => {
+    setAddUserRating(false);
+    await dispatch(addRating(selproduct.p_id, review, navigate));
+    if (review.rating === 5) {
+      setconfettiState(true);
+    }
+
+    setTimeout(() => {
+      setconfettiState(false);
+    }, [4000]);
+  };
   return (
     <React.Fragment>
       <ReactConfitte state={confettiState} setState={setconfettiState} />
@@ -181,7 +190,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                         name="simple-controlled"
                         value={
                           addUserRating
-                            ? 0
+                            ? review.rating
                             : Math.floor(
                                 selproduct.totalRating
                                   ? selproduct.totalRating
@@ -197,7 +206,33 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                     <span className="p_rating">
                       {selproduct.totalRating?.toFixed(2)}
                     </span>
-                  </div>
+                  </div>{" "}
+                  {addUserRating && (
+                    <div className="p_form-message">
+                      <textarea
+                        onChange={(e) =>
+                          setReview({ ...review, text: e.target.value })
+                        }
+                        name="review"
+                        cols="30"
+                        rows="3"></textarea>
+
+                      <div className="p_form-details">
+                        <p
+                          onClick={handleReview}
+                          className="selproduct-rating_p">
+                          Submit
+                        </p>
+                        <p
+                          onClick={() => {
+                            setAddUserRating(false);
+                          }}
+                          className="selproduct-rating_p">
+                          Cancel
+                        </p>
+                      </div>
+                    </div>
+                  )}
                   {auth ? (
                     selproduct.rating?.find(
                       (user) => user?.user?._id === userData._id
@@ -206,16 +241,16 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                         className="selproduct-rating_p"
                         onClick={() => {
                           setAddUserRating(true);
-                          dispatch(removeRating(selproduct.p_id, navigate));
+                          // dispatch(removeRating(selproduct.p_id, navigate));
                         }}>
-                        change rating
+                        change Review
                       </p>
                     ) : (
                       !addUserRating && (
                         <p
                           className="selproduct-rating_p"
                           onClick={() => setAddUserRating(true)}>
-                          Add rating
+                          Add Review
                         </p>
                       )
                     )
@@ -286,7 +321,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                 </div> */}
               </div>{" "}
             </div>
-            <SelproductDetails selproduct={selproduct} />
+            {selproduct && <SelproductDetails selproduct={selproduct} />}
           </motion.div>
         </motion.div>
       )}

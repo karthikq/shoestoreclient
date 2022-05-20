@@ -93,13 +93,11 @@ export const updateLike = (product, navigate) => async (dispatch) => {
     // }
   }
 };
-export const addRating = (product, count, navigate) => async (dispatch) => {
+export const addRating = (product, review, navigate) => async (dispatch) => {
   try {
     const toastToken = toast.loading("Adding rating to the product");
 
-    const { data } = await backendApi.patch(
-      "/product/rate/" + product + "?count=" + count
-    );
+    const { data } = await backendApi.patch("/product/rate/" + product, review);
 
     if (data.status === 400) {
       toast.dismiss();
@@ -109,7 +107,7 @@ export const addRating = (product, count, navigate) => async (dispatch) => {
         type: UPDATE_VIEW,
         payload: data.updatedProduct,
       });
-      toast.success("You rated the product " + count + " star", {
+      toast.success("You rated the product " + review + " star", {
         id: toastToken,
       });
     }

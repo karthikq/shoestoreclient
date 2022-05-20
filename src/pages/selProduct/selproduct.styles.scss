@@ -9,15 +9,12 @@
 .product_skeleton {
   width: 100%;
 
-  height: 100vh;
+  height: auto;
 
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow-y: auto;
   z-index: 150;
   background-repeat: no-repeat;
   position: relative;
+
   &:after {
     position: absolute;
     top: 0;
@@ -87,10 +84,13 @@ canvas {
 .selproduct-contents {
   width: 90%;
   margin: 0 auto;
-  height: auto;
+  height: 100%;
   position: relative;
   z-index: 1;
-  background-color: #fefefefe;
+
+  padding-top: 3rem;
+
+  margin-bottom: 2.5rem;
 }
 .selproduct-contents_flex,
 .selproduct_skl-contents {
@@ -99,17 +99,19 @@ canvas {
   height: 100%;
   padding: 3rem 1rem;
   min-height: 60vh;
-  margin-top: 4rem;
-  margin-bottom: 1rem;
-
+  background-color: #fefefefe;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0 4rem;
+  gap: 0 3.5rem;
   position: relative;
+  padding-left: 0;
+  padding-right: 0;
+  // border-bottom: 3px solid rgb(177, 177, 177);
 
   // box-shadow: rgba(0, 0, 0, 0.068) 0px 0px 50px -12px;
   // border-radius: 15px;
+  border-radius: 10px 10px 0 0;
   position: relative;
   .selproduct-options,
   .selproduct-options_details {
@@ -149,12 +151,13 @@ ul {
   width: 44%;
   height: 100%;
   position: relative;
-
+  margin-top: 2.5rem;
   .selproduct-main_img {
     width: 100%;
 
     height: 350px;
     object-fit: cover;
+    border-radius: 15px;
   }
   .thumbs-slider_img {
     height: 90px;
@@ -183,7 +186,7 @@ ul {
 
     font-size: 1.85rem;
     letter-spacing: 0.3px;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 0rem;
   }
   .p_desp-div {
@@ -201,6 +204,27 @@ ul {
       cursor: pointer;
       font-weight: 600;
       font-size: 0.9rem;
+    }
+  }
+}
+.p_form-message {
+  margin-bottom: 0.6rem;
+  textarea {
+    font-family: "Poppins", sans-serif;
+    border: 1px solid rgba(0, 0, 0, 0.199);
+    outline: 0;
+    font-size: 0.8rem;
+    &:hover {
+      border: 1px solid rgba(0, 0, 0, 0.377);
+    }
+  }
+  .p_form-details {
+    display: flex;
+    justify-content: flex-start;
+    gap: 0 0.5rem;
+    .selproduct-rating_p {
+      width: auto;
+      padding: 0rem 0.2rem;
     }
   }
 }
@@ -350,7 +374,7 @@ ul {
     font-size: 0.8rem;
     font-weight: 400;
     cursor: pointer;
-    width: 6rem;
+    width: 7rem;
     margin: 0rem 0 0rem;
     opacity: 0.9;
     margin-left: 0rem;
