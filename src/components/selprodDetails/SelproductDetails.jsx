@@ -9,16 +9,25 @@ import { FetchSimilarprod } from "../actions/Similar";
 import Productbox from "../Product/Productbox";
 import RatingSlider from "../RatingSlider/RatingSlider";
 import "./selproduct.styles.scss";
+import { fetchIndUser } from "../actions/User";
+
+import SimpleBar from "simplebar-react";
+import "simplebar/dist/simplebar.min.css";
+import { Link } from "react-router-dom";
 
 const SelproductDetails = ({ selproduct }) => {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.SimilarItems);
+  const createdUser = useSelector((state) => state.User.foundUserDetails);
 
   useEffect(() => {
     if (selproduct) {
       dispatch(FetchSimilarprod(selproduct.p_type));
+
+      dispatch(fetchIndUser(selproduct.userId));
     }
   }, [selproduct]);
+
   return (
     <div className="selproduct-product_container">
       <div className="selproduct-product_contents">
@@ -35,7 +44,8 @@ const SelproductDetails = ({ selproduct }) => {
         {productList?.find((item) => item.p_id !== selproduct?.p_id) && (
           <div className="selproduct-product_similar">
             <h2>Similar products</h2>
-            <div className="selproduct-product_similar-box">
+
+            <SimpleBar className="selproduct-product_similar-box">
               {productList ? (
                 productList.map((item) => (
                   <Productbox item={item} key={item._id} />
@@ -43,17 +53,19 @@ const SelproductDetails = ({ selproduct }) => {
               ) : (
                 <Skeleton variant="rectangular" width={200} height={200} />
               )}
-            </div>
+            </SimpleBar>
           </div>
         )}
         <div className="selproduct-product_user">
           <div className="selproduct-product_user-img">
-            <img
-              src="https://images.pexels.com/photos/11240200/pexels-photo-11240200.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-              alt="err"
-            />
+            <img src={createdUser?.profileUrl} alt="err" />
             <h1>
-              Posted by <span>username</span>
+              Posted by{" "}
+              <span>
+                <Link to={"/get/user/" + createdUser?._id + "#products"}>
+                  {createdUser.firstname}
+                </Link>
+              </span>
             </h1>
           </div>
         </div>

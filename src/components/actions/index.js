@@ -107,7 +107,7 @@ export const addRating = (product, review, navigate) => async (dispatch) => {
         type: UPDATE_VIEW,
         payload: data.updatedProduct,
       });
-      toast.success("You rated the product " + review + " star", {
+      toast.success("You rated the product " + review.rating + " star", {
         id: toastToken,
       });
     }

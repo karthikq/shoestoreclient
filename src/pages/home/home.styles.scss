@@ -119,8 +119,6 @@
   }
 }
 @media screen and (max-width: 540px) {
-  .home-container {
-  }
   .home-contents {
     padding: 0;
     h1 {
@@ -131,12 +129,12 @@
       flex-direction: column;
       align-items: flex-start;
       margin-top: 0;
-      font-size: 3.5rem;
+      font-size: 3rem;
       span {
         opacity: 0.9;
 
         margin-top: 0;
-        font-size: 3.6rem;
+        font-size: 3.1rem;
         line-height: 1;
         word-break: break-all;
       }
@@ -145,5 +143,32 @@
   .explore-btn {
     margin-top: 2rem;
     width: 80px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .home-contents {
+    padding: 0;
+    h1 {
+      line-height: 0.95;
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 0.5rem 0;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 0;
+      font-size: 2.5rem;
+      span {
+        opacity: 0.9;
+
+        margin-top: 0;
+        font-size: 2.6rem;
+        line-height: 1;
+        word-break: break-all;
+      }
+    }
+  }
+  .explore-btn {
+    margin-top: 2rem;
+    width: 70px;
   }
 }

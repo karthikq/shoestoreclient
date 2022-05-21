@@ -9,7 +9,7 @@ import {
 import "./selproduct.styles.scss";
 import { motion } from "framer-motion";
 
-import { BiLike } from "react-icons/bi";
+import { BiCart, BiLike } from "react-icons/bi";
 import _ from "lodash";
 import ImageSlider from "../../components/ImageSlider";
 import { connect, useDispatch } from "react-redux";
@@ -36,6 +36,7 @@ import SelprodSkelLoader from "../../components/loader/SelprodSkelLoader";
 import SelproductDetails from "../../components/selprodDetails/SelproductDetails";
 import { FetchSimilarprod } from "../../components/actions/Similar";
 import { async } from "@firebase/util";
+import { BsLightning } from "react-icons/bs";
 
 const Selproduct = ({ selproduct, userData, auth }) => {
   const [addUserRating, setAddUserRating] = useState(false);
@@ -56,6 +57,17 @@ const Selproduct = ({ selproduct, userData, auth }) => {
 
   useEffect(() => {
     dispatch(singleProduct(id));
+    console.log(location.state);
+    if (location.state) {
+      const prodData = location.state;
+      const res = prodData?.rating?.find((item) => {
+        return item.user._id === userData._id && item;
+      });
+      setReview({
+        text: res?.text,
+        rating: res?.value,
+      });
+    }
   }, [id]);
 
   const changeproductRating = async (newrating, name) => {
@@ -83,6 +95,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
   // />
   const handleReview = async () => {
     setAddUserRating(false);
+
     await dispatch(addRating(selproduct.p_id, review, navigate));
     if (review.rating === 5) {
       setconfettiState(true);
@@ -92,6 +105,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
       setconfettiState(false);
     }, [4000]);
   };
+  console.log(review);
   return (
     <React.Fragment>
       <ReactConfitte state={confettiState} setState={setconfettiState} />
@@ -210,6 +224,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                   {addUserRating && (
                     <div className="p_form-message">
                       <textarea
+                        value={review.text}
                         onChange={(e) =>
                           setReview({ ...review, text: e.target.value })
                         }
@@ -233,30 +248,28 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                       </div>
                     </div>
                   )}
-                  {auth ? (
-                    selproduct.rating?.find(
-                      (user) => user?.user?._id === userData._id
-                    ) ? (
-                      <p
-                        className="selproduct-rating_p"
-                        onClick={() => {
-                          setAddUserRating(true);
-                          // dispatch(removeRating(selproduct.p_id, navigate));
-                        }}>
-                        change Review
-                      </p>
-                    ) : (
-                      !addUserRating && (
-                        <p
-                          className="selproduct-rating_p"
-                          onClick={() => setAddUserRating(true)}>
-                          Add Review
-                        </p>
+                  {auth
+                    ? selproduct.rating?.find(
+                        (user) => user?.user?._id === userData._id
                       )
-                    )
-                  ) : (
-                    ""
-                  )}
+                      ? !addUserRating && (
+                          <p
+                            className="selproduct-rating_p"
+                            onClick={() => {
+                              setAddUserRating(true);
+                              // dispatch(removeRating(selproduct.p_id, navigate));
+                            }}>
+                            change Review
+                          </p>
+                        )
+                      : !addUserRating && (
+                          <p
+                            className="selproduct-rating_p"
+                            onClick={() => setAddUserRating(true)}>
+                            Add Review
+                          </p>
+                        )
+                    : ""}
                 </div>
                 <div className="selproduct-actions">
                   <div className="selproduct-like_div">
@@ -297,12 +310,12 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                       }
                     />
                   )}{" "}
-                  <AiOutlineShoppingCart
+                  {/* <AiOutlineShoppingCart
                     className="selproduct-cart_icon"
                     onClick={() =>
                       dispatch(addtocart(selproduct._id, navigate))
                     }
-                  />
+                  /> */}
                 </div>
                 <div className="sel-product-tags">
                   {selproduct.keywords?.map((el) => (
@@ -310,7 +323,20 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                       {"#" + el}
                     </span>
                   ))}
-                </div>{" "}
+                </div>
+                <div className="selproduct_buy">
+                  <button
+                    className="selproduct_buy-btn cart_btn"
+                    onClick={() =>
+                      dispatch(addtocart(selproduct._id, navigate))
+                    }>
+                    <BiCart className="cart_icon" />
+                    Add to Cart
+                  </button>
+                  <button className="selproduct_buy-btn">
+                    <BsLightning className="buy_icon" /> Buy Now
+                  </button>
+                </div>
                 {/* <div className="selproduct-usage">
                   <ProductTabs
                     likes={selproduct?.likes}

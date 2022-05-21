@@ -1,6 +1,8 @@
 /** @format */
 
 import React, { useRef, useState } from "react";
+import { AiFillLike } from "react-icons/ai";
+import { BiLike } from "react-icons/bi";
 import {
   BsArrowLeftCircle,
   BsArrowLeftShort,
@@ -16,7 +18,8 @@ const RatingSlider = ({ selproduct, state, header }) => {
   return (
     <div className="selproduct-product-ratings">
       <h2 className="rating-h2">
-        <MdStar /> {header}
+        {state ? <MdStar /> : <AiFillLike />}
+        {header}
       </h2>
       <div className="selproduct-product_rating-box">
         <div className="selproduct-product_rating-user">
@@ -25,10 +28,10 @@ const RatingSlider = ({ selproduct, state, header }) => {
             style={{ transform: `translateX(-${imgIndex * 100}%)` }}>
             {state
               ? ratingsArray?.map(({ user }) => (
-                  <img src={user.profileUrl} key={user._id} alt="error" />
+                  <img src={user.profileUrl} key={user} alt="error" />
                 ))
               : ratingsArray?.map(({ userId }) => (
-                  <img src={userId.profileUrl} key={userId._id} alt="error" />
+                  <img src={userId.profileUrl} key={userId} alt="error" />
                 ))}
           </div>
         </div>

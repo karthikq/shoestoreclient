@@ -157,5 +157,21 @@
     width: 270px;
     min-height: 280px;
     border-radius: 10px;
+    .product-details {
+      padding-top: 0.2rem;
+    }
+  }
+}
+@media screen and (max-width: 420px) {
+  .product-box {
+    width: 95%;
+    min-height: 280px;
+    border-radius: 10px;
+    .product-img {
+      height: 220px;
+    }
+    .product-details {
+      padding-top: 0.2rem;
+    }
   }
 }
