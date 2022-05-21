@@ -105,7 +105,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
       setconfettiState(false);
     }, [4000]);
   };
-  console.log(review);
+
   return (
     <React.Fragment>
       <ReactConfitte state={confettiState} setState={setconfettiState} />

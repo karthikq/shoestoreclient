@@ -27,6 +27,7 @@ import { fetchProducts } from "../../components/actions";
 import Gippy from "../../components/Gipphy/Gippy";
 import NoItems from "../../components/errors/NoItems";
 import BackdropLoader from "../../components/loader/Backdrop";
+import { hasFlag } from "country-flag-icons";
 
 const User = ({ userData, userProducts, auth, foundUser }) => {
   const location = useLocation();
@@ -75,6 +76,7 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
       <div className="user-contents">
         <div className="user-profile">
           <img
+            className="user-porfile_img"
             src={
               userProfile
                 ? userProfile?.profileUrl
@@ -85,19 +87,35 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
           {/* <div className="profile-img_update">
             <p>Change profile pic</p>
           </div> */}
-          <div className="user-profile_details">
-            <span className="user-profile_span">
-              <BiUserCircle className="user-profile_mail-icon" /> :
-              {userProfile.username?.split(" ")[0]}
-            </span>
-            <span className="user-profile_span">
-              <MdOutlineMail className="user-profile_mail-icon" /> Mail to :
-              <a
-                style={{ color: "#888888" }}
-                href={"mailto:" + userProfile.email}>
-                {userProfile.email}
-              </a>
-            </span>
+          <div className="user-profile_items">
+            <div className="user-profile_details">
+              <span className="user-profile_span">
+                <BiUserCircle className="user-profile_mail-icon" /> :
+                {userProfile.username?.split(" ")[0]}
+              </span>
+              <span className="user-profile_span">
+                <MdOutlineMail className="user-profile_mail-icon" /> Mail to :
+                <a
+                  style={{ color: "#888888" }}
+                  href={"mailto:" + userProfile.email}>
+                  {userProfile.email}
+                </a>
+              </span>
+            </div>
+
+            {userProfile?.userLocation && (
+              <div className="user-location_details">
+                <span>
+                  Location :{" "}
+                  <img
+                    className="country"
+                    src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${userProfile?.userLocation?.country}.svg`}
+                    alt="countryflag"
+                  />
+                </span>
+                <span>Mobile: </span>
+              </div>
+            )}
           </div>
         </div>
         <div className="user-details">

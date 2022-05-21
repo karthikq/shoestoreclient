@@ -66,7 +66,6 @@ const ResetPass = ({ state }) => {
         }
       }
     } else {
-      console.log(newUserData);
       //       const { newpassword, confirmpassword } = newUserData;
       //       if (!newpassword || !confirmpassword) {
       //         return;
@@ -192,7 +191,7 @@ const ResetPass = ({ state }) => {
           ) : (
             <div className="reset-pass_form">
               <input
-                type="text"
+                type="password"
                 name="newpassword"
                 placeholder="New password"
                 onChange={(e) =>
@@ -208,7 +207,7 @@ const ResetPass = ({ state }) => {
                 </span>
               )}
               <input
-                type="text"
+                type="password"
                 name="confirmpassword"
                 placeholder="Confirm new password"
                 onChange={(e) =>

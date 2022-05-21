@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
     "browser-image-compression": "^1.0.17",
+    "country-flag-icons": "^1.4.26",
     "dotenv": "^16.0.0",
     "firebase": "^9.6.10",
     "framer-motion": "^6.2.8",

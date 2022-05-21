@@ -68,6 +68,7 @@ const AuthForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setAuthErrors([]);
     if (loginState) {
       const data = {
         email: userData.email,
@@ -185,7 +186,7 @@ const AuthForm = ({
 
                 <div className="login_input-box">
                   <input
-                    type="text"
+                    type="password"
                     placeholder="Password"
                     name="password"
                     required
@@ -214,7 +215,7 @@ const AuthForm = ({
                 {!loginState && (
                   <div className="login_input-box">
                     <input
-                      type="text"
+                      type="password"
                       name="confirmPassword"
                       placeholder="Confirm password"
                       className={

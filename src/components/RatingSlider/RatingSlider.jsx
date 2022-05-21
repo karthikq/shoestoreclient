@@ -42,10 +42,14 @@ const RatingSlider = ({ selproduct, state, header }) => {
           {!state && (
             <h2>{ratingsArray && ratingsArray[imgIndex]?.userId.firstname}</h2>
           )}
-          <span>
-            Rated {ratingsArray && ratingsArray[imgIndex]?.value} stars{" "}
-          </span>{" "}
-          <span> {ratingsArray && ratingsArray[imgIndex]?.text}</span>
+          {state && (
+            <React.Fragment>
+              <span>
+                Rated {ratingsArray && ratingsArray[imgIndex]?.value} stars{" "}
+              </span>{" "}
+              <span> {ratingsArray && ratingsArray[imgIndex]?.text}</span>{" "}
+            </React.Fragment>
+          )}
           <div className="arrow_icons">
             <button
               disabled={ratingsArray?.length <= 1}

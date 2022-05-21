@@ -98,6 +98,12 @@ const UserSettings = ({ UpdateUserDetails }) => {
     setError("");
     toast.dismiss();
 
+    if (!phoneDetails || !phoneDetails.value) {
+      return setError({
+        type: "phone",
+        text: "This field is required",
+      });
+    }
     if (phoneDetails.value) {
       const phonenumber = phoneDetails.value
         .split("")
@@ -122,6 +128,12 @@ const UserSettings = ({ UpdateUserDetails }) => {
           }) location's doesn't match`,
         });
       }
+    }
+    if (!details.country) {
+      return setError({
+        type: "state",
+        text: "Please select Country and try again",
+      });
     }
     if (details.country) {
       if (!details.state) {

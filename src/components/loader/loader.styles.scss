@@ -95,3 +95,32 @@
     transform: rotate(360deg);
   }
 }
+.product_skeleton {
+  width: 87%;
+
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 5rem auto 0;
+  border-radius: 10px !important;
+}
+.selproduct-contents {
+  border-radius: 10px;
+}
+@media screen and (max-width: 1080px) {
+  .product_skeleton {
+    width: 100%;
+
+    height: 100vh;
+
+    margin: 0rem auto 0;
+  }
+  .selproduct_skl-contents {
+    flex-direction: column;
+  }
+  .selproduct-contents {
+    border-radius: 0px;
+  }
+}

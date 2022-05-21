@@ -152,10 +152,10 @@ export const deleteCartItem = (prodId, navigate) => async (dispatch) => {
 export const UpdateUserDetails =
   (userDetails, callback) => async (dispatch, getState) => {
     let user = getState().User.userDetails;
-    console.log(userDetails);
+
     try {
       const toastToken = toast.loading(
-        "Updating userdetails of" + user.username
+        "Updating userdetails of" + user.firstname
       );
 
       const { data } = await backendApi.put(

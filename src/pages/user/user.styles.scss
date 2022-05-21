@@ -31,7 +31,7 @@
   align-items: center;
   flex-direction: column;
   gap: 0.9rem 0;
-  img {
+  .user-porfile_img {
     width: 130px;
     height: 130px;
     object-fit: cover;
@@ -47,6 +47,7 @@
       color: rgb(255, 31, 31);
     }
   }
+
   .user-profile_details {
     margin-top: 1.5rem;
     display: flex;
@@ -66,6 +67,23 @@
       .user-profile_mail-icon {
         font-size: 1rem;
       }
+    }
+  }
+  .user-location_details {
+    margin-top: 0.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 0 0.95rem;
+    span {
+      display: flex;
+      align-items: center;
+      gap: 0 0.5rem;
+      color: white;
+    }
+    .country {
+      width: 40px;
+      height: 40px;
     }
   }
 }
