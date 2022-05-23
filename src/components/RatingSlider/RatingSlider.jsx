@@ -47,10 +47,10 @@ const RatingSlider = ({ selproduct, state, header }) => {
               <span>
                 Rated {ratingsArray && ratingsArray[imgIndex]?.value} stars{" "}
               </span>{" "}
-              <span className="rating_text">
+              <p className="rating_text">
                 {" "}
                 {ratingsArray && ratingsArray[imgIndex]?.text}
-              </span>{" "}
+              </p>{" "}
             </React.Fragment>
           )}
           <div className="arrow_icons">
