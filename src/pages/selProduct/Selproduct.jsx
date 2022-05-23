@@ -37,6 +37,7 @@ import SelproductDetails from "../../components/selprodDetails/SelproductDetails
 import { FetchSimilarprod } from "../../components/actions/Similar";
 import { async } from "@firebase/util";
 import { BsLightning } from "react-icons/bs";
+import toast from "react-hot-toast";
 
 const Selproduct = ({ selproduct, userData, auth }) => {
   const [addUserRating, setAddUserRating] = useState(false);
@@ -57,18 +58,19 @@ const Selproduct = ({ selproduct, userData, auth }) => {
 
   useEffect(() => {
     dispatch(singleProduct(id));
-    console.log(location.state);
-    if (location.state) {
-      const prodData = location.state;
-      const res = prodData?.rating?.find((item) => {
+  }, [id]);
+  useEffect(() => {
+    if (selproduct) {
+      const res = selproduct?.rating?.find((item) => {
         return item.user._id === userData._id && item;
       });
-      setReview({
-        text: res?.text,
-        rating: res?.value,
-      });
+      res &&
+        setReview({
+          text: res.text,
+          rating: res.value,
+        });
     }
-  }, [id]);
+  }, [selproduct]);
 
   const changeproductRating = async (newrating, name) => {
     // setAddUserRating(false);
@@ -95,6 +97,10 @@ const Selproduct = ({ selproduct, userData, auth }) => {
   // />
   const handleReview = async () => {
     setAddUserRating(false);
+
+    if (!review.rating) {
+      return toast.error("Please add a rating and try again");
+    }
 
     await dispatch(addRating(selproduct.p_id, review, navigate));
     if (review.rating === 5) {
@@ -228,6 +234,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                         onChange={(e) =>
                           setReview({ ...review, text: e.target.value })
                         }
+                        maxLength={50}
                         name="review"
                         cols="30"
                         rows="3"></textarea>

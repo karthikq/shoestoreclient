@@ -28,10 +28,10 @@ const RatingSlider = ({ selproduct, state, header }) => {
             style={{ transform: `translateX(-${imgIndex * 100}%)` }}>
             {state
               ? ratingsArray?.map(({ user }) => (
-                  <img src={user.profileUrl} key={user} alt="error" />
+                  <img src={user.profileUrl} key={user._id} alt="error" />
                 ))
               : ratingsArray?.map(({ userId }) => (
-                  <img src={userId.profileUrl} key={userId} alt="error" />
+                  <img src={userId.profileUrl} key={userId._id} alt="error" />
                 ))}
           </div>
         </div>
@@ -47,7 +47,10 @@ const RatingSlider = ({ selproduct, state, header }) => {
               <span>
                 Rated {ratingsArray && ratingsArray[imgIndex]?.value} stars{" "}
               </span>{" "}
-              <span> {ratingsArray && ratingsArray[imgIndex]?.text}</span>{" "}
+              <span className="rating_text">
+                {" "}
+                {ratingsArray && ratingsArray[imgIndex]?.text}
+              </span>{" "}
             </React.Fragment>
           )}
           <div className="arrow_icons">
