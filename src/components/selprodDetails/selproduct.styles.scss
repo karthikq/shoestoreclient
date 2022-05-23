@@ -212,6 +212,11 @@
     }
   }
 }
+@media screen and (max-width: 1280px) {
+  .selproduct-product_contents {
+    width: 90%;
+  }
+}
 @media screen and (max-width: 1080px) {
   .selproduct-product_container {
     border-radius: 0;
