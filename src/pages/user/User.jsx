@@ -22,16 +22,19 @@ import UserSettings from "../../components/UserComp/UserSettings";
 import Productbox from "../../components/Product/Productbox";
 import Cart from "../../components/UserComp/Cart";
 import { motion } from "framer-motion";
-import { fetchIndUser } from "../../components/actions/User";
+import { fetchIndUser, FollowUser } from "../../components/actions/User";
 import { fetchProducts } from "../../components/actions";
 import Gippy from "../../components/Gipphy/Gippy";
 import NoItems from "../../components/errors/NoItems";
 import BackdropLoader from "../../components/loader/Backdrop";
-import { hasFlag } from "country-flag-icons";
 
 const User = ({ userData, userProducts, auth, foundUser }) => {
   const location = useLocation();
   const disptach = useDispatch();
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [loaderState, setLoaderState] = useState(true);
   const [userProfile, setuserProfile] = useState("");
 
@@ -65,10 +68,12 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
     } else {
       setuserProfile(foundUser);
     }
+
     return () => {
       setuserProfile("");
     };
   }, [foundUser, userData]);
+  console.log(userProfile);
 
   return (
     <div className="user-container">
@@ -103,9 +108,9 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
               </span>
             </div>
 
-            {userProfile?.userLocation && (
-              <div className="user-location_details">
-                <span>
+            <div className="user-location_details">
+              {userProfile?.userLocation && (
+                <span className="user-location_span">
                   Location :{" "}
                   <img
                     className="country"
@@ -113,9 +118,27 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
                     alt="countryflag"
                   />
                 </span>
-                <span>Mobile: </span>
-              </div>
-            )}
+              )}
+              {userProfile.followers?.users?.find(
+                (item) => item.user === userData._id
+              ) ? (
+                <span
+                  className="follow_btn follow_active"
+                  onClick={() =>
+                    dispatch(FollowUser(userProfile, navigate, false))
+                  }>
+                  Following
+                </span>
+              ) : (
+                <span
+                  className="follow_btn"
+                  onClick={() =>
+                    dispatch(FollowUser(userProfile, navigate, true))
+                  }>
+                  Follow
+                </span>
+              )}
+            </div>
           </div>
         </div>
         <div className="user-details">

@@ -74,8 +74,9 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 0 0.95rem;
-    span {
+    .user-location_span {
       display: flex;
       align-items: center;
       gap: 0 0.5rem;
@@ -84,6 +85,25 @@
     .country {
       width: 40px;
       height: 40px;
+    }
+    .follow_btn {
+      color: white;
+      font-size: 0.9rem;
+      cursor: pointer;
+      padding: 0.15rem 0.5rem;
+      background-color: #ff1f1f;
+      border: 2px solid #ff1f1f;
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      &:hover {
+        background: transparent;
+      }
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+    .follow_active {
+      background-color: #333333;
+      border: 2px solid #333333;
     }
   }
 }

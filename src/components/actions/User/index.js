@@ -181,3 +181,46 @@ export const UpdateUserDetails =
     }
     callback();
   };
+
+export const FollowUser =
+  (user, navigate, state) => async (dispatch, getState) => {
+    try {
+      const username = user.firstname;
+      let toastToken;
+      if (state) {
+        toastToken = toast.loading("Following user " + username);
+      } else {
+        toastToken = toast.loading("Unfollowing user " + username);
+      }
+
+      const { data } = await backendApi.post("/user/follow/" + user._id);
+      dispatch({
+        type: UPDATE_USER,
+        payload: data.userData,
+      });
+
+      dispatch({
+        type: FOUND_USER,
+        payload: data.foundUser,
+      });
+
+      if (state) {
+        toast.success("Followed user " + username, {
+          id: toastToken,
+        });
+      } else {
+        toastToken = toast.success("Unfollowed user " + username, {
+          id: toastToken,
+        });
+      }
+    } catch (error) {
+      toast.dismiss();
+      const err = error.response;
+
+      if (err.status === 400) {
+        toast.error("you cannot follow yourself");
+      } else {
+        ToastErrors(err.status, toast, navigate);
+      }
+    }
+  };
