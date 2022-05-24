@@ -31,31 +31,7 @@ const SelproductDetails = ({ selproduct }) => {
   return (
     <div className="selproduct-product_container">
       <div className="selproduct-product_contents">
-        <RatingSlider
-          selproduct={selproduct?.likes}
-          header="Likes"
-          state={false}
-        />
-        <RatingSlider
-          selproduct={selproduct?.rating}
-          header="Ratings"
-          state={true}
-        />
-        {productList?.find((item) => item.p_id !== selproduct?.p_id) && (
-          <div className="selproduct-product_similar">
-            <h2>Similar products</h2>
-
-            <SimpleBar className="selproduct-product_similar-box">
-              {productList ? (
-                productList.map((item) => (
-                  <Productbox item={item} key={item._id} />
-                ))
-              ) : (
-                <Skeleton variant="rectangular" width={200} height={200} />
-              )}
-            </SimpleBar>
-          </div>
-        )}
+        {" "}
         <div className="selproduct-product_user">
           <div className="selproduct-product_user-img">
             <img src={createdUser?.profileUrl} alt="err" />
@@ -69,6 +45,35 @@ const SelproductDetails = ({ selproduct }) => {
             </h1>
           </div>
         </div>
+        {selproduct?.likes?.length > 0 && (
+          <RatingSlider
+            selproduct={selproduct?.likes}
+            header="Likes"
+            state={false}
+          />
+        )}{" "}
+        {selproduct?.rating?.length > 0 && (
+          <RatingSlider
+            selproduct={selproduct?.rating}
+            header="Ratings"
+            state={true}
+          />
+        )}
+        {productList?.find((item) => item.p_id !== selproduct?.p_id) && (
+          <div className="selproduct-product_similar">
+            <h2>Similar products</h2>
+
+            <SimpleBar className="selproduct-product_similar-box">
+              {productList ? (
+                productList.map((item) => (
+                  <Productbox item={item} key={item._id} viewState={true} />
+                ))
+              ) : (
+                <Skeleton variant="rectangular" width={200} height={200} />
+              )}
+            </SimpleBar>
+          </div>
+        )}
         <div className="selproduct-product_details"></div>
       </div>
     </div>

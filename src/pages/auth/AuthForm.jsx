@@ -23,6 +23,7 @@ const AuthForm = ({
   const loginRef = useRef();
   const loginRef2 = useRef();
   const navigate = useNavigate();
+  const query = sessionStorage.getItem("redirect");
 
   const [userData, setUserData] = useState({
     email: "",
@@ -32,7 +33,7 @@ const AuthForm = ({
     lastname: "",
   });
   const [authErrors, setAuthErrors] = useState([]);
-  const [err, setErr] = useState("");
+
   const [btnState, setBtnState] = useState(false);
 
   //   useEffect(() => {
@@ -48,7 +49,7 @@ const AuthForm = ({
   //   }, [setState, state]);
 
   let url = backendUrl();
-  console.log(url);
+
   const handleErrors = (errors) => {
     if (errors.length > 0) {
       setAuthErrors(errors);
@@ -108,7 +109,7 @@ const AuthForm = ({
             <div className="social-login">
               <span className="social-span">Or continue with</span>
               <div className="social-login_icons">
-                <a href={`${url}/auth/google/login`}>
+                <a href={`${url}/auth/google/login/?query=${query}`}>
                   <img src="https://i.ibb.co/c81tWLc/google.png" alt="google" />
                 </a>
                 <a href={`${url}/auth/facebook/login`}>

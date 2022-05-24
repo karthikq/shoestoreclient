@@ -41,12 +41,13 @@ function App({ fetchProducts, fetchUserDetails }) {
   // }, [location]);
   useEffect(() => {
     const { token } = queryString.parse(location.search);
+    const query = sessionStorage.getItem("redirect");
 
     if (token) {
       localStorage.setItem("authToken", token);
 
       setTimeout(() => {
-        window.history.pushState({}, "home", "/");
+        window.history.pushState({}, "home", query);
       }, 2000);
       // window.onload = function () {
       //   if (!window.location.hash) {

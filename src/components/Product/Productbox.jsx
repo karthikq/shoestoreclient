@@ -19,7 +19,7 @@ import { useDispatch } from "react-redux";
 import { removeProduct } from "../actions";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 
-const Productbox = ({ item, userData, updateViewCount }) => {
+const Productbox = ({ item, userData, viewState }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -52,10 +52,20 @@ const Productbox = ({ item, userData, updateViewCount }) => {
         className="product-box">
         <div
           className="product-img"
-          onClick={() => {
-            navigate("/single/product/" + item.p_id + "?query=" + item.p_type, {
-              state: item,
-            });
+          onClick={(e) => {
+            if (viewState) {
+              window.open(
+                "/single/product/" + item.p_id + "?query=" + item.p_type,
+                "_blanck"
+              );
+            } else {
+              navigate(
+                "/single/product/" + item.p_id + "?query=" + item.p_type,
+                {
+                  state: item,
+                }
+              );
+            }
           }}>
           {item.p_img?.length >= 0 && (
             <img src={item.p_img[0]} alt={item.p_id} />

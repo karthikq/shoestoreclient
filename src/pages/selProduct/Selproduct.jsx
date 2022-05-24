@@ -145,10 +145,12 @@ const Selproduct = ({ selproduct, userData, auth }) => {
               )}
               <div className="selproduct-img">
                 {/* <img src={selproductState.data.p_img[0]} alt="err" /> */}
-                <ImageSlider
-                  imagesArray={selproduct.p_img}
-                  imgClass="selproduct-main_img"
-                />
+                {selproduct && (
+                  <ImageSlider
+                    imagesArray={selproduct.p_img}
+                    imgClass="selproduct-main_img"
+                  />
+                )}
               </div>
               <div
                 className={

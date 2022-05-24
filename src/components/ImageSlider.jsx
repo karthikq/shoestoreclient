@@ -15,9 +15,9 @@ const ImageSlider = ({ imagesArray, imgClass }) => {
 
   return (
     <React.Fragment>
-      {!imagesArray ? (
+      {imagesArray?.length === 0 ? (
         <h2>Loading</h2>
-      ) : imagesArray.length >= 2 ? (
+      ) : imagesArray?.length >= 2 ? (
         <React.Fragment>
           <Swiper
             effect={"cards"}
@@ -25,33 +25,37 @@ const ImageSlider = ({ imagesArray, imgClass }) => {
             thumbs={{ swiper: thumbsSwiper }}
             modules={[FreeMode, Navigation, Thumbs, EffectCards, Lazy]}
             className="mySwiper">
-            {imagesArray?.map((item) => (
-              <SwiperSlide key={item}>
-                <img src={item} alt="error" className={imgClass} />
-              </SwiperSlide>
-            ))}
+            {imagesArray &&
+              imagesArray?.map((item) => (
+                <SwiperSlide key={item}>
+                  <img src={item} alt="error" className={imgClass} />
+                </SwiperSlide>
+              ))}
           </Swiper>
 
           <Swiper
             onSwiper={setThumbsSwiper}
             effect={"cards"}
-            slidesPerView={imagesArray.length}
+            slidesPerView={imagesArray?.length}
             freeMode={true}
             spaceBetween={0}
             watchSlidesProgress={true}
-            modules={[FreeMode, Thumbs]}
+            modules={[FreeMode]}
             className="mySwiper">
-            {imagesArray?.map((item) => (
-              <SwiperSlide key={item} className="slider-div">
-                <img src={item} alt="error" className="thumbs-slider_img" />
-              </SwiperSlide>
-            ))}
+            {imagesArray &&
+              imagesArray?.map((item) => (
+                <SwiperSlide key={item} className="slider-div">
+                  <img src={item} alt="error" className="thumbs-slider_img" />
+                </SwiperSlide>
+              ))}
           </Swiper>
         </React.Fragment>
-      ) : (
+      ) : imagesArray ? (
         imagesArray?.map((item) => (
           <img src={item} key={item} alt="error" className={imgClass} />
         ))
+      ) : (
+        ""
       )}
     </React.Fragment>
   );

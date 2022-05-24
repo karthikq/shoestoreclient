@@ -126,6 +126,7 @@ const Navbar = ({ auth, LogoutUser, user }) => {
             ) : (
               <li
                 onClick={() => {
+                  sessionStorage.setItem("redirect", window.location.pathname);
                   handleNavigation("/user/login");
                 }}>
                 <BiLogIn className="navbar-icon" />
