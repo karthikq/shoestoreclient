@@ -119,6 +119,7 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
                   />
                 </span>
               )}
+
               {userProfile.followers?.users?.find(
                 (item) => item.user === userData._id
               ) ? (
@@ -138,6 +139,10 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
                   Follow
                 </span>
               )}
+            </div>
+            <div className="user-follow">
+              <span>Follwers : {userProfile?.followers?.users?.length}</span>
+              <span>Following : {userProfile?.following?.users?.length}</span>
             </div>
           </div>
         </div>

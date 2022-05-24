@@ -24,7 +24,7 @@
 }
 .user-profile {
   width: 100%;
-  padding: 2.5rem 0 2rem;
+  padding: 2.5rem 0 1.5rem;
   height: auto;
   display: flex;
   justify-content: center;
@@ -70,7 +70,7 @@
     }
   }
   .user-location_details {
-    margin-top: 0.5rem;
+    margin-top: 0.7rem;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -105,6 +105,17 @@
       background-color: #333333;
       border: 2px solid #333333;
     }
+  }
+}
+.user-follow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.85rem;
+  gap: 0 1rem;
+  span {
+    font-size: 0.95rem;
+    color: rgb(201, 201, 201);
   }
 }
 

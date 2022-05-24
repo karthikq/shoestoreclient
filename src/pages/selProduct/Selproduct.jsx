@@ -258,7 +258,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                     </div>
                   )}
                   {auth
-                    ? selproduct.rating?.find(
+                    ? selproduct?.rating?.find(
                         (user) => user?.user?._id === userData._id
                       )
                       ? !addUserRating && (
@@ -283,19 +283,19 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                 <div className="selproduct-actions">
                   <div className="selproduct-like_div">
                     {selproduct?.likes?.find(
-                      (user) => user.userId?._id === userData._id
+                      (user) => user.userId?._id === userData?._id
                     ) ? (
                       <AiTwotoneLike
                         className="selproduct-like_icon"
                         onClick={() => {
-                          dispatch(updateLike(selproduct.p_id, navigate));
+                          dispatch(updateLike(selproduct?.p_id, navigate));
                         }}
                       />
                     ) : (
                       <BiLike
                         className="selproduct-like_icon"
                         onClick={() => {
-                          dispatch(updateLike(selproduct.p_id));
+                          dispatch(updateLike(selproduct?.p_id, navigate));
                         }}
                       />
                     )}
@@ -327,7 +327,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                   /> */}
                 </div>
                 <div className="sel-product-tags">
-                  {selproduct.keywords?.map((el) => (
+                  {selproduct?.keywords?.map((el) => (
                     <span key={el} className="selproduct_tag-span">
                       {"#" + el}
                     </span>
