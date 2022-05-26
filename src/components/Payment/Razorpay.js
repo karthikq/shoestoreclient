@@ -9,7 +9,7 @@ export const PaymentGateWay = (
   cb,
   toast,
   navigate,
-  curreny
+  currency
 ) => {
   const options = {
     key: "rzp_test_gfk0PD54XehJDD", // Enter the Key ID generated from the Dashboard
@@ -17,7 +17,7 @@ export const PaymentGateWay = (
     currency: orderData.currency,
     name: "Test Store",
     description: "Test Transaction no real money will be deducted",
-    image: "https://example.com/your_logo",
+    image: "https://i.ibb.co/H78H4Q1/razorpay-1649771-1399875.webp",
     order_id: orderData.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
     handler: async function (response) {
       try {

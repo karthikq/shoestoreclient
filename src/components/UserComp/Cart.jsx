@@ -19,13 +19,14 @@ import { getCurrency } from "../getCurrency";
 import toast from "react-hot-toast";
 import ToastErrors from "../errors/ToastErrors";
 import ReactConfitte from "../ReactConfitte";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchUserDetails } from "../actions/User";
 import { getLocationCurrency } from "../getLocationCurrency";
 import GetPrice from "../GetPrice";
 
 const UserCart = ({ userData, state }) => {
   const cartTotal = CartTotal(userData);
+  const auth = useSelector((state) => state.User.auth);
   const [btnState, setBtnState] = useState(false);
   const [modalState, setModalState] = useState(false);
   const [confettiState, setconfettiState] = useState(false);
@@ -50,7 +51,8 @@ const UserCart = ({ userData, state }) => {
 
   const modelCallback = async (value) => {
     if (value) {
-      const currency = getLocationCurrency(userData);
+      const currency = await getLocationCurrency(userData, auth);
+      console.log(currency);
       try {
         const { data } = await backendApi.get(
           "/order/create/" + cartTotal + "?currency=" + currency
