@@ -223,7 +223,14 @@ const User = ({ userData, userProducts, auth, foundUser }) => {
               (loaderState ? (
                 <BackdropLoader open={loaderState} />
               ) : (
-                <Cart userData={userData} />
+                <Cart userData={userData} state={"cart"} />
+              ))}
+            {foundUser._id === userData._id &&
+              parseState === "orders" &&
+              (loaderState ? (
+                <BackdropLoader open={loaderState} />
+              ) : (
+                <Cart userData={userData} state={"orders"} />
               ))}
             {foundUser._id === userData._id &&
               parseState === "settings" &&

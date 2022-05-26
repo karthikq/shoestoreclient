@@ -9,7 +9,7 @@ import { addtocart, deleteCartItem, updateCartItems } from "../actions/User";
 import { getCurrency } from "../getCurrency";
 import Model from "../model/Model";
 import { motion } from "framer-motion";
-const CartItems = ({ product, quantity }) => {
+const CartItems = ({ product, quantity, state, order_id, payment_id }) => {
   const [itemTotal, setItemTotal] = useState(0);
   const [removeState, setRemoveState] = useState(false);
 
@@ -34,22 +34,26 @@ const CartItems = ({ product, quantity }) => {
       className={
         removeState ? "cart-item-box cart-item-box_active" : "cart-item-box"
       }>
-      <Model
-        state={removeState}
-        setState={setRemoveState}
-        cb={modelCallback}
-        text={"Do you want to remove this Item from cart?"}
-      />
-      <div className="cart-item-remove">
-        <AiOutlineCloseCircle
-          className={
-            removeState
-              ? "cart-item-remove_icon cart-item-remove_icon-active"
-              : "cart-item-remove_icon"
-          }
-          onClick={() => setRemoveState(true)}
+      {state === "cart" && (
+        <Model
+          state={removeState}
+          setState={setRemoveState}
+          cb={modelCallback}
+          text={"Do you want to remove this Item from cart?"}
         />
-      </div>
+      )}
+      {state === "cart" && (
+        <div className="cart-item-remove">
+          <AiOutlineCloseCircle
+            className={
+              removeState
+                ? "cart-item-remove_icon cart-item-remove_icon-active"
+                : "cart-item-remove_icon"
+            }
+            onClick={() => setRemoveState(true)}
+          />
+        </div>
+      )}
       <div className="cart-item-left">
         <div className="cart-item-img">
           <Link to={"/single/product/" + product.p_id}>
@@ -64,15 +68,27 @@ const CartItems = ({ product, quantity }) => {
         </div>
       </div>
       <div className="cart-item-center">
-        <BiLeftArrow
-          className="cart-item-arrow"
-          onClick={() => handleQuantity(false)}
-        />
-        <span>{quantity}</span>
-        <BiRightArrow
-          className="cart-item-arrow"
-          onClick={() => handleQuantity(true)}
-        />
+        {state === "cart" && (
+          <BiLeftArrow
+            className="cart-item-arrow"
+            onClick={() => handleQuantity(false)}
+          />
+        )}
+        {state === "cart" ? (
+          <span>{quantity}</span>
+        ) : (
+          <div className="order_details">
+            <span>Quanity : {quantity}</span>
+            <span>OrderId : {order_id}</span>
+            <span>paymentId : {payment_id}</span>
+          </div>
+        )}
+        {state === "cart" && (
+          <BiRightArrow
+            className="cart-item-arrow"
+            onClick={() => handleQuantity(true)}
+          />
+        )}
       </div>
       <div className="cart-item-right">
         <p>Total Rs: {itemTotal}</p>

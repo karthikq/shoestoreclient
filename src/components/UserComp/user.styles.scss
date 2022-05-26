@@ -429,6 +429,14 @@
     }
   }
 }
+.order-container {
+  h1 {
+    color: rgb(44, 43, 43);
+    font-weight: 600;
+    margin: 0;
+    font-size: 1.8rem;
+  }
+}
 .cart-item-center {
   min-width: 100px;
   display: flex;
@@ -458,6 +466,17 @@
   }
   span {
     font-size: 1.1rem;
+  }
+}
+.order_details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem 0;
+
+  span {
+    font-size: 0.95rem;
+    color: #f3f3f3;
+    font-weight: 300;
   }
 }
 .cart-item-right {
@@ -585,6 +604,11 @@
       span {
         font-size: 1rem;
       }
+    }
+    .order_details {
+      margin: 0.8rem 0;
+      position: relative;
+      left: 0.4rem;
     }
     .cart-item-right {
       p {

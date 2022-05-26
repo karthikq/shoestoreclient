@@ -1,7 +1,6 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
-import { getCurrency } from "../components/getCurrency";
+import   { useEffect, useState } from "react";
 
 const CartTotal = (userData) => {
   const [cartTotal, setCartTotal] = useState();
@@ -13,7 +12,7 @@ const CartTotal = (userData) => {
       ({ product, quantity }) =>
         (price += product?.price ? product?.price * quantity : 0)
     );
-    setCartTotal(getCurrency(price));
+    setCartTotal(price);
   }, [userData]);
 
   return cartTotal;

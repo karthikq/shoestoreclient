@@ -1,14 +1,9 @@
 /** @format */
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { AiFillLike } from "react-icons/ai";
-import { BiLike } from "react-icons/bi";
-import {
-  BsArrowLeftCircle,
-  BsArrowLeftShort,
-  BsArrowRightCircle,
-  BsArrowRightShort,
-} from "react-icons/bs";
+
+import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
 import { MdStar } from "react-icons/md";
 
 const RatingSlider = ({ selproduct, state, header }) => {

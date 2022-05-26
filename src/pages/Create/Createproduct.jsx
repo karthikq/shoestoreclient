@@ -24,6 +24,7 @@ import WordConvertor from "../../components/currency/toWords";
 import allproducts from "../../ProdCat.json";
 import { Skeleton } from "@mui/material";
 import FormLoader from "../../components/loader/FormLoader";
+import { Gmaps } from "../../components/Location/Gmaps";
 
 const animatedComponents = makeAnimated();
 

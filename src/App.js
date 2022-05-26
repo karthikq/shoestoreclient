@@ -7,7 +7,7 @@ import Options from "./pages/Options/Options";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Products from "./pages/products/Products";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Createproduct from "./pages/Create/Createproduct";
 import { fetchProducts } from "./components/actions";
 import { connect, useSelector } from "react-redux";
@@ -120,9 +120,10 @@ function App({ fetchProducts, fetchUserDetails }) {
         toastOptions={{
           className: "",
           style: {
-            border: "1px solid #ff2e63",
+            border: "1px solid #fffff",
             padding: "10px 12px",
-            color: "#1C1616",
+            color: "#fff",
+            background: "#333",
           },
           iconTheme: {
             primary: "#ff2e63",

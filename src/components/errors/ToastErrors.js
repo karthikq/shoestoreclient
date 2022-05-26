@@ -5,6 +5,7 @@ import { BiErrorCircle } from "react-icons/bi";
 
 const ToastErrors = (error, toast, navigate) => {
   if (error === 403) {
+    sessionStorage.setItem("redirect", window.location.pathname);
     toast(
       (t) => (
         <span>

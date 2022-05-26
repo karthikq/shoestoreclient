@@ -28,7 +28,10 @@ const Model = ({ state, setState, cb, text }) => {
                 </span>
                 <span
                   className="model-span_1 span_2"
-                  onClick={() => setState(false)}>
+                  onClick={() => {
+                    cb(false);
+                    setState(false);
+                  }}>
                   No
                 </span>
               </div>

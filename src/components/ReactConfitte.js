@@ -12,14 +12,16 @@ const ReactConfitte = ({ state, setState }) => {
       const item = document.querySelector(".confettie");
       setTimeout(() => {
         item.style.opacity = 0;
-      }, 3000);
+      }, 4000);
     }
   }, [state]);
 
   return (
     <React.Fragment>
       {state && (
-        <Confetti width={width} height={height} className="confettie" />
+        <div className="react_confetti">
+          <Confetti width={width} height={height} className="confettie" />
+        </div>
       )}
     </React.Fragment>
   );
