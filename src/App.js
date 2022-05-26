@@ -23,7 +23,7 @@ import ProtectedRotue from "./components/Routes/ProtectedRotue";
 import User from "./pages/user/User";
 
 import ResetPass from "./pages/resetPassword/ResetPass";
-import Toasts from "./components/Custom/Toasts";
+
 
 function App({ fetchProducts, fetchUserDetails }) {
   const authState = useSelector((state) => state.User.auth);
