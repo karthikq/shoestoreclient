@@ -9,28 +9,23 @@ import { useSelector } from "react-redux";
 
 const GetPrice = ({ userData }) => {
   const auth = useSelector((state) => state.User.auth);
-  const [coutrnCode, setCountryCode] = useState("");
+  // const [coutrnCode, setCountryCode] = useState("");
 
-  useEffect(() => {
-if(!auth){
+  // useEffect(() => {
+  //   if (!auth) {
+  //     fetcUserIp();
+  //     return () => {
+  //       setCountryCode({});
+  //     };
+  //   }
+  // }, []);
+  // const fetcUserIp = () => {
+  //   const userIp = getUserip().then((res) => {
+  //     setCountryCode(res);
+  //   });
+  // };
 
-    fetcUserIp();
-    return () => {
-      setCountryCode({});
-    };
-}
-  }, []);
-  const fetcUserIp = () => {
-    const userIp = getUserip().then((res) => {
-      setCountryCode(res);
-    });
-  };
-
-  return (
-    <React.Fragment>
-      {auth ? getLocationCurrency(userData) : coutrnCode?.country_code}
-    </React.Fragment>
-  );
+  return <React.Fragment>{getLocationCurrency(userData, auth)}</React.Fragment>;
 };
 
 export default GetPrice;

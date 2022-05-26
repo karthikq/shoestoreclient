@@ -1,10 +1,11 @@
 /** @format */
 
 import curreny from "iso-country-currency";
+import { getUserip } from "./UserIp/Getuserip";
 
-export const getLocationCurrency = (userData) => {
-  var locationCurrency;
-  if (userData) {
+export const getLocationCurrency = async (userData, auth) => {
+  if (auth) {
+    var locationCurrency;
     if (userData?.userLocation?.country) {
       locationCurrency = curreny.getAllInfoByISO(
         userData?.userLocation?.country
@@ -16,6 +17,7 @@ export const getLocationCurrency = (userData) => {
     }
     return locationCurrency.currency;
   } else {
-    return "INR";
+    const userIp = await getUserip();
+    return userIp.country_code;
   }
 };
