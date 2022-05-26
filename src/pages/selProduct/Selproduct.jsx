@@ -113,6 +113,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
     }, [4000]);
   };
   const handleBuy = () => {
+    dispatch(addtocart(selproduct._id, navigate));
     navigate("/get/user/" + userData._id + "#cart");
   };
 
