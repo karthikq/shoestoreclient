@@ -17,7 +17,11 @@ export const getLocationCurrency = async (userData, auth) => {
     }
     return locationCurrency.currency;
   } else {
-    const userIp = await getUserip();
-    return userIp.country_code;
+    try {
+      const res = await getUserip();
+      return res.country_code;
+    } catch (error) {
+      console.log(error);
+    }
   }
 };

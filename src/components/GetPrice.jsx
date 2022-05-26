@@ -4,28 +4,25 @@ import { useRaf } from "react-use";
 
 import React, { useEffect, useState } from "react";
 import { getLocationCurrency } from "./getLocationCurrency";
-import { getUserip } from "./UserIp/Getuserip";
+
 import { useSelector } from "react-redux";
 
 const GetPrice = ({ userData }) => {
   const auth = useSelector((state) => state.User.auth);
-  // const [coutrnCode, setCountryCode] = useState("");
+  const [countryCode, setCountryCode] = useState("");
 
-  // useEffect(() => {
-  //   if (!auth) {
-  //     fetcUserIp();
-  //     return () => {
-  //       setCountryCode({});
-  //     };
-  //   }
-  // }, []);
-  // const fetcUserIp = () => {
-  //   const userIp = getUserip().then((res) => {
-  //     setCountryCode(res);
-  //   });
-  // };
+  useEffect(() => {
+    fetcUserIp();
+    return () => {
+      setCountryCode("");
+    };
+  }, []);
+  const fetcUserIp = async () => {
+    const res = await getLocationCurrency(userData, auth);
+    res && setCountryCode(res);
+  };
 
-  return <React.Fragment>{getLocationCurrency(userData, auth)}</React.Fragment>;
+  return <React.Fragment>{countryCode && countryCode}</React.Fragment>;
 };
 
 export default GetPrice;
