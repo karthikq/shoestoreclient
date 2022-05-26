@@ -12,10 +12,13 @@ const GetPrice = ({ userData }) => {
   const [coutrnCode, setCountryCode] = useState("");
 
   useEffect(() => {
+if(!auth){
+
     fetcUserIp();
     return () => {
       setCountryCode({});
     };
+}
   }, []);
   const fetcUserIp = () => {
     const userIp = getUserip().then((res) => {
