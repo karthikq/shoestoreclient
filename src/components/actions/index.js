@@ -14,11 +14,13 @@ import {
   UPDATE_VIEW,
 } from "../reducers/constants";
 import ToastErrors from "../errors/ToastErrors";
+import axios from "axios";
 
 export const fetchProducts = () => async (dispatch) => {
   try {
     const { data } = await backendApi.get("/product/all");
-
+    const userIp = await axios.get("https://geolocation-db.com/json/");
+    console.log(userIp.data);
     dispatch({
       type: FETCH_PRODUCTS,
       payload: data,
