@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 
 import { backendApi } from "../../api/api";
 import { IS_NOT_AUTH, REGISTER_USER } from "../../reducers/constants";
+import { getUserip } from "../../UserIp/Getuserip";
 
 export const LoginUser =
   (userData, handleErrors, navigate) => async (dispatch) => {
@@ -48,6 +49,8 @@ export const LoginUser =
   };
 export const ResiterUser =
   (userData, handleErrors, navigate) => async (dispatch) => {
+    userData.userIp = await getUserip();
+
     try {
       const { data } = await backendApi.post("/auth/user/signup", userData);
 

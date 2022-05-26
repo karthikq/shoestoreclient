@@ -17,7 +17,6 @@ export const Gmaps = () => {
     height: "200px",
   };
 
- 
   //   const { latitude, longitude } = useGeolocation();
   //   useEffect(() => {
   //     if (latitude && longitude) {
@@ -32,7 +31,7 @@ export const Gmaps = () => {
 
   return (
     <div style={{ width: "100%", margin: "1.5rem 0" }}>
-      <LoadScript >
+      <LoadScript>
         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10}>
           <Marker
             position={center}

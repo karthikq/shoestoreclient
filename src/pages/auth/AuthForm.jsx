@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 import { MdErrorOutline } from "react-icons/md";
 import { AiOutlinePlus } from "react-icons/ai";
 import Button from "../../components/button/Button";
+import { getUserip } from "../../components/UserIp/Getuserip";
 
 const AuthForm = ({
   loginState,
@@ -82,6 +83,14 @@ const AuthForm = ({
     }
     setBtnState(true);
   };
+  const handleNavigate = async () => {
+    const userIp = await getUserip();
+    const qs = Object.keys(userIp)
+      .map((key) => `${key}=${userIp[key]}`)
+      .join("&");
+
+    window.location.href = `${url}/auth/google/login/?query=${query}&${qs}`;
+  };
 
   return (
     <React.Fragment>
@@ -109,9 +118,9 @@ const AuthForm = ({
             <div className="social-login">
               <span className="social-span">Or continue with</span>
               <div className="social-login_icons">
-                <a href={`${url}/auth/google/login/?query=${query}`}>
+                <span onClick={handleNavigate}>
                   <img src="https://i.ibb.co/c81tWLc/google.png" alt="google" />
-                </a>
+                </span>
                 <a href={`${url}/auth/facebook/login`}>
                   <img
                     src="https://i.ibb.co/r5zc7YR/facebook-1.png"
