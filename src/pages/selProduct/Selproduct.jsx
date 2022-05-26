@@ -38,6 +38,7 @@ import { FetchSimilarprod } from "../../components/actions/Similar";
 import { async } from "@firebase/util";
 import { BsLightning } from "react-icons/bs";
 import toast from "react-hot-toast";
+import GetPrice from "../../components/GetPrice";
 
 const Selproduct = ({ selproduct, userData, auth }) => {
   const [addUserRating, setAddUserRating] = useState(false);
@@ -110,6 +111,9 @@ const Selproduct = ({ selproduct, userData, auth }) => {
     setTimeout(() => {
       setconfettiState(false);
     }, [4000]);
+  };
+  const handleBuy = () => {
+    navigate("/get/user/" + userData._id + "#cart");
   };
 
   return (
@@ -202,7 +206,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                 )}
                 <div className="selproduct-price">
                   <span className="selproduct-price_span">
-                    Price :₹ {selproduct.price}
+                    Price : <GetPrice userData={userData} /> {selproduct.price}
                   </span>
                 </div>
                 <div className="sel-product_rating">
@@ -342,7 +346,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                     <BiCart className="cart_icon" />
                     Add to Cart
                   </button>
-                  <button className="selproduct_buy-btn">
+                  <button className="selproduct_buy-btn" onClick={handleBuy}>
                     <BsLightning className="buy_icon" /> Buy Now
                   </button>
                 </div>

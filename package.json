@@ -23,6 +23,7 @@
     "libphonenumber-js": "^1.10.3",
     "lodash": "^4.17.21",
     "lottie-web": "^5.9.4",
+    "number-to-words": "^1.2.4",
     "query-string": "^7.1.1",
     "react": "^17.0.2",
     "react-confetti": "^6.0.1",

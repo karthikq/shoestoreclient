@@ -22,6 +22,7 @@ import ReactConfitte from "../ReactConfitte";
 import { useDispatch } from "react-redux";
 import { fetchUserDetails } from "../actions/User";
 import { getLocationCurrency } from "../getLocationCurrency";
+import GetPrice from "../GetPrice";
 
 const UserCart = ({ userData, state }) => {
   const cartTotal = CartTotal(userData);
@@ -94,7 +95,9 @@ const UserCart = ({ userData, state }) => {
           <div className="usercart-bar">
             <div>
               <h2>Cart Total</h2>
-              <p>Rs: {getCurrency(cartTotal)}</p>
+              <p>
+                <GetPrice userData={userData} /> : {getCurrency(cartTotal)}
+              </p>
               <span className="usercart-total_words">
                 {cartTotal && WordConvertor(cartTotal)}
               </span>
@@ -138,6 +141,7 @@ const UserCart = ({ userData, state }) => {
                     product={product}
                     quantity={quantity}
                     state={state}
+                    userData={userData}
                   />
                 )
             )
@@ -161,6 +165,7 @@ const UserCart = ({ userData, state }) => {
                     state={state}
                     payment_id={payment_id}
                     order_id={orderId}
+                    userData={userData}
                   />
                 )
             )

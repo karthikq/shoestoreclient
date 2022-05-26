@@ -118,15 +118,15 @@ const AuthForm = ({
             <div className="social-login">
               <span className="social-span">Or continue with</span>
               <div className="social-login_icons">
-                <span onClick={handleNavigate}>
+                <span style={{ cursor: "pointer" }} onClick={handleNavigate}>
                   <img src="https://i.ibb.co/c81tWLc/google.png" alt="google" />
                 </span>
-                <a href={`${url}/auth/facebook/login`}>
+                {/* <a href={`${url}/auth/facebook/login`}>
                   <img
                     src="https://i.ibb.co/r5zc7YR/facebook-1.png"
                     alt="facebook"
                   />
-                </a>
+                </a> */}
               </div>
             </div>
             <div className="login-items">

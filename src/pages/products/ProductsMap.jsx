@@ -7,7 +7,7 @@ const ProductsMap = ({ products }) => {
   return (
     <React.Fragment>
       {products.map(
-        (item, index) => item && <Productbox item={item} key={item.p_id} />
+        (item, index) => item && <Productbox item={item} key={index} />
       )}
     </React.Fragment>
   );

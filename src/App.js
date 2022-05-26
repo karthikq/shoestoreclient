@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import Createproduct from "./pages/Create/Createproduct";
 import { fetchProducts } from "./components/actions";
 import { connect, useSelector } from "react-redux";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import Selproduct from "./pages/selProduct/Selproduct";
 import { fetchUserDetails } from "./components/actions/User";
 import Login from "./pages/auth/Login";
@@ -21,8 +21,9 @@ import queryString from "query-string";
 import Register from "./pages/auth/Register";
 import ProtectedRotue from "./components/Routes/ProtectedRotue";
 import User from "./pages/user/User";
-import { ProductContextobj } from "./context/selProductcontext";
+
 import ResetPass from "./pages/resetPassword/ResetPass";
+import Toasts from "./components/Custom/Toasts";
 
 function App({ fetchProducts, fetchUserDetails }) {
   const authState = useSelector((state) => state.User.auth);
@@ -67,7 +68,7 @@ function App({ fetchProducts, fetchUserDetails }) {
     <div>
       <Navbar />
       <div className="animate-bar"></div>
-
+      {/* <Toasts /> */}
       {/* <Login state={state} setState={setState} /> */}
       <AnimatePresence>
         <Routes>

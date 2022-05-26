@@ -25,6 +25,7 @@ import allproducts from "../../ProdCat.json";
 import { Skeleton } from "@mui/material";
 import FormLoader from "../../components/loader/FormLoader";
 import { Gmaps } from "../../components/Location/Gmaps";
+import GetPrice from "../../components/GetPrice";
 
 const animatedComponents = makeAnimated();
 
@@ -312,7 +313,7 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
                         opacity: 0.7,
                         marginLeft: "0.4rem",
                       }}>
-                      (₹Rs)
+                      <GetPrice userData={userDetails} />
                     </span>
                   </label>
                   <input

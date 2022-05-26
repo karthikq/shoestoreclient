@@ -9,7 +9,15 @@ import { addtocart, deleteCartItem, updateCartItems } from "../actions/User";
 import { getCurrency } from "../getCurrency";
 import Model from "../model/Model";
 import { motion } from "framer-motion";
-const CartItems = ({ product, quantity, state, order_id, payment_id }) => {
+import GetPrice from "../GetPrice";
+const CartItems = ({
+  product,
+  quantity,
+  state,
+  order_id,
+  payment_id,
+  userData,
+}) => {
   const [itemTotal, setItemTotal] = useState(0);
   const [removeState, setRemoveState] = useState(false);
 
@@ -64,7 +72,9 @@ const CartItems = ({ product, quantity, state, order_id, payment_id }) => {
           <Link to={"/single/product/" + product.p_id}>
             <h3>{product?.p_name}</h3>
           </Link>
-          <span>Rs : {getCurrency(product?.price)}</span>
+          <span>
+            <GetPrice userData={userData} /> : {getCurrency(product?.price)}
+          </span>
         </div>
       </div>
       <div className="cart-item-center">
@@ -91,7 +101,9 @@ const CartItems = ({ product, quantity, state, order_id, payment_id }) => {
         )}
       </div>
       <div className="cart-item-right">
-        <p>Total Rs: {itemTotal}</p>
+        <p>
+          Total <GetPrice userData={userData} />: {itemTotal}
+        </p>
       </div>
     </motion.div>
   );

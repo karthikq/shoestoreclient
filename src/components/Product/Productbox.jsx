@@ -18,6 +18,8 @@ import Modal from "../model/Model";
 import { useDispatch } from "react-redux";
 import { removeProduct } from "../actions";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
+import { getLocationCurrency } from "../getLocationCurrency";
+import GetPrice from "../GetPrice";
 
 const Productbox = ({ item, userData, viewState }) => {
   const navigate = useNavigate();
@@ -74,7 +76,9 @@ const Productbox = ({ item, userData, viewState }) => {
 
         <div className="product-details">
           <h3>{item.p_name}</h3>
-          <span className="span_price">Price: ₹{item.price}</span>
+          <span className="span_price">
+            Price: <GetPrice userData={userData} /> {item.price}
+          </span>
           <div className="product-details_cat-span">
             {item?.keywords?.map((el, index) => (
               <span className="span_cat" key={index}>
