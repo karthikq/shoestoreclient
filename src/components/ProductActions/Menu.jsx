@@ -114,13 +114,13 @@ const MenuDropdown = ({ loginUser, postUser, product }) => {
           <ul>
             {auth && loginUser?._id === postUser?.userId && (
               <li onClick={handleEdit}>
-                <EditIcon />
+                <EditIcon className="product_icon-dropdown" />
                 Edit
               </li>
             )}
             {auth && loginUser?._id === postUser?.userId && (
               <li onClick={handleDelete}>
-                <MdDelete />
+                <MdDelete className="product_icon-dropdown" />
                 Delete
               </li>
             )}
@@ -129,7 +129,7 @@ const MenuDropdown = ({ loginUser, postUser, product }) => {
               onClick={() =>
                 navigate(`/get/user/${postUser?.userId}#products`)
               }>
-              <BsFillPersonFill />
+              <BsFillPersonFill className="product_icon-dropdown" />
               User
             </li>
           </ul>
