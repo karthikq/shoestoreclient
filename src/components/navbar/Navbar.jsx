@@ -135,6 +135,9 @@ const Navbar = ({ auth, LogoutUser, user }) => {
             )}
           </ul>
         </div>
+        <div className="copyright">
+          <span className="copyright_span">Copyright © karthik 2022</span>
+        </div>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@
   width: 18rem;
   background: linear-gradient(90deg, rgb(8, 8, 8), rgb(15, 15, 15));
   height: 100%;
-  padding: 1rem 0;
+  padding: 1rem 0 0.5rem;
   overflow-y: auto;
 
   position: fixed;
@@ -16,6 +16,18 @@
   top: 0;
   z-index: 200;
   transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  .copyright {
+    position: absolute;
+    bottom: 2.7rem;
+    left: 1.1rem;
+    width: 100%;
+
+    font-family: "Poppins", sans-serif;
+    .copyright_span {
+      color: rgb(88, 86, 86);
+      font-size: 0.8rem;
+    }
+  }
 }
 
 .nav-contents-active {
