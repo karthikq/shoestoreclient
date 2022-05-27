@@ -184,7 +184,8 @@ const ResetPass = ({ state }) => {
                       ? "reset-error reset-error_active"
                       : "reset-error"
                   }>
-                  {errors.text}
+                  {errors.text}. <br />
+                  From karthikemail99@gmail.com.
                 </span>
               )}
             </React.Fragment>
@@ -224,7 +225,7 @@ const ResetPass = ({ state }) => {
               )}
               {errors.text && (
                 <span className="reset-error">
-                  {errors.text}{" "}
+                  {errors.text}
                   <Link to="/user/reset/password" className="reset-back">
                     click here
                   </Link>{" "}
