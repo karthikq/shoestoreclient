@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { backendApi } from "../../components/api/api";
@@ -9,7 +9,6 @@ import "./reset.styles.scss";
 import { motion } from "framer-motion";
 import BackdropLoader from "../../components/loader/Backdrop";
 import queryString from "query-string";
-import { useDispatch } from "react-redux";
 
 import { BiErrorCircle } from "react-icons/bi";
 

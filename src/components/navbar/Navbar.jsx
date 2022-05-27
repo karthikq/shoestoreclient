@@ -1,13 +1,11 @@
 /** @format */
 
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BiHome, BiLogIn } from "react-icons/bi";
 import { VscAccount } from "react-icons/vsc";
 import {
   AiOutlineCloudUpload,
-  AiOutlineHeart,
   AiOutlineLogout,
-  AiOutlineSetting,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
 import Badge from "@mui/material/Badge";
@@ -15,7 +13,6 @@ import "./Navbar.styles.scss";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { authObject } from "../../context/authContext";
 import { LogoutUser } from "../actions/auth/auth";
 
 const Navbar = ({ auth, LogoutUser, user }) => {
@@ -23,8 +20,6 @@ const Navbar = ({ auth, LogoutUser, user }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const navRef = useRef();
-
-  const { state, setState } = useContext(authObject);
 
   // setTimeout(() => {
   //   const home = document.querySelector(".home-container");

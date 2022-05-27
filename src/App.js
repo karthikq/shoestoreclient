@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import Createproduct from "./pages/Create/Createproduct";
 import { fetchProducts } from "./components/actions";
 import { connect, useSelector } from "react-redux";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import Selproduct from "./pages/selProduct/Selproduct";
 import { fetchUserDetails } from "./components/actions/User";
 import Login from "./pages/auth/Login";
