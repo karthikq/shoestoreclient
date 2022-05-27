@@ -147,7 +147,7 @@ const ResetPass = ({ state }) => {
     <div className="reset-pass_container">
       <BackdropLoader open={backdropState} setOpen={setBackdropState} />
       <video autoPlay className="login-video_player">
-        <source src="../../videos/4.mp4" />
+        <source src="../../videos/3.mp4" />
       </video>
       <motion.div
         initial={{ opacity: 0, x: "-100%" }}

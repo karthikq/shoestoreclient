@@ -2,21 +2,22 @@
 
 import React, { useEffect, useState } from "react";
 import "./home.styles.scss";
-import { BiRightArrowAlt } from "react-icons/bi";
+
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import { connect, useDispatch } from "react-redux";
+
+import { connect } from "react-redux";
 import { fetchProducts, singleProduct } from "../../components/actions";
-import { getProducts } from "../../redux/product";
+
 import RadiusBtn from "../../components/button/RadiusBtn";
 import Typewriter from "typewriter-effect";
 
 const Home = ({ products, fetchProducts, singleProduct }) => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   // fetchProducts();
 
+  const [selVideo, setSelVideo] = useState(2);
+  useEffect(() => {
+    setSelVideo(Math.floor(Math.random() * 3) + 1);
+  }, []);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -25,8 +26,8 @@ const Home = ({ products, fetchProducts, singleProduct }) => {
       transition={{ duration: 0.4, ease: "linear" }}
       className="home-container">
       <div className="home-bg-video">
-        <video autoPlay>
-          <source src="../videos/3.mp4" />
+        <video autoPlay playsInline>
+          <source src={`../videos/${selVideo}.mp4`} />
         </video>
       </div>
       <div className="home-contents">
