@@ -1,10 +1,8 @@
 /** @format */
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 
 import "./login.styles.scss";
-
-import { backendUrl } from "../../components/api/Backendurl";
 
 import AuthForm from "./AuthForm";
 import { useNavigate } from "react-router-dom";

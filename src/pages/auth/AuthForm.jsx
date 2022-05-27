@@ -8,9 +8,9 @@ import { backendUrl } from "../../components/api/Backendurl";
 
 import { Link, useNavigate } from "react-router-dom";
 import { LoginUser, ResiterUser } from "../../components/actions/auth/auth";
-import toast from "react-hot-toast";
+
 import { MdErrorOutline } from "react-icons/md";
-import { AiOutlinePlus } from "react-icons/ai";
+
 import Button from "../../components/button/Button";
 import { getUserip } from "../../components/UserIp/Getuserip";
 
@@ -100,7 +100,7 @@ const AuthForm = ({
         // animate={{ opacity: 1 }}
         // exit={{ opacity: 0 }}
         className="login-container">
-        <video autoPlay className="login-video_player">
+        <video autoPlay playsInline loop className="login-video_player">
           <source src="../videos/3.mp4" />
         </video>
         <motion.div

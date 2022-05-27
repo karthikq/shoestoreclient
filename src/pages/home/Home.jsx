@@ -26,7 +26,7 @@ const Home = ({ products, fetchProducts, singleProduct }) => {
       transition={{ duration: 0.4, ease: "linear" }}
       className="home-container">
       <div className="home-bg-video">
-        <video autoPlay playsInline>
+        <video autoPlay playsInline loop>
           <source src={`../videos/${selVideo}.mp4`} />
         </video>
       </div>

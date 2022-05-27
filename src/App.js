@@ -85,11 +85,19 @@ function App({ fetchProducts, fetchUserDetails }) {
           <Route path="/product/list" element={<Products />} />
           <Route
             path="/create/product"
-            element={<Createproduct editState={false} />}
+            element={
+              <ProtectedRotue isAllowed={authState}>
+                <Createproduct editState={false} />
+              </ProtectedRotue>
+            }
           />
           <Route
             path="/edit/product/:id"
-            element={<Createproduct editState={true} />}
+            element={
+              <ProtectedRotue isAllowed={authState}>
+                <Createproduct editState={true} />
+              </ProtectedRotue>
+            }
           />
           <Route
             path="/user/login"
