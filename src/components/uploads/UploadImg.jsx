@@ -12,7 +12,7 @@ const UploadImg = ({ file, setUploadedImgState, setUrlarray }) => {
 
   const options = {
     maxSizeMB: 0.5,
-    maxWidthOrHeight: 560,
+    maxWidthOrHeight: 1280,
     useWebWorker: true,
   };
 

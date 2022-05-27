@@ -4,8 +4,8 @@ import curreny from "iso-country-currency";
 import { getUserip } from "./UserIp/Getuserip";
 
 export const getLocationCurrency = async (userData, auth) => {
+  var locationCurrency;
   if (auth) {
-    var locationCurrency;
     if (userData?.userLocation?.country) {
       locationCurrency = curreny.getAllInfoByISO(
         userData?.userLocation?.country
@@ -19,7 +19,8 @@ export const getLocationCurrency = async (userData, auth) => {
   } else {
     try {
       const res = await getUserip();
-      return res.country_code;
+      locationCurrency = curreny.getAllInfoByISO(res.country_code).currency;
+      return locationCurrency;
     } catch (error) {
       console.log(error);
     }

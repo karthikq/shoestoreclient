@@ -24,7 +24,6 @@ import User from "./pages/user/User";
 
 import ResetPass from "./pages/resetPassword/ResetPass";
 
-
 function App({ fetchProducts, fetchUserDetails }) {
   const authState = useSelector((state) => state.User.auth);
   AnimatedBar(fetchProducts);

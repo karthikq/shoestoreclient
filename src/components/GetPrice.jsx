@@ -1,7 +1,5 @@
 /** @format */
 
-import { useRaf } from "react-use";
-
 import React, { useEffect, useState } from "react";
 import { getLocationCurrency } from "./getLocationCurrency";
 
