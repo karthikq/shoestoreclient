@@ -298,7 +298,7 @@ const Createproduct = ({ createProduct, editState, editProduct }) => {
                     required
                     minLength={5}
                     name="p_name"
-                    maxLength={12}
+                    maxLength={45}
                     value={userData.p_name}
                     onChange={(e) =>
                       setUserData({ ...userData, p_name: e.target.value })
