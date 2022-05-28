@@ -184,7 +184,7 @@ const ResetPass = ({ state }) => {
                       : "reset-error"
                   }>
                   {errors.text}. <br />
-                  From karthikemail99@gmail.com.
+                  From productstorewebapp@gmail.com.
                 </span>
               )}
             </React.Fragment>
