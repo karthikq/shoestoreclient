@@ -29,16 +29,15 @@ const Products = ({ fetchselProduct, products }) => {
     });
 
     setOptions(res);
-
+    console.log(sessionStorage.getItem("itemCateg"));
     const list = res?.options.some(
-      (el) => el.value === sessionStorage.getItem("itemCateg").split(",")[0]
+      (el) => el.value === sessionStorage.getItem("itemCateg")
     );
     if (list) {
-      setItemCateg(sessionStorage.getItem("itemCateg").split(",")[0]);
+      setItemCateg(sessionStorage.getItem("itemCateg"));
     } else {
       setItemCateg(res?.options[0].value);
     }
-    console.log(list);
   }, []);
 
   return (
