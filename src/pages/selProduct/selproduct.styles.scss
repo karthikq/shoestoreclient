@@ -190,7 +190,8 @@ ul {
   .selproduct-h2 {
     margin-top: 1rem;
 
-    font-size: 1.85rem;
+    font-size: 1.71rem;
+    line-height: 1.32;
     letter-spacing: 0.3px;
     font-weight: 600;
     margin-bottom: 0rem;
@@ -528,6 +529,9 @@ ul {
   .selproduct-details {
     width: 90%;
     margin: 0 auto;
+    .selproduct-h2 {
+      width: 95%;
+    }
   }
   .selproduct-contents {
     width: 100%;
@@ -593,6 +597,11 @@ ul {
       background-color: black;
       border: 2px solid rgb(3, 3, 3);
       color: white;
+    }
+  }
+  .selproduct-details {
+    .selproduct-h2 {
+      font-size: 1.6rem;
     }
   }
 }

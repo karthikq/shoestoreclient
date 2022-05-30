@@ -59,7 +59,7 @@ const SelproductDetails = ({ selproduct }) => {
             state={true}
           />
         )}
-        {productList?.find((item) => item.p_id !== selproduct?.p_id) && (
+        {productList?.find((item) => item.p_id !== selproduct?.p_id) ? (
           <div className="selproduct-product_similar">
             <h2>Similar products</h2>
 
@@ -73,8 +73,10 @@ const SelproductDetails = ({ selproduct }) => {
               )}
             </SimpleBar>
           </div>
+        ) : (
+          ""
         )}
-        <div className="selproduct-product_details"></div>
+        {/* <div className="selproduct-product_details"></div> */}
       </div>
     </div>
   );

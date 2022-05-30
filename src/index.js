@@ -14,7 +14,7 @@ import SelProductContext from "./context/selProductcontext";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(Reducers, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(Reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
