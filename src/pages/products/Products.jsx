@@ -21,7 +21,9 @@ const Products = ({ fetchselProduct, products }) => {
   useEffect(() => {
     fetchselProduct();
     const categ1 = sessionStorage.getItem("data");
-    const categ = categ1.split("")[0].toUpperCase() + categ1.slice(1);
+    const categ = categ1
+      ? categ1.charAt(0).toUpperCase().toUpperCase() + categ1.slice(1)
+      : "Shoes";
     const res = allproducts.find((item) => {
       return item.type === categ && item;
     });
