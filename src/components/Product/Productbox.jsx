@@ -29,13 +29,13 @@ const Productbox = ({ item, userData, viewState }) => {
   // const products = useSelector((state) => state.Products);
   // console.log(products);
   const { state, setState } = useContext(ProductContextobj);
-  
-const productCb = (val) => {
-if(val){
-    dispatch(removeProduct(item._id, navigate));
-  }
-setDeleteState(false);
-};
+
+  const productCb = (val) => {
+    if (val) {
+      dispatch(removeProduct(item._id, navigate));
+    }
+    setDeleteState(false);
+  };
 
   return (
     <React.Fragment>

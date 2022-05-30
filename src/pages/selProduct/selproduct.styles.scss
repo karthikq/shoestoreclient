@@ -162,6 +162,13 @@ ul {
     height: 90px;
     object-fit: cover;
   }
+  .swiper-thumbs {
+    .swiper-wrapper {
+      display: flex !important;
+      gap: 0 1rem !important;
+    }
+  }
+
   .slider-div {
     cursor: pointer;
     margin-top: 0.5rem;
@@ -169,6 +176,7 @@ ul {
     height: 100% !important;
 
     img {
+      width: 100%;
       border-radius: 10px !important;
     }
   }
@@ -188,7 +196,7 @@ ul {
   font-family: "Poppins", sans-serif;
   margin-bottom: 0.8rem;
   .selproduct-h2 {
-    margin-top: 1rem;
+    margin-top: 0.2rem;
 
     font-size: 1.71rem;
     line-height: 1.32;
@@ -548,10 +556,18 @@ ul {
 
       height: 280px;
       object-fit: cover;
+      border-radius: 10px;
     }
     .thumbs-slider_img {
       height: 82px;
       object-fit: cover;
+    }
+    .swiper-thumbs {
+      .swiper-wrapper {
+        display: flex !important;
+        gap: 0 0.5rem !important;
+        overflow-x: scroll;
+      }
     }
     .slider-div {
       width: 130px !important;

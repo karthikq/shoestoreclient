@@ -130,7 +130,7 @@ const Navbar = ({ auth, LogoutUser, user }) => {
             )}
           </ul>
         </div>
-        <div className="copyright">
+        <div className={auth ? "copyright" : "copyright copyright_noauth"}>
           <span className="copyright_span">Copyright © karthik 2022</span>
         </div>
       </div>
