@@ -32,7 +32,7 @@ const Options = ({ fetchselProduct, navigationState, fetchProducts }) => {
       setSelOptions([value]);
     }
   };
-  console.log(selOptions.length);
+
   useEffect(() => {
     fetchProducts();
     const data = sessionStorage.getItem("data");
@@ -53,6 +53,7 @@ const Options = ({ fetchselProduct, navigationState, fetchProducts }) => {
       // setBtnState(true);
       setOpen(true);
       toast.loading("Finding products please wait...");
+
       sessionStorage.setItem("data", selOptions);
 
       await fetchselProduct();

@@ -8,7 +8,7 @@ import ProductsMap from "./ProductsMap";
 
 const ProductsList = ({ products, details, value }) => {
   const product = useRef();
-  console.log(sessionStorage.getItem("data"));
+
   const sortProducts = () => {
     let sortedProduct = products;
     if (value === "popular") {

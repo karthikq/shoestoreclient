@@ -1,36 +1,42 @@
 /** @format */
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./product.styles.scss";
 import Productbox from "../../components/Product/Productbox";
-import { AnimatePresence, motion } from "framer-motion";
-import WhatshotIcon from "@mui/icons-material/Whatshot";
-import NewReleasesIcon from "@mui/icons-material/NewReleases";
+import { motion } from "framer-motion";
 
 import { connect } from "react-redux";
 import { fetchselProduct } from "../../components/actions";
-import { BiTrendingUp } from "react-icons/bi";
 import ProductsList from "./ProductsList";
-import { AiOutlineEye, AiOutlineFire } from "react-icons/ai";
-import { WiStrongWind } from "react-icons/wi";
-
+import { AiOutlineFire } from "react-icons/ai";
 import img1 from "./1.gif";
-import img2 from "./2.gif";
-import img3 from "./3.gif";
-import Selproduct from "../selProduct/Selproduct";
-import { ProductContextobj } from "../../context/selProductcontext";
 import allproducts from "../../ProdCat.json";
+import { useParams } from "react-router-dom";
+import NoItems from "../../components/errors/NoItems";
 
 const Products = ({ fetchselProduct, products }) => {
   const [itemCateg, setItemCateg] = useState();
+  const [options, setOptions] = useState({});
 
   useEffect(() => {
     fetchselProduct();
+    const categ1 = sessionStorage.getItem("data");
+    const categ = categ1.split("")[0].toUpperCase() + categ1.slice(1);
+    const res = allproducts.find((item) => {
+      return item.type === categ && item;
+    });
 
-    setItemCateg(
-      sessionStorage.getItem("itemCateg")?.split(",")[0] ||
-        allproducts[0].options[0].value
+    setOptions(res);
+
+    const list = res?.options.some(
+      (el) => el.value === sessionStorage.getItem("itemCateg").split(",")[0]
     );
+    if (list) {
+      setItemCateg(sessionStorage.getItem("itemCateg").split(",")[0]);
+    } else {
+      setItemCateg(res?.options[0].value);
+    }
+    console.log(list);
   }, []);
 
   return (
@@ -94,7 +100,7 @@ const Products = ({ fetchselProduct, products }) => {
                 setItemCateg(e.target.value);
                 sessionStorage.setItem("itemCateg", e.target.value);
               }}>
-              {allproducts[0].options.map((item) => (
+              {options?.options?.map((item) => (
                 <option value={item.value} key={item.label}>
                   {item.value}
                 </option>
@@ -110,6 +116,15 @@ const Products = ({ fetchselProduct, products }) => {
               )
           )}
         </motion.div>{" "}
+        {products?.some((item) =>
+          item?.keywords?.some((el) => el === itemCateg)
+        ) ? (
+          ""
+        ) : (
+          <div>
+            <NoItems state={true} text="" path={""} />
+          </div>
+        )}
       </div>
     </React.Fragment>
   );

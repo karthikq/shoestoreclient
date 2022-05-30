@@ -111,7 +111,7 @@
   }
   .product-items_list {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 3rem 2.5rem;
   }

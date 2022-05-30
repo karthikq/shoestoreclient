@@ -10,9 +10,11 @@ const NoItems = ({ text, path, state }) => {
     <div className="cart-item_empty">
       {state && <Gippy />}
       <h3>No Items found</h3>
-      <Link to={path}>
-        <span>{text}</span>
-      </Link>
+      {path && (
+        <Link to={path}>
+          <span>{text}</span>
+        </Link>
+      )}
     </div>
   );
 };
