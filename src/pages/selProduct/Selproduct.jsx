@@ -1,11 +1,7 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import {
-  AiOutlineClose,
-  AiOutlineShoppingCart,
-  AiTwotoneLike,
-} from "react-icons/ai";
+import { AiOutlineClose, AiTwotoneLike } from "react-icons/ai";
 import "./selproduct.styles.scss";
 import { motion } from "framer-motion";
 
@@ -15,13 +11,8 @@ import ImageSlider from "../../components/ImageSlider";
 import { connect, useDispatch } from "react-redux";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-import {
-  addRating,
-  removeRating,
-  singleProduct,
-  updateLike,
-} from "../../components/actions";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { addRating, singleProduct, updateLike } from "../../components/actions";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { addtocart, userAddtofav } from "../../components/actions/User";
 import ReactConfitte from "../../components/ReactConfitte";
@@ -30,12 +21,11 @@ import Rating from "@mui/material/Rating";
 
 import MenuDropdown from "../../components/ProductActions/Menu";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { ProductTabs } from "../../components/ProductActions/Actiontabs";
+
 import BackdropLoader from "../../components/loader/Backdrop";
 import SelprodSkelLoader from "../../components/loader/SelprodSkelLoader";
 import SelproductDetails from "../../components/selprodDetails/SelproductDetails";
-import { FetchSimilarprod } from "../../components/actions/Similar";
-import { async } from "@firebase/util";
+
 import { BsLightning } from "react-icons/bs";
 import toast from "react-hot-toast";
 import GetPrice from "../../components/GetPrice";
@@ -53,7 +43,6 @@ const Selproduct = ({ selproduct, userData, auth }) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const { id } = useParams();
 
@@ -113,8 +102,10 @@ const Selproduct = ({ selproduct, userData, auth }) => {
     }, [4000]);
   };
   const handleBuy = () => {
-    dispatch(addtocart(selproduct._id, navigate));
-    navigate("/get/user/" + userData._id + "#cart");
+    if (auth) {
+      dispatch(addtocart(selproduct._id, navigate));
+      navigate("/get/user/" + userData._id + "#cart");
+    }
   };
 
   return (
