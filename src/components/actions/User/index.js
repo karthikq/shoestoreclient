@@ -85,12 +85,13 @@ export const userAddtofav =
 export const addtocart = (prodId, navigate) => async (dispatch, getState) => {
   let message;
   let user = getState().User.userDetails;
+
   try {
     message = `Adding item to ${user.firstname}'s Cart`;
 
     const toastToken = toast.loading(message);
     const { data } = await backendApi.patch("/user/add/cart/" + prodId);
-    console.log(data);
+
     await dispatch({
       type: UPDATE_USER,
       payload: data.userData,

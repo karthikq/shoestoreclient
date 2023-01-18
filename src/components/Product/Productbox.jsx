@@ -56,7 +56,8 @@ const Productbox = ({ item, userData, viewState }) => {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.7 }}
-        className="product-box">
+        className="product-box"
+      >
         <div
           className="product-img"
           onClick={(e) => {
@@ -73,7 +74,8 @@ const Productbox = ({ item, userData, viewState }) => {
                 }
               );
             }
-          }}>
+          }}
+        >
           {item.p_img?.length >= 0 && (
             <img src={item.p_img[0]} alt={item.p_id} />
           )}

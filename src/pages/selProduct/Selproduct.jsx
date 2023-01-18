@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineClose, AiTwotoneLike } from "react-icons/ai";
 import "./selproduct.styles.scss";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { BiCart, BiLike } from "react-icons/bi";
 import _ from "lodash";
@@ -14,7 +14,11 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { addRating, singleProduct, updateLike } from "../../components/actions";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { addtocart, userAddtofav } from "../../components/actions/User";
+import {
+  addtocart,
+  fetchUserDetails,
+  userAddtofav,
+} from "../../components/actions/User";
 import ReactConfitte from "../../components/ReactConfitte";
 
 import Rating from "@mui/material/Rating";
@@ -29,6 +33,11 @@ import SelproductDetails from "../../components/selprodDetails/SelproductDetails
 import { BsLightning } from "react-icons/bs";
 import toast from "react-hot-toast";
 import GetPrice from "../../components/GetPrice";
+import Model from "../../components/model/Model";
+import { PaymentGateWay } from "../../components/Payment/Razorpay";
+import ToastErrors from "../../components/errors/ToastErrors";
+import { backendApi } from "../../components/api/api";
+import { getLocationCurrency } from "../../components/getLocationCurrency";
 
 const Selproduct = ({ selproduct, userData, auth }) => {
   const [addUserRating, setAddUserRating] = useState(false);
@@ -38,7 +47,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
     rating: "",
     text: "",
   });
-
+  const [modalState, setModalState] = useState(false);
   // const [selProduct, setSelproduct] = useState();
 
   const dispatch = useDispatch();
@@ -102,15 +111,73 @@ const Selproduct = ({ selproduct, userData, auth }) => {
     }, [4000]);
   };
   const handleBuy = () => {
+    // if (auth) {
+    //   dispatch(addtocart(selproduct._id, navigate));
+    //   navigate("/get/user/" + userData._id + "#cart");
+    // }
     if (auth) {
-      dispatch(addtocart(selproduct._id, navigate));
-      navigate("/get/user/" + userData._id + "#cart");
+      setModalState(true);
+    } else {
+      ToastErrors(403, toast, navigate);
+    }
+  };
+
+  const cb = (value, text) => {
+    if (value) {
+      toast.success("Payment verified & Order has been placed");
+
+      dispatch(fetchUserDetails());
+
+      setconfettiState(true);
+      navigate("/get/user/" + userData._id + "#orders");
+      setTimeout(() => {
+        setconfettiState(false);
+      }, 4000);
+    } else {
+      toast.error(text);
+    }
+  };
+
+  const modelCallback = async (value) => {
+    if (value) {
+      const currency = await getLocationCurrency(userData, auth);
+
+      try {
+        const { data } = await backendApi.get(
+          "/order/create/" + selproduct.price + "?currency=" + currency
+        );
+
+        PaymentGateWay(data, userData, cb, toast, navigate, currency);
+      } catch (error) {
+        ToastErrors(error.response.status, toast, navigate);
+
+        if (error.response.status === 400) {
+          if (currency !== "INR") {
+            toast.error(
+              "Currency " + currency + " Is not supported for payment."
+            );
+          } else {
+            toast.error("There was a error please try again later");
+          }
+        }
+      }
     }
   };
 
   return (
-    <React.Fragment>
-      <ReactConfitte state={confettiState} setState={setconfettiState} />
+    <div style={{ width: "100%", height: "auto" }}>
+      <React.Fragment>
+        <ReactConfitte state={confettiState} setState={setconfettiState} />
+        <AnimatePresence>
+          <Model
+            state={modalState}
+            setState={setModalState}
+            cb={modelCallback}
+            text={"Do you want to place the order?"}
+          />
+        </AnimatePresence>
+      </React.Fragment>
+
       <BackdropLoader open={!selproduct} />
       {!selproduct && <SelprodSkelLoader />}
       {selproduct && (
@@ -119,7 +186,8 @@ const Selproduct = ({ selproduct, userData, auth }) => {
           // animate={{ opacity: 1 }}
           // exit={{ opacity: 0 }}
           // transition={{ duration: 0.8 }}
-          className="selproduct-container">
+          className="selproduct-container"
+        >
           {selproduct && (
             <div className="bg-image">
               <img src={selproduct?.p_img} alt="bg" className="bg-image_main" />
@@ -153,7 +221,8 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                   selproduct?.likes?.length > 0
                     ? "selproduct-details selproduct-details_content"
                     : "selproduct-details"
-                }>
+                }
+              >
                 {selproduct && userData && (
                   <div className="selproduct-options_details">
                     <MenuDropdown
@@ -180,7 +249,8 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                         {selproduct.p_desp.substring(0, 100) + "..."}
                         <span
                           className="p_desp_more"
-                          onClick={() => setreadMore(true)}>
+                          onClick={() => setreadMore(true)}
+                        >
                           show more
                         </span>
                       </span>
@@ -189,7 +259,8 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                         {selproduct.p_desp + " "}
                         <span
                           className="p_desp_more"
-                          onClick={() => setreadMore(false)}>
+                          onClick={() => setreadMore(false)}
+                        >
                           show less
                         </span>
                       </span>
@@ -235,19 +306,22 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                         maxLength={50}
                         name="review"
                         cols="30"
-                        rows="3"></textarea>
+                        rows="3"
+                      ></textarea>
 
                       <div className="p_form-details">
                         <p
                           onClick={handleReview}
-                          className="selproduct-rating_p">
+                          className="selproduct-rating_p"
+                        >
                           Submit
                         </p>
                         <p
                           onClick={() => {
                             setAddUserRating(false);
                           }}
-                          className="selproduct-rating_p">
+                          className="selproduct-rating_p"
+                        >
                           Cancel
                         </p>
                       </div>
@@ -263,14 +337,16 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                             onClick={() => {
                               setAddUserRating(true);
                               // dispatch(removeRating(selproduct.p_id, navigate));
-                            }}>
+                            }}
+                          >
                             change Review
                           </p>
                         )
                       : !addUserRating && (
                           <p
                             className="selproduct-rating_p"
-                            onClick={() => setAddUserRating(true)}>
+                            onClick={() => setAddUserRating(true)}
+                          >
                             Add Review
                           </p>
                         )
@@ -334,7 +410,8 @@ const Selproduct = ({ selproduct, userData, auth }) => {
                     className="selproduct_buy-btn cart_btn"
                     onClick={() =>
                       dispatch(addtocart(selproduct._id, navigate))
-                    }>
+                    }
+                  >
                     <BiCart className="cart_icon" />
                     Add to Cart
                   </button>
@@ -356,7 +433,7 @@ const Selproduct = ({ selproduct, userData, auth }) => {
           </motion.div>
         </motion.div>
       )}
-    </React.Fragment>
+    </div>
   );
 };
 
