@@ -50,6 +50,10 @@ const SelproductDetails = ({ selproduct }) => {
             selproduct={selproduct?.likes}
             header="Likes"
             state={false}
+            imgWidth={
+              document.querySelector(".selproduct-product_rating-user")
+                ?.offsetWidth
+            }
           />
         )}{" "}
         {selproduct?.rating?.length > 0 && (
@@ -57,6 +61,10 @@ const SelproductDetails = ({ selproduct }) => {
             selproduct={selproduct?.rating}
             header="Ratings"
             state={true}
+            imgWidth={
+              document.querySelector(".selproduct-product_rating-user")
+                ?.offsetWidth
+            }
           />
         )}
         {productList?.find((item) => item.p_id !== selproduct?.p_id) ? (
